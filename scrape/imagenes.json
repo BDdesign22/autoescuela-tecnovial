@@ -1,0 +1,98 @@
+[
+ {
+  "n": 1,
+  "t": "El coche en la Macarena",
+  "donde": "Fondo del hero de la portada, detrás del titular «Tú nos conduces»",
+  "fmt": "16:9 · 2400 × 1350 px"
+ },
+ {
+  "n": 2,
+  "t": "La fachada del local",
+  "donde": "Sección «Dónde estamos», junto al mapa. También sirve para la ficha de Google",
+  "fmt": "3:2 · 1800 × 1200 px"
+ },
+ {
+  "n": 3,
+  "t": "Desde el asiento del copiloto",
+  "donde": "Hero alternativo, para probar cuál convierte mejor",
+  "fmt": "16:9 · 2400 × 1350 px"
+ },
+ {
+  "n": 4,
+  "t": "El momento del aprobado",
+  "donde": "Cabecera de la sección de opiniones y del CTA final",
+  "fmt": "16:9 · 2400 × 1350 px"
+ },
+ {
+  "n": 5,
+  "t": "El aula de teórico",
+  "donde": "Bloque «Nuestras instalaciones», en portada y en Nosotros",
+  "fmt": "4:3 · 1600 × 1200 px"
+ },
+ {
+  "n": 6,
+  "t": "La primera visita a la oficina",
+  "donde": "Bloque de matrícula y FAQ «¿Qué necesito para matricularme?»",
+  "fmt": "3:2 · 1800 × 1200 px"
+ },
+ {
+  "n": 7,
+  "t": "La moto en la pista",
+  "donde": "Tarjeta de permisos AM, A1, A2 y A",
+  "fmt": "4:3 · 1600 × 1200 px"
+ },
+ {
+  "n": 8,
+  "t": "El coche, ficha del permiso B",
+  "donde": "Tarjeta del permiso B en la pantalla de Permisos",
+  "fmt": "4:3 · 1600 × 1200 px"
+ },
+ {
+  "n": 9,
+  "t": "La maniobra de aparcamiento",
+  "donde": "Bloque de clases prácticas, en la pantalla de Precios",
+  "fmt": "3:2 · 1800 × 1200 px"
+ },
+ {
+  "n": 10,
+  "t": "El camión y el CAP",
+  "donde": "Tarjeta de permisos C, D y curso CAP",
+  "fmt": "4:3 · 1600 × 1200 px"
+ },
+ {
+  "n": 11,
+  "t": "Los test desde el sofá",
+  "donde": "Bloque «Test online 24 horas» y Zona de alumnos",
+  "fmt": "3:2 · 1800 × 1200 px"
+ },
+ {
+  "n": 12,
+  "t": "La clase de reciclaje",
+  "donde": "Tarjeta de clases sueltas y reciclaje",
+  "fmt": "4:3 · 1600 × 1200 px"
+ },
+ {
+  "n": 13,
+  "t": "Hero vertical para móvil",
+  "donde": "Mismo hero, para pantallas de menos de 700 px",
+  "fmt": "9:16 · 1350 × 2400 px"
+ },
+ {
+  "n": 14,
+  "t": "La imagen de WhatsApp",
+  "donde": "Etiqueta Open Graph: el recuadro que sale al compartir el enlace",
+  "fmt": "1200 × 630 px exacto"
+ },
+ {
+  "n": 15,
+  "t": "La flota rotulada",
+  "donde": "Propuesta de imagen corporativa, más allá de la web",
+  "fmt": "16:9 · 2400 × 1350 px"
+ },
+ {
+  "n": 16,
+  "t": "El mapa de la Macarena",
+  "donde": "Junto al mapa de Google, en «Dónde estamos»",
+  "fmt": "1:1 · 1600 × 1600 px"
+ }
+]

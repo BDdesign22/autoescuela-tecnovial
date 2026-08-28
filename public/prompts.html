@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Prompts de imagen · Autoescuela Tecnovial · bd DesignIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --navy:#0A1733;--ink:#0F1626;--body:#4A5468;--line:#E2E7F0;
+  --azul-osc:#1B2FB0;--azul:#4A90D9;--naranja:#F07E26;
+  --rojo:#E23B2E;--ambar:#F5B301;--verde:#2FA84F;
+  --paper:#fff;--paper2:#F6F8FC;--code:#0C1830;
+  --shadow:0 1px 2px rgba(10,23,51,.05),0 12px 32px -14px rgba(10,23,51,.16);
+}
+body{margin:0;background:var(--paper2);color:var(--body);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.65}
+h1,h2,h3,h4{font-family:Outfit,sans-serif;color:var(--ink);line-height:1.12;letter-spacing:-.025em;margin:0}
+h1{font-size:clamp(2.1rem,4.6vw,3.4rem);font-weight:800}
+h2{font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:700}
+h3{font-size:1.2rem;font-weight:650}
+p{margin:0 0 1em}
+a{color:var(--azul-osc)}
+code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#EEF3FD;padding:2px 6px;border-radius:5px;color:var(--azul-osc)}
+.wrap{width:min(1000px,92vw);margin-inline:auto}
+
+header.top{background:linear-gradient(160deg,#0A1733,#1B2FB0 130%);color:#fff;padding:56px 0 48px;position:relative;overflow:hidden}
+header.top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;
+  background:repeating-linear-gradient(90deg,#fff 0 44px,transparent 44px 88px);opacity:.3}
+header.top h1{color:#fff;max-width:20ch}
+header.top p{color:rgba(255,255,255,.78);max-width:64ch;margin-top:16px;font-size:1.05rem}
+.chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);padding:6px 14px;border-radius:99px;font-family:Outfit,sans-serif;
+  font-size:12.5px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+
+section{padding:52px 0}
+.step-label{font-family:Outfit,sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--azul-osc);margin-bottom:12px}
+.step-label span{color:#9AA5BA}
+
+/* pasos */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0}
+@media(max-width:800px){.steps{grid-template-columns:1fr}}
+.step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
+.step .n{width:32px;height:32px;border-radius:9px;background:var(--azul-osc);color:#fff;display:grid;
+  place-items:center;font-family:Outfit,sans-serif;font-weight:800;font-size:15px;margin-bottom:13px}
+.step h3{font-size:1.02rem;margin-bottom:6px}
+.step p{font-size:14.5px;margin:0}
+
+/* archivos */
+.files{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin:22px 0}
+@media(max-width:700px){.files{grid-template-columns:1fr}}
+.file{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);
+  border-radius:12px;padding:15px 18px;box-shadow:var(--shadow)}
+.file .ic{flex:none;width:40px;height:40px;border-radius:9px;background:#EEF3FD;color:var(--azul-osc);
+  display:grid;place-items:center;font-family:Outfit,sans-serif;font-weight:700;font-size:11px}
+.file b{display:block;color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:13px;margin-bottom:2px}
+.file small{font-size:13px;color:#7A8496}
+.file.star{border-color:var(--azul);background:#FBFCFF}
+.file.star .ic{background:var(--azul-osc);color:#fff}
+
+/* avisos */
+.warn{background:#FFF6E8;border:1px solid #F3D9A8;border-left:5px solid var(--naranja);
+  border-radius:12px;padding:22px 26px;margin:26px 0}
+.warn.red{background:#FFF5F4;border-color:#F3C0BA;border-left-color:#D9342A}
+.warn.blue{background:#F2F6FE;border-color:#C8DAF7;border-left-color:var(--azul-osc)}
+.warn h3{margin-bottom:8px;font-size:1.06rem}
+.warn p:last-child{margin:0}
+
+/* paleta */
+.pal{display:grid;grid-template-columns:repeat(auto-fit,minmax(126px,1fr));gap:12px;margin:24px 0}
+.sw{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow)}
+.sw .c{height:70px}
+.sw .t{padding:10px 13px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink)}
+.sw .t b{display:block;font-family:Outfit,sans-serif;font-size:12.5px;font-weight:650;margin-bottom:2px;letter-spacing:0}
+
+/* bloques copiables */
+.brief{background:#fff;border:2px solid var(--azul-osc);border-radius:16px;overflow:hidden;
+  box-shadow:0 20px 50px -22px rgba(27,47,176,.5);margin:26px 0}
+.brief-head{background:var(--azul-osc);color:#fff;padding:18px 24px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.brief-head h3{color:#fff;margin:0}
+.brief-head small{color:rgba(255,255,255,.75);display:block;font-size:13px;margin-top:2px;
+  font-family:'JetBrains Mono',monospace}
+.brief-head .once{margin-left:auto;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);
+  font-family:Outfit,sans-serif;font-size:12px;font-weight:650;padding:6px 13px;border-radius:99px;white-space:nowrap}
+
+pre{margin:0;background:var(--code);color:#DCE6F7;padding:20px 22px;
+  font-family:'JetBrains Mono',monospace;font-size:12.8px;line-height:1.66;
+  white-space:pre-wrap;word-wrap:break-word;position:relative}
+.brief pre{border-radius:0}
+.copy{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.24);
+  color:#fff;font-family:Outfit,sans-serif;font-size:11.5px;font-weight:650;padding:6px 12px;border-radius:7px;cursor:pointer}
+.copy:hover{background:rgba(255,255,255,.26)}
+.copy.ok{background:var(--verde);border-color:var(--verde)}
+.copy.warn-btn{background:var(--ambar);border-color:var(--ambar);color:#3A2800}
+pre ::selection{background:var(--ambar);color:#1A1200}
+
+/* escenas */
+.p{background:var(--paper);border:1px solid var(--line);border-radius:16px;
+  box-shadow:var(--shadow);margin-bottom:22px;overflow:hidden}
+.p-head{padding:20px 24px 16px;border-bottom:1px solid var(--line);display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.p-id{flex:none;width:44px;height:44px;border-radius:11px;background:var(--azul-osc);color:#fff;
+  display:grid;place-items:center;font-family:Outfit,sans-serif;font-weight:800;font-size:16px}
+.p-id.o{background:var(--naranja)}
+.p-id.g{background:var(--verde)}
+.p-id.d{background:var(--ink)}
+.p-head h3{margin-bottom:3px}
+.p-where{font-size:13.5px;color:#7A8496}
+.p-meta{margin-left:auto;display:flex;gap:7px;flex-wrap:wrap}
+.mtag{font-family:Outfit,sans-serif;font-size:11.5px;font-weight:650;background:#EEF3FD;color:var(--azul-osc);
+  padding:5px 11px;border-radius:99px;white-space:nowrap}
+.mtag.o{background:#FFF0E3;color:#A8530C}
+.mtag.n{background:#F1F3F7;color:#5B6B85}
+.p-body{padding:0}
+.p-body pre{border-radius:0}
+.p-foot{padding:16px 24px 20px}
+.logo-use{font-size:14.5px;background:#EEF3FD;border-radius:10px;padding:14px 17px;
+  border-left:4px solid var(--azul)}
+.logo-use b{color:var(--azul-osc)}
+.note{font-size:14.5px;background:var(--paper2);border-radius:10px;padding:14px 17px;margin-top:11px}
+.note b{color:var(--ink)}
+
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:18px 0;background:#fff;
+  border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+th,td{padding:12px 15px;text-align:left;border-bottom:1px solid var(--line)}
+th{background:var(--paper2);font-family:Outfit,sans-serif;font-weight:650;color:var(--ink);font-size:13px;
+  letter-spacing:.03em;text-transform:uppercase}
+tr:last-child td{border-bottom:0}
+td b{color:var(--ink)}
+
+.toc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 26px;box-shadow:var(--shadow)}
+.toc ol{margin:0;padding-left:20px;columns:2;column-gap:34px}
+@media(max-width:700px){.toc ol{columns:1}}
+.toc li{padding:4px 0;font-size:14.5px}
+.toc a{text-decoration:none;font-weight:500}
+.toc a:hover{text-decoration:underline}
+
+.golden{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px 26px;box-shadow:var(--shadow)}
+.golden .g{display:flex;gap:16px;padding:17px 0;border-bottom:1px solid var(--line);font-size:15px}
+.golden .g:last-child{border-bottom:0}
+.golden .gn{flex:none;width:27px;height:27px;border-radius:8px;background:var(--ink);color:#fff;
+  display:grid;place-items:center;font-family:Outfit,sans-serif;font-weight:700;font-size:13px}
+.golden b{color:var(--ink)}
+
+footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px 0;font-size:14px;margin-top:40px}
+footer b{color:#fff}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <span class="chip">Documento interno · bd DesignIA</span>
+    <h1>Dieciséis imágenes para la web de Tecnovial</h1>
+    <p>Brief de marca y prompts de escena, construidos sobre el logo real de la autoescuela. Mismo método que usamos con Galán Moreno: el logotipo se integra dentro de la imagen, sobre objetos de la escena.</p>
+  </div>
+</header>
+
+<!-- ===================== PASO 1 ===================== -->
+<section>
+  <div class="wrap">
+    <div class="warn" id="aviso-copiar" style="display:none;margin-top:0">
+      <h3>⚠️ Los botones de «Copiar» no pueden usar el portapapeles aquí</h3>
+      <p>Estás viendo este documento sin conexión segura (abierto con doble clic o dentro de un visor). El navegador bloquea el portapapeles en ese contexto, así que al pulsar «Copiar» <b>el texto te queda seleccionado y solo tienes que hacer Ctrl+C</b>.</p>
+      <p style="margin-top:10px">Si prefieres que los botones copien de un solo clic, sirve la carpeta por localhost:<br>
+      <code>python -m http.server 8791 --directory public</code><br>
+      y ábrelo en <code>http://localhost:8791/prompts.html</code>.</p>
+    </div>
+
+    <div class="step-label"><span>Paso 1 · </span>Cómo se usa</div>
+    <h2>Tres pasos, en este orden</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <h3>Abre un chat nuevo</h3>
+        <p>En Gemini, Nano Banana, ChatGPT o el modelo multimodal que uses. Tiene que aceptar imágenes adjuntas.</p>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h3>Sube el logo y pega el brief</h3>
+        <p>Adjunta <code>logo-tecnovial-transparente.png</code> y pega el brief maestro de abajo. Espera a que conteste «listo».</p>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h3>Adjunta el logo en cada imagen</h3>
+        <p>Vuelve a subir el mismo archivo con cada prompt. Copia, pega, revisa y pasa al siguiente.</p>
+      </div>
+    </div>
+
+    <div class="warn blue">
+      <h3>El logotipo va dentro de la imagen</h3>
+      <p>Cada prompt indica <b>sobre qué objeto de la escena</b> debe aparecer el logo: la puerta del coche, el cartel de la fachada, una carpeta, el lateral de un camión, un peto reflectante. Colocado sobre algo físico se reproduce muchísimo mejor que flotando, y si sale bien la imagen parece una foto real de la autoescuela.</p>
+      <p style="margin-top:10px"><b>Adjunta el archivo del logo con cada prompt, no solo con el brief.</b> Es el error número uno: se pega el brief con el logo, se generan tres imágenes sin adjuntarlo y salen todas con letras inventadas.</p>
+    </div>
+
+    <div class="step-label">Los archivos</div>
+    <h3 style="margin-bottom:6px">Están en <code>assets/logo-referencia/</code></h3>
+    <div class="files">
+      <div class="file star">
+        <div class="ic">PNG</div>
+        <div><b>logo-tecnovial-transparente.png</b><small>2592×556 · El que se adjunta siempre</small></div>
+      </div>
+      <div class="file">
+        <div class="ic">PNG</div>
+        <div><b>logo-tecnovial-fondo-blanco.png</b><small>2592×556 · Si el modelo se lía con la transparencia</small></div>
+      </div>
+      <div class="file">
+        <div class="ic">PNG</div>
+        <div><b>isotipo-placa-L-transparente.png</b><small>548×548 · Solo la placa. Para vinilos y espacios pequeños</small></div>
+      </div>
+      <div class="file">
+        <div class="ic">PNG</div>
+        <div><b>logotipo-texto-transparente.png</b><small>2036×556 · Solo el texto, sin la placa</small></div>
+      </div>
+      <div class="file">
+        <div class="ic">PNG</div>
+        <div><b>paleta-tecnovial.png</b><small>1800×360 · Los seis colores con sus códigos</small></div>
+      </div>
+      <div class="file">
+        <div class="ic">JPG</div>
+        <div><b>logo.jpg</b><small>680×174 · El original tal cual está en su web</small></div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <h3>⚠️ El logo original es pequeño</h3>
+      <p>La mayor versión que tienen colgada en su web es de <b>680×174 px</b>. He escalado los PNG a ×4 con interpolación buena, que es más que suficiente como referencia para el modelo. Pero para imprimir (vinilos del coche, cartel de fachada, carpetas) <b>hay que pedirles el vectorial original</b>, o redibujarlo. Es lo primero que hay que preguntarles en la reunión.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PASO 2 ===================== -->
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="step-label"><span>Paso 2 · </span>El brief maestro</div>
+    <h2>Esto va primero, una sola vez</h2>
+    <p style="margin-top:14px">Con el logo adjunto. Fija la dirección de arte de todo lo que venga después, para que las dieciséis imágenes parezcan del mismo fotógrafo y del mismo día.</p>
+
+    <div class="brief">
+      <div class="brief-head">
+        <div>
+          <h3>Brief de marca</h3>
+          <small>Pégalo con logo-tecnovial-transparente.png adjunto</small>
+        </div>
+        <span class="once">Una sola vez</span>
+      </div>
+      <pre><button class="copy" onclick="cp(this)">Copiar</button>Vas a ayudarme a crear un set de imágenes para la web de una empresa real.
+Te adjunto su logotipo. Lo usarás de dos maneras:
+
+1. Como REFERENCIA de identidad, para entender su carácter y su paleta.
+2. Como ELEMENTO A INTEGRAR dentro de cada imagen. En cada prompt te diré
+   sobre qué objeto de la escena debe aparecer.
+
+SOBRE EL LOGOTIPO, MUY IMPORTANTE:
+- Reprodúcelo EXACTAMENTE como está en el archivo que te adjunto: la palabra
+  "AUTOESCUELA" en azul oscuro arriba, "TECNOVIAL" en azul claro debajo en
+  mayor tamaño, y a la derecha un paralelogramo azul inclinado con una letra
+  "L" blanca y la silueta naranja de una persona sentada al volante.
+- El punto de la "i" de TECNOVIAL es un pequeño semáforo de tres luces
+  (roja, ámbar y verde). Consérvalo, es un rasgo característico de la marca.
+- No inventes letras, no cambies la tipografía, no reordenes las palabras,
+  no añadas elementos y no lo estilices. Debe poder leerse con claridad.
+- Respeta sus proporciones originales. No lo estires ni lo deformes.
+- Va SIEMPRE aplicado sobre un objeto físico de la escena (la puerta de un
+  coche, un cartel, una carpeta, un peto), integrado con la perspectiva, la
+  luz y la textura de ese objeto. Nunca pegado encima como una pegatina plana.
+- Aparte del logotipo, en la imagen NO debe haber ningún otro texto, cartel,
+  matrícula legible, señal con texto ni marca de agua.
+
+LA EMPRESA
+Autoescuela Tecnovial. Autoescuela de barrio en la Macarena, Sevilla, con más
+de diez años de historia y 4,9 sobre 5 en Google con casi 200 reseñas. Equipo
+pequeño, tres personas, todas mujeres. Enseñan el permiso B, moto y camión.
+Su carácter es cercano, honesto y sin artificio: precios claros por escrito,
+horarios que se adaptan al alumno, trato de barrio. No son una franquicia ni
+una academia grande. Su público es sobre todo gente de 18 a 25 años.
+
+PALETA (sale del propio logotipo)
+- Azul oscuro #1B2FB0 y azul claro #4A90D9, que son los azules del logo.
+- Naranja #F07E26 como acento cálido, el color de la figura del conductor.
+- Rojo #E23B2E, ámbar #F5B301 y verde #2FA84F solo del semáforo.
+- Nada de morados, turquesas, rosas ni degradados de colores ajenos.
+
+DIRECCIÓN DE ARTE (aplícala a TODAS las imágenes)
+- Fotografía documental real, cálida y cercana. Nada de ilustración, render
+  3D, collage ni estética de banco de imágenes.
+- Luz de Sevilla a última hora de la tarde: sol bajo y dorado, sombras
+  largas, fachadas de tonos ocre y encalados claros. Nunca luz plana de flash.
+- Aspecto de cámara réflex: 35 mm o 50 mm, diafragma abierto, profundidad de
+  campo real, grano fino de película. Textura antes que brillo.
+- Personas de aspecto español, mayoritariamente de 18 a 25 años, ropa normal
+  de calle. Expresiones de concentración, alivio o alegría auténtica.
+- Encuadres ligeramente imperfectos, como fotos tomadas un segundo tarde.
+- Sevilla reconocible pero cotidiana: calles estrechas, naranjos, persianas,
+  motos aparcadas. Nada de postal turística.
+
+QUÉ EVITAR SIEMPRE
+Cualquier texto que no sea el propio logotipo. Otros logos, emblemas de marcas
+de coche o matrículas legibles. Señales de tráfico mal dibujadas. Fondos
+blancos de estudio. Personas mirando a cámara con sonrisa de catálogo. Pulgares
+hacia arriba. Llaves sostenidas hacia el objetivo. Confeti, globos y banderas a
+cuadros. Coches deportivos o de lujo. Luz azulada o fría. Composiciones
+simétricas y centradas de catálogo. Saturación excesiva y aspecto HDR.
+
+Cuando lo hayas entendido, respóndeme solo "listo" y espera mis prompts.
+Te los iré pasando de uno en uno, y volveré a adjuntar el logotipo con cada
+uno para que lo tengas siempre delante.</pre>
+    </div>
+
+    <div class="step-label">La paleta, para que la tengas a mano</div>
+    <div class="pal">
+      <div class="sw"><div class="c" style="background:#1B2FB0"></div><div class="t"><b>Azul AUTOESCUELA</b>#1B2FB0</div></div>
+      <div class="sw"><div class="c" style="background:#4A90D9"></div><div class="t"><b>Azul TECNOVIAL</b>#4A90D9</div></div>
+      <div class="sw"><div class="c" style="background:#F07E26"></div><div class="t"><b>Naranja conductor</b>#F07E26</div></div>
+      <div class="sw"><div class="c" style="background:#E23B2E"></div><div class="t"><b>Semáforo rojo</b>#E23B2E</div></div>
+      <div class="sw"><div class="c" style="background:#F5B301"></div><div class="t"><b>Semáforo ámbar</b>#F5B301</div></div>
+      <div class="sw"><div class="c" style="background:#2FA84F"></div><div class="t"><b>Semáforo verde</b>#2FA84F</div></div>
+    </div>
+    <div class="note"><b>El hallazgo del logo:</b> el punto de la «i» de TECNOVIAL es un semáforo en miniatura. Es el mejor detalle de toda la marca y ahora mismo no se usa en ningún sitio de su web. Al final de este documento está la propuesta para convertirlo en el sistema gráfico de la web entera, y no cuesta un euro de generación.</div>
+  </div>
+</section>
+
+<!-- ===================== PASO 3 ===================== -->
+<section>
+  <div class="wrap">
+    <div class="step-label"><span>Paso 3 · </span>Las imágenes</div>
+    <h2>Dieciséis escenas, en orden de importancia</h2>
+    <p style="margin:14px 0 26px">Si solo vas a generar tres, genera las tres primeras. Si vas a generar seis, las seis primeras. Están ordenadas por lo que más cambia la web.</p>
+
+    <div class="toc">
+      <ol>
+        <li><a href="#e01">01 · El coche en la Macarena</a></li>
+        <li><a href="#e02">02 · La fachada del local</a></li>
+        <li><a href="#e03">03 · Desde el asiento del copiloto</a></li>
+        <li><a href="#e04">04 · El momento del aprobado</a></li>
+        <li><a href="#e05">05 · El aula de teórico</a></li>
+        <li><a href="#e06">06 · La primera visita a la oficina</a></li>
+        <li><a href="#e07">07 · La moto en la pista</a></li>
+        <li><a href="#e08">08 · El coche, ficha del permiso B</a></li>
+        <li><a href="#e09">09 · La maniobra de aparcamiento</a></li>
+        <li><a href="#e10">10 · El camión y el CAP</a></li>
+        <li><a href="#e11">11 · Los test desde el sofá</a></li>
+        <li><a href="#e12">12 · La clase de reciclaje</a></li>
+        <li><a href="#e13">13 · Hero vertical para móvil</a></li>
+        <li><a href="#e14">14 · La imagen de WhatsApp</a></li>
+        <li><a href="#e15">15 · La flota rotulada</a></li>
+        <li><a href="#e16">16 · El mapa de la Macarena</a></li>
+      </ol>
+    </div>
+
+    <h3 style="margin:38px 0 6px">Las medidas, de un vistazo</h3>
+    <p style="font-size:15px;margin-bottom:0">Genera siempre en la columna del medio. La última columna es a lo que hay que reducirlas antes de subirlas a la web.</p>
+    <table>
+      <tr><th>Escenas</th><th>Proporción</th><th>Genera a</th><th>Sirve a</th></tr>
+      <tr><td><b>01, 03, 04, 15</b></td><td>16:9 apaisado</td><td><code>2400 × 1350</code></td><td>1920×1080</td></tr>
+      <tr><td><b>02, 06, 09, 11</b></td><td>3:2 apaisado</td><td><code>1800 × 1200</code></td><td>1440×960</td></tr>
+      <tr><td><b>05, 07, 08, 10, 12</b></td><td>4:3 apaisado</td><td><code>1600 × 1200</code></td><td>1200×900</td></tr>
+      <tr><td><b>13</b> (hero móvil)</td><td>9:16 vertical</td><td><code>1350 × 2400</code></td><td>1080×1920</td></tr>
+      <tr><td><b>16</b> (mapa)</td><td>1:1 cuadrado</td><td><code>1600 × 1600</code></td><td>1200×1200</td></tr>
+      <tr><td><b>14</b> (WhatsApp)</td><td>1,91:1</td><td><code>1200 × 630</code></td><td>1200×630 exacto</td></tr>
+    </table>
+
+    <div class="warn blue">
+      <h3>Cómo se fija la proporción en cada herramienta</h3>
+      <p>Cada prompt termina con una línea <code>FORMATO:</code> que se lo dice al modelo, pero <b>eso no siempre basta</b>. Casi todas las herramientas tienen su propio selector y manda ese:</p>
+      <p style="margin-top:10px">
+      · <b>Gemini / Nano Banana</b> — respeta la proporción que le pides por texto. Si te la ignora, pídesela otra vez en un mensaje aparte.<br>
+      · <b>Midjourney</b> — añade el parámetro al final: <code>--ar 16:9</code>, <code>--ar 9:16</code>, <code>--ar 1:1</code>.<br>
+      · <b>Flux / Seedream</b> — se elige en el desplegable de tamaño antes de generar.<br>
+      · <b>ChatGPT</b> — acepta la proporción por texto, pero genera a resolución fija. Habrá que reescalar.</p>
+      <p style="margin-top:10px"><b>La 14 no admite aproximaciones:</b> WhatsApp, Facebook y LinkedIn exigen 1200 × 630 exactos. Si sale con otra medida, se recorta a esa antes de subirla o el recuadro del enlace saldrá descuadrado.</p>
+    </div>
+
+    <div class="note"><b>Por qué se genera más grande de lo que se sirve:</b> deja margen para recortar y reencuadrar, y para las pantallas Retina, que piden el doble de densidad. Reducir una imagen buena queda bien; ampliar una pequeña, no. Al final todas pasan a WebP con calidad 78-82.</div>
+  </div>
+</section>
+
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+
+    <div class="p" id="e01">
+      <div class="p-head">
+        <div class="p-id">01</div>
+        <div><h3>El coche en la Macarena</h3><div class="p-where">Fondo del hero de la portada, detrás del titular «Tú nos conduces»</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2400 × 1350 px</span><span class="mtag o">Con logo</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Fotografía documental a última hora de la tarde en el barrio de la Macarena, Sevilla.
+
+Un coche de autoescuela blanco, compacto, aparcado junto al bordillo en una calle estrecha, visto en tres cuartos desde delante. Lleva una placa roja de la L en la luna trasera y un cartel rectangular azul sobre el techo. El sol bajo entra desde la izquierda y baña las fachadas ocres y encaladas, dejando sombras largas sobre el asfalto.
+
+Junto a la puerta del conductor, abierta, una chica de unos veinte años con ropa de calle sostiene las llaves y mira calle abajo, expectante, sin posar ni mirar a cámara. Un par de metros detrás, una instructora de mediana edad espera relajada con una carpeta bajo el brazo.
+
+EL LOGOTIPO: aplicado sobre la puerta delantera del coche, ocupando aproximadamente el 40% del ancho de la puerta, siguiendo la curvatura y la perspectiva de la chapa, con el mismo reflejo cálido del sol de la tarde. Repetido más pequeño en el cartel azul del techo.
+
+Objetivo de 35 mm, f/2.0, poca profundidad de campo, grano fino, color cálido y natural. La franja superior izquierda del encuadre queda limpia de cielo y pared, sin elementos, reservada para un titular.
+
+FORMATO: imagen apaisada en proporción 16:9 (2400 × 1350 px).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>El logo va en:</b> la puerta delantera y el cartel del techo. Son las dos superficies grandes y planas de la escena, y además es donde el logo estaría en la vida real.</div>
+        <div class="note"><b>Por qué el hueco arriba a la izquierda:</b> ahí va el H1. Si la imagen viene «llena», el titular queda ilegible y acabas metiéndole una capa negra encima que se carga la foto.</div>
+      </div>
+    </div>
+
+    <div class="p" id="e02">
+      <div class="p-head">
+        <div class="p-id">02</div>
+        <div><h3>La fachada del local</h3><div class="p-where">Sección «Dónde estamos», junto al mapa. También sirve para la ficha de Google</div></div>
+        <div class="p-meta"><span class="mtag">3:2 · 1800 × 1200 px</span><span class="mtag o">Con logo</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Fotografía documental a pie de calle de un pequeño local de autoescuela de barrio en la Macarena, Sevilla, a media tarde.
+
+Bajo de un edificio residencial modesto, con un escaparate amplio y limpio, un cartel rectangular sobre la puerta y un toldo azul recogido. Fachada de tono ocre claro, una moto aparcada delante, un naranjo en el borde del encuadre que proyecta sombra moteada sobre la acera. Vida de calle normal: una persona pasa caminando, desenfocada.
+
+EL LOGOTIPO: aplicado sobre el cartel que hay encima de la puerta, ocupando casi todo el cartel, con la perspectiva de la fachada y la luz cálida de la tarde sobre él. Repetido en pequeño como vinilo blanco translúcido en la esquina inferior del cristal del escaparate.
+
+Objetivo de 35 mm, f/2.8, composición frontal y ordenada, luz natural cálida, color realista, grano fino.
+
+FORMATO: imagen apaisada en proporción 3:2 (1800 × 1200 px).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>El logo va en:</b> el cartel de la fachada, en grande. Es el prompt donde más se luce, porque un cartel es una superficie plana, frontal y bien iluminada: el mejor escenario posible para que el modelo lo reproduzca bien.</div>
+        <div class="note"><b>Para qué sirve además:</b> hoy no tienen ninguna foto de la fachada. Esta imagen vale para la web, para la ficha de Google Business y para que la gente reconozca la puerta cuando llegue.</div>
+      </div>
+    </div>
+
+    <div class="p" id="e03">
+      <div class="p-head">
+        <div class="p-id d">03</div>
+        <div><h3>Desde el asiento del copiloto</h3><div class="p-where">Hero alternativo, para probar cuál convierte mejor</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2400 × 1350 px</span><span class="mtag n">Sin logo</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Fotografía documental tomada desde el asiento del copiloto de un coche de autoescuela, a última hora de la tarde en Sevilla.
+
+Vista por encima del hombro de las manos de una alumna joven sobre el volante, en posición de diez y diez, los nudillos ligeramente tensos. A través del parabrisas se ve una avenida sevillana soleada con naranjos y, a media distancia y algo desenfocado, un semáforo en verde. La luz dorada entra por la izquierda e inunda el habitáculo, marcando el polvo en el aire.
+
+En el borde inferior del encuadre asoman los pedales de doble mando y la mano tranquila de la instructora apoyada junto a la palanca.
+
+SIN LOGOTIPO en esta imagen.
+
+Objetivo de 35 mm, f/1.8, foco en las manos, grano natural, color cálido y realista. No debe verse ninguna cara.
+
+FORMATO: imagen apaisada en proporción 16:9 (2400 × 1350 px).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>Aquí no va logo:</b> es una imagen de punto de vista y meter la marca dentro del coche quedaría forzado. La marca ya está en el nav que va encima.</div>
+        <div class="note"><b>El detalle que la hace buena:</b> «no debe verse ninguna cara». Sin cara, cualquiera que la mire se pone en ese asiento. Es la diferencia entre mirar a una modelo y ser tú quien conduce.</div>
+      </div>
+    </div>
+
+    <div class="p" id="e04">
+      <div class="p-head">
+        <div class="p-id g">04</div>
+        <div><h3>El momento del aprobado</h3><div class="p-where">Cabecera de la sección de opiniones y del CTA final</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2400 × 1350 px</span><span class="mtag o">Logo discreto</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Fotografía documental espontánea a las puertas de un centro de exámenes de tráfico en Sevilla, a media mañana con luz clara.
+
+Una chica joven acaba de bajarse del coche y su instructora la abraza. Las dos se ríen de verdad, con los ojos cerrados, en pleno gesto. El encuadre está ligeramente descolocado, como si la foto se hubiera tomado un segundo tarde. Al fondo, desenfocado, otro alumno mira la escena sonriendo.
+
+Luz cálida de mañana, hormigón claro y una hilera de árboles detrás.
+
+EL LOGOTIPO: en pequeño, sobre la carpeta que la instructora lleva bajo el brazo, siguiendo la inclinación de la carpeta. Discreto, no protagonista.
+
+Objetivo de 50 mm, f/2.0, color natural, grano fino, piel con textura real, nadie posando.
+
+FORMATO: imagen apaisada en proporción 16:9 (2400 × 1350 px).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>El logo va en:</b> la carpeta bajo el brazo, y muy pequeño. Es un momento humano; si la marca se hace notar, lo ensucia.</div>
+        <div class="note"><b>El detalle que lo cambia todo:</b> «encuadre ligeramente descolocado» y «con los ojos cerrados». Una alegría perfectamente encuadrada se lee como falsa al instante. La que parece robada, se cree.</div>
+      </div>
+    </div>
+
+    <div class="p" id="e05">
+      <div class="p-head">
+        <div class="p-id">05</div>
+        <div><h3>El aula de teórico</h3><div class="p-where">Bloque «Nuestras instalaciones», en portada y en Nosotros</div></div>
+        <div class="p-meta"><span class="mtag">4:3 · 1600 × 1200 px</span><span class="mtag o">Con logo</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Fotografía documental del interior de un aula pequeña y ordenada de autoescuela española, a media tarde.
+
+Seis u ocho pupitres con monitores táctiles, una pantalla de proyección al fondo y luz de día entrando por una ventana lateral con la persiana a medio bajar, que dibuja bandas horizontales de luz sobre la pared. Dos alumnos sentados, vistos desde atrás, uno inclinado hacia la pantalla. Espacio moderno pero modesto, paredes claras, sillas con detalle azul.
+
+EL LOGOTIPO: proyectado en la pantalla del fondo, centrado sobre un fondo azul liso, como si fuera la diapositiva de espera de la clase. Con la ligera deformación y el brillo propios de una imagen proyectada.
+
+Gran angular de 24 mm, f/2.8, luz interior natural mezclada con luz cálida de techo, color realista, grano fino. Encuadre ligeramente asimétrico, desde la esquina trasera del aula.
+
+FORMATO: imagen apaisada en proporción 4:3 (1600 × 1200 px).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>El logo va en:</b> la pantalla del proyector. Es la manera natural de que la marca esté en el aula sin colgar un cartel.</div>
+        <div class="note"><b>Sustituye a lo que tienen:</b> hoy hay dos fotos reales del aula en su web. Son honestas pero están mal iluminadas y desencuadradas. Esta es su sustituta.</div>
+      </div>
+    </div>
+
+    <div class="p" id="e06">
+      <div class="p-head">
+        <div class="p-id">06</div>
+        <div><h3>La primera visita a la oficina</h3><div class="p-where">Bloque de matrícula y FAQ «¿Qué necesito para matricularme?»</div></div>
+        <div class="p-meta"><span class="mtag">3:2 · 1800 × 1200 px</span><span class="mtag o">Con logo</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Fotografía documental cálida dentro de una oficina pequeña de autoescuela.
+
+Al otro lado de una mesa de madera, una mujer de unos cuarenta años con ropa cómoda y profesional explica algo señalando con un bolígrafo hacia una carpeta que hay delante de una alumna joven, vista desde atrás. Luz natural desde una ventana a la izquierda. Detrás, una estantería con maquetas de señales de tráfico y archivadores. Sin posar, en plena conversación, las dos relajadas.
+
+EL LOGOTIPO: impreso sobre la tapa de la carpeta que hay encima de la mesa, en el tercio superior, con la perspectiva de la mesa y el mismo brillo mate del cartón.
+
+Objetivo de 35 mm, f/2.0, color cálido natural, grano fino, sombras suaves. Ninguna cara mirando a cámara.
+
+FORMATO: imagen apaisada en proporción 3:2 (1800 × 1200 px).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>El logo va en:</b> la tapa de la carpeta. Bonus: te sirve además como mockup de papelería para enseñarles cómo quedaría su carpeta corporativa sin haber impreso ninguna.</div>
+      </div>
+    </div>
+
+    <div class="p" id="e07">
+      <div class="p-head">
+        <div class="p-id o">07</div>
+        <div><h3>La moto en la pista</h3><div class="p-where">Tarjeta de permisos AM, A1, A2 y A</div></div>
+        <div class="p-meta"><span class="mtag">4:3 · 1600 × 1200 px</span><span class="mtag o">Con logo</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Fotografía documental con energía en una pista de prácticas de moto en Sevilla, a última hora de la tarde.
+
+Un motorista con equipación completa y casco inclina una moto naked de cilindrada media entre un eslalon de conos naranjas sobre asfalto abierto, con la rueda delantera girada y el cuerpo comprometido en la inclinación. El sol bajo está detrás y proyecta sombras largas sobre el asfalto, recortando los hombros del piloto con luz cálida a contraluz.
+
+EL LOGOTIPO: sobre el peto reflectante que lleva el motorista en el pecho y la espalda, adaptado al pliegue de la tela y al movimiento del cuerpo.
+
+Objetivo de 85 mm, f/2.8, fondo con ligero movimiento y el piloto nítido, color cálido natural, grano fino. Sin desenfoque de movimiento sobre el sujeto.
+
+FORMATO: imagen apaisada en proporción 4:3 (1600 × 1200 px).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>El logo va en:</b> el peto reflectante. Si el modelo lo deforma demasiado con los pliegues, cambia a «sobre un cono grande en primer plano».</div>
+        <div class="note"><b>Los conos naranjas no son casualidad:</b> son el naranja del logo apareciendo en la escena de forma natural, sin que parezca una decisión de diseño. Es la manera elegante de meter la paleta.<br><br><b>Y es la imagen que más falta hace:</b> aquí Tecnovial tiene un diferencial real (pistas en Sevilla capital, sin desplazarse) y hoy lo cuentan con tres frases y ninguna foto.</div>
+      </div>
+    </div>
+
+    <div class="p" id="e08">
+      <div class="p-head">
+        <div class="p-id">08</div>
+        <div><h3>El coche, ficha del permiso B</h3><div class="p-where">Tarjeta del permiso B en la pantalla de Permisos</div></div>
+        <div class="p-meta"><span class="mtag">4:3 · 1600 × 1200 px</span><span class="mtag o">Con logo</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Fotografía documental de un coche de autoescuela blanco compacto con doble mando, visto en tres cuartos desde delante, aparcado en una calle sevillana tranquila y soleada.
+
+Placa roja de la L en el parabrisas, cartel azul sobre el techo. Luz cálida de tarde, sombra suave bajo el coche, fachadas claras desenfocadas al fondo.
+
+EL LOGOTIPO: sobre la puerta delantera del coche, siguiendo la perspectiva de la chapa, y repetido más pequeño en el cartel del techo. Exactamente igual que estaría rotulado en un coche real de autoescuela.
+
+Objetivo de 50 mm, f/2.8, color realista y natural, grano fino.
+
+FORMATO: imagen apaisada en proporción 4:3 (1600 × 1200 px).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>El logo va en:</b> puerta y cartel de techo, igual que en la escena 01. Así el coche se mantiene coherente en toda la web y parece siempre el mismo vehículo.</div>
+      </div>
+    </div>
+
+    <div class="p" id="e09">
+      <div class="p-head">
+        <div class="p-id">09</div>
+        <div><h3>La maniobra de aparcamiento</h3><div class="p-where">Bloque de clases prácticas, en la pantalla de Precios</div></div>
+        <div class="p-meta"><span class="mtag">3:2 · 1800 × 1200 px</span><span class="mtag o">Con logo</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Fotografía documental desde un punto de vista algo elevado, en tres cuartos, de un coche de autoescuela blanco en plena maniobra de aparcamiento en línea entre dos coches, en una calle estrecha de Sevilla a última hora de la tarde.
+
+Las ruedas giradas, el coche en ángulo respecto al bordillo, la placa roja de la L visible. En la acera, la instructora observa con los brazos cruzados, tranquila. Sombras largas y cálidas, fachadas ocres, algunas motos aparcadas.
+
+EL LOGOTIPO: sobre la puerta del coche, deformado en perspectiva según el ángulo del vehículo, integrado con el reflejo de la chapa.
+
+Objetivo de 50 mm, f/2.8, color cálido natural, grano fino, escena de calle sin posar.
+
+FORMATO: imagen apaisada en proporción 3:2 (1800 × 1200 px).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>El logo va en:</b> la puerta, pero ojo: en este encuadre el coche está en ángulo, así que hay que insistirle al modelo en la deformación en perspectiva. Si sale plano, cantará.</div>
+      </div>
+    </div>
+
+    <div class="p" id="e10">
+      <div class="p-head">
+        <div class="p-id">10</div>
+        <div><h3>El camión y el CAP</h3><div class="p-where">Tarjeta de permisos C, D y curso CAP</div></div>
+        <div class="p-meta"><span class="mtag">4:3 · 1600 × 1200 px</span><span class="mtag o">Con logo</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Fotografía documental en una explanada de prácticas para permisos profesionales, temprano por la mañana.
+
+Vista baja en tres cuartos de la cabina de un camión rígido blanco aparcado sobre asfalto abierto, con un remolque de lateral blanco y liso. Un conductor con chaleco de alta visibilidad baja de la cabina agarrado al asidero, visto desde atrás. Luz de mañana algo fría con reflejos cálidos sobre el metal, cielo amplio, horizonte industrial al fondo.
+
+EL LOGOTIPO: en grande sobre el lateral blanco del remolque, ocupando la mitad de su altura, siguiendo la perspectiva del remolque y con la textura del material. Repetido más pequeño en la puerta de la cabina.
+
+Objetivo de 35 mm, f/4, color natural realista, grano fino.
+
+FORMATO: imagen apaisada en proporción 4:3 (1600 × 1200 px).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>El logo va en:</b> el lateral del remolque. Es la superficie más grande y plana de todo el documento, la que mejor va a reproducir el modelo. Con esta imagen tienes el «Tecnovial ya hace camión» que necesitan para vender la novedad.</div>
+      </div>
+    </div>
+
+    <div class="p" id="e11">
+      <div class="p-head">
+        <div class="p-id d">11</div>
+        <div><h3>Los test desde el sofá</h3><div class="p-where">Bloque «Test online 24 horas» y Zona de alumnos</div></div>
+        <div class="p-meta"><span class="mtag">3:2 · 1800 × 1200 px</span><span class="mtag n">Sin logo</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Fotografía cercana y documental, de noche en casa.
+
+Una persona joven tumbada en el sofá con las piernas en alto sostiene un móvil con las dos manos; el brillo de la pantalla le ilumina las manos y la barbilla. Luz cálida de lámpara desde la derecha, una taza y un cuaderno sobre la mesa baja en primer plano, ligeramente desenfocados. Escena relajada, cotidiana, nada montada.
+
+La pantalla del móvil es un rectángulo azul liso, sin ningún contenido ni interfaz.
+
+SIN LOGOTIPO en esta imagen.
+
+Objetivo de 50 mm, f/1.8, color doméstico cálido, grano natural, poca profundidad de campo.
+
+FORMATO: imagen apaisada en proporción 3:2 (1800 × 1200 px).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>Aquí no va logo, va producto:</b> la pantalla azul lisa es un hueco a propósito. Encima se compone después una captura real de NovaTest o una maqueta de la interfaz. Así se ve el producto de verdad, no un logo flotando.</div>
+        <div class="note"><b>Por qué en el sofá y no en un escritorio:</b> el argumento es «desde donde te pille». Una foto en escritorio dice «deberes». Una en el sofá dice «esto no te va a costar trabajo».</div>
+      </div>
+    </div>
+
+    <div class="p" id="e12">
+      <div class="p-head">
+        <div class="p-id d">12</div>
+        <div><h3>La clase de reciclaje</h3><div class="p-where">Tarjeta de clases sueltas y reciclaje</div></div>
+        <div class="p-meta"><span class="mtag">4:3 · 1600 × 1200 px</span><span class="mtag n">Sin logo</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Fotografía documental desde el asiento trasero de un coche en una autovía española, por la tarde.
+
+Por encima del hombro de un conductor de unos cuarenta años, con las manos firmes en el volante, mirando al frente hacia carriles despejados y una señal verde a lo lejos que aparece borrosa e ilegible. Postura tranquila y segura. Luz lateral, reflejos cálidos en el parabrisas, campo de olivos difuminado pasando por la ventanilla.
+
+SIN LOGOTIPO en esta imagen. Ninguna señal debe tener texto legible.
+
+Objetivo de 35 mm, f/2.8, color natural, grano fino, sin que se vea la cara.
+
+FORMATO: imagen apaisada en proporción 4:3 (1600 × 1200 px).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>Aquí no va logo:</b> es una escena de confianza recuperada; la marca sobra dentro del cuadro.</div>
+        <div class="note"><b>La edad importa:</b> «unos cuarenta años». El público del reciclaje no son chavales de 18, son adultos que tienen el carné y han perdido la costumbre. Si sale un chaval, esa tarjeta no le habla a nadie.</div>
+      </div>
+    </div>
+
+    <div class="p" id="e13">
+      <div class="p-head">
+        <div class="p-id">13</div>
+        <div><h3>Hero vertical para móvil</h3><div class="p-where">Mismo hero, para pantallas de menos de 700 px</div></div>
+        <div class="p-meta"><span class="mtag">9:16 · 1350 × 2400 px</span><span class="mtag o">Con logo</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Fotografía documental vertical, hora dorada en Sevilla.
+
+Ángulo bajo mirando a lo largo del lateral de un coche de autoescuela blanco aparcado en una calle de la Macarena, con la placa roja de la L visible en el portón trasero. Fachadas ocres y una franja de cielo cálido ocupan la mitad superior del encuadre. Una chica joven con ropa de calle está junto a la puerta del conductor con las llaves en la mano, vista de cintura para arriba en el tercio inferior. Sombras largas, luz cálida recortando su hombro.
+
+EL LOGOTIPO: sobre la puerta del coche, que en este encuadre se ve grande y de lado, con la perspectiva del lateral del vehículo.
+
+Objetivo de 35 mm, f/2.0, grano fino, color cálido natural. Toda la mitad superior queda limpia de cielo y pared, reservada para un titular.
+
+FORMATO: imagen vertical en proporción 9:16 (1350 × 2400 px).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>El logo va en:</b> la puerta, y aquí es donde mejor se va a leer de todas las escenas, porque el coche se ve de perfil y grande.</div>
+        <div class="note"><b>No es opcional:</b> la mayoría del tráfico de una autoescuela llega desde el móvil. Recortar el hero horizontal deja a la chica cortada por la mitad. Se genera aparte.</div>
+      </div>
+    </div>
+
+    <div class="p" id="e14">
+      <div class="p-head">
+        <div class="p-id">14</div>
+        <div><h3>La imagen de WhatsApp</h3><div class="p-where">Etiqueta Open Graph: el recuadro que sale al compartir el enlace</div></div>
+        <div class="p-meta"><span class="mtag">1200 × 630 px exacto</span><span class="mtag o">Fondo + composición</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Fotografía cinematográfica apaisada, hora dorada en Sevilla.
+
+Un coche de autoescuela blanco con la placa roja de la L, visto desde un ángulo bajo en una calle vacía y soleada, colocado en el tercio derecho del encuadre. Los dos tercios de la izquierda son una pared ocre iluminada por el sol, con sombras diagonales largas y nada más.
+
+Luz natural cálida, contraste suave, grano sutil, mucho espacio vacío a la izquierda.
+
+EL LOGOTIPO: sobre la puerta del coche, pequeño y nítido.
+
+Objetivo de 35 mm, f/2.8, color realista.
+
+FORMATO: imagen apaisada en proporción 1,91:1 (1200 × 630 px exactos, es la medida que exige Open Graph).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>Sobre los dos tercios vacíos</b> se compone después: el logo completo arriba, el titular <b>«Sácate el carné en Sevilla»</b> en Outfit 800, y debajo las estrellas con <b>«4,9 ★ · 199 reseñas en Google»</b>.</div>
+        <div class="note"><b>Ahora mismo su web no tiene ninguna.</b> Cuando alguien pasa el enlace de Tecnovial por WhatsApp sale un recuadro gris vacío. Se arregla con esta imagen y una línea de código.</div>
+      </div>
+    </div>
+
+    <div class="p" id="e15">
+      <div class="p-head">
+        <div class="p-id">15</div>
+        <div><h3>La flota rotulada</h3><div class="p-where">Propuesta de imagen corporativa, más allá de la web</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2400 × 1350 px</span><span class="mtag o">Con logo</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Fotografía de producto limpia de un coche compacto blanco, en perfil lateral perfecto, centrado, sobre suelo gris neutro y fondo degradado suave de estudio.
+
+Iluminación difusa y uniforme, reflejo sutil bajo el coche, sin sombras duras. Carrocería completamente lisa, sin emblemas de marca. Un cartel rectangular azul sobre el techo.
+
+EL LOGOTIPO: en grande sobre la puerta delantera, ocupando casi toda su altura útil, y repetido en el cartel del techo. Aplicado como vinilo real, con el brillo y el ligero relieve de un vinilo sobre chapa pintada.
+
+Objetivo de 85 mm, f/8, enfoque nítido en todo el coche, balance de blancos neutro, mucho detalle en pintura y cristales.
+
+FORMATO: imagen apaisada en proporción 16:9 (2400 × 1350 px).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>Esto es una plantilla, no una foto final.</b> Encima se completa la rotulación: la web <code>autoescuelatecnovial.es</code> en el faldón trasero, el teléfono <code>955 123 107</code> bajo el logo y una franja azul degradada de <code>#1B2FB0</code> a <code>#4A90D9</code> a lo largo del bajo. Sirve para enseñarles cómo quedaría la flota antes de gastarse un euro en vinilo.</div>
+      </div>
+    </div>
+
+    <div class="p" id="e16">
+      <div class="p-head">
+        <div class="p-id o">16</div>
+        <div><h3>El mapa de la Macarena</h3><div class="p-where">Junto al mapa de Google, en «Dónde estamos»</div></div>
+        <div class="p-meta"><span class="mtag">1:1 · 1600 × 1600 px</span><span class="mtag o">Con isotipo</span></div>
+      </div>
+      <div class="p-body">
+        <pre><button class="copy" onclick="cp(this)">Copiar</button>Ilustración vectorial plana de un mapa de barrio, vista cenital, limpia y moderna, estilo editorial.
+
+Trama de calles sencilla en blanco sobre fondo color crema, una manzana verde de parque, una franja de río en un borde y pequeños iconos simplificados de una parada de autobús y una estación de bicicletas. Un marcador de ubicación destacado con una sombra suave.
+
+Paleta limitada: azul oscuro #1B2FB0, azul claro #4A90D9, crema #F6F1E7 y un verde apagado. Sin ningún texto, sin nombres de calle, sin etiquetas. Mucho espacio en blanco, geométrico y despejado.
+
+EL MARCADOR DE UBICACIÓN debe ser el paralelogramo azul inclinado con la letra L blanca y la figura naranja del conductor que aparece en el logotipo adjunto, usado como chincheta del mapa.
+
+FORMATO: imagen cuadrada en proporción 1:1 (1600 × 1600 px).</pre>
+      </div>
+      <div class="p-foot">
+        <div class="logo-use"><b>Aquí el logo no se aplica: se convierte en el marcador.</b> La autoescuela literalmente marca su punto en el mapa con su propio símbolo. Si el modelo se lía, adjunta <code>isotipo-placa-L-transparente.png</code> en vez del logo completo.</div>
+        <div class="note"><b>Por qué además del mapa de Google:</b> el de Google es funcional, este es de marca. Va al lado, no en su lugar, y es el que puedes meter en el pie o en un folleto.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== NO SE GENERAN ===================== -->
+<section>
+  <div class="wrap">
+    <div class="step-label"><span>Aparte · </span>Lo que no se genera</div>
+    <h2>Cuatro piezas que se dibujan a mano</h2>
+    <p style="margin:14px 0 26px">No son fotografías, son sistema gráfico. Y hay que hacerlas en vectorial porque generarlas sería inventarse cosas que ya existen o que están normalizadas.</p>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id d">A</div>
+        <div><h3>El isotipo suelto</h3><div class="p-where">Favicon, avatar de redes, botón del chat, sello del pie</div></div>
+        <div class="p-meta"><span class="mtag n">Ya extraído</span></div>
+      </div>
+      <div class="p-foot" style="padding-top:20px">
+        <div class="note" style="margin-top:0"><b>Ya está hecho:</b> es <code>isotipo-placa-L-transparente.png</code>, recortado del logo original a 548×548 px. Lo que falta es <b>redibujarlo en vectorial</b>, porque el recorte viene de un JPG de 680 px y para imprimir no da.<br><br><b>Cuatro versiones a entregar:</b> a todo color sobre blanco · en blanco sobre azul <code>#1B2FB0</code> · a una tinta azul · silueta plana en negro.<br><br><b>Formatos:</b> SVG para web, PNG a 1024/512/192 para PWA y redes, ICO para el favicon.</div>
+      </div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id d">B</div>
+        <div><h3>El semáforo como sistema gráfico</h3><div class="p-where">Separadores, viñetas, pasos del proceso, estados del formulario</div></div>
+        <div class="p-meta"><span class="mtag o">La mejor idea</span></div>
+      </div>
+      <div class="p-foot" style="padding-top:20px">
+        <div class="note" style="margin-top:0"><b>Coger algo que ya es suyo y hacerlo trabajar,</b> sin gastar un euro de generación:<br><br>
+        <b>1. Separador de secciones</b> — tres círculos horizontales de 8 px (rojo <code>#E23B2E</code>, ámbar <code>#F5B301</code>, verde <code>#2FA84F</code>) con 10 px de aire, centrados entre bloques. Sustituye a la línea gris de siempre.<br><br>
+        <b>2. Viñetas de listas</b> — verde para lo que «incluye», ámbar para lo que «hay que tener en cuenta», rojo para lo que «no incluye». La lista de precios se lee sola.<br><br>
+        <b>3. Los tres pasos</b> — semáforo vertical donde se enciende la luz que toca: rojo «te matriculas», ámbar «estudias y practicas», verde «apruebas». El servicio explicado en un solo gráfico.<br><br>
+        <b>4. Estado del formulario</b> — la luz pasa a verde al validarse el campo.</div>
+        <div class="logo-use" style="margin-top:11px"><b>Regla de uso:</b> el semáforo <b>nunca</b> va junto al logo completo en la misma pieza, porque el logo ya lo lleva dentro y se duplica. O logo, o semáforo.</div>
+      </div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id d">C</div>
+        <div><h3>Las placas de los permisos</h3><div class="p-where">Los iconos B, A, C y R de las tarjetas de Permisos</div></div>
+        <div class="p-meta"><span class="mtag n">SVG</span></div>
+      </div>
+      <div class="p-foot" style="padding-top:20px">
+        <div class="note" style="margin-top:0"><b>Ya están en la maqueta</b> como placas de color con la letra. Lo que falta es subirlas de nivel: en lugar de un cuadrado, <b>el paralelogramo inclinado del isotipo</b> con la letra dentro.<br><br>
+        Inclinación de 12° a la derecha, esquinas redondeadas 4 px, letra en Outfit 800 blanca centrada. Un color por permiso, todos de la paleta del logo:<br><br>
+        · <b>B</b> — azul <code>#1B2FB0</code><br>
+        · <b>A</b> (moto) — naranja <code>#F07E26</code>, el color del conductor del isotipo<br>
+        · <b>C/D</b> — azul claro <code>#4A90D9</code><br>
+        · <b>R</b> (reciclaje) — gris azulado <code>#5B6B85</code><br><br>
+        Al pasar el ratón, la placa se endereza a 0° en 200 ms. Guiño a «enderezar el volante» y detalle que la gente recuerda.</div>
+      </div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id d">D</div>
+        <div><h3>El patrón de señales</h3><div class="p-where">Fondo de la sección de FAQ y de la zona de alumnos</div></div>
+        <div class="p-meta"><span class="mtag n">SVG</span></div>
+      </div>
+      <div class="p-foot" style="padding-top:20px">
+        <div class="warn red" style="margin:0 0 12px">
+          <h3>🚫 Este no se genera con IA bajo ningún concepto</h3>
+          <p>Las señales de tráfico españolas están normalizadas y una IA se las inventa. En una autoescuela, una señal mal dibujada es el peor error posible: es literalmente lo que enseñan. Un alumno lo pilla en dos segundos.</p>
+        </div>
+        <div class="note" style="margin-top:0">Patrón repetible con seis señales reales del temario dibujadas fielmente: <b>ceda el paso</b>, <b>stop</b>, <b>prohibido el paso</b>, <b>dirección obligatoria</b>, <b>límite de velocidad</b> y <b>fin de prohibiciones</b>.<br><br>En rejilla irregular con rotaciones de ±8°, todas <b>a una sola tinta azul <code>#1B2FB0</code> al 4 % de opacidad</b>. Nunca a color: a color compite con el contenido y parece un cartel de feria.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REGLAS DE ORO ===================== -->
+<section style="background:#fff;border-top:1px solid var(--line)">
+  <div class="wrap">
+    <h2>Reglas de oro</h2>
+    <p style="margin:14px 0 24px">Lo que hay que comprobar antes de subir una sola imagen a la web.</p>
+
+    <div class="golden">
+      <div class="g"><span class="gn">1</span><div><b>Adjunta el logo con cada prompt.</b> No solo con el brief. Si no lo adjuntas, el modelo se inventa las letras y sale un garabato parecido.</div></div>
+      <div class="g"><span class="gn">2</span><div><b>Lee el logo en la imagen generada.</b> ¿Pone AUTOESCUELA TECNOVIAL? ¿El semáforo de la «i» está? ¿La L de la placa está bien? Si algo falla, se repite. No se sube «casi bien».</div></div>
+      <div class="g"><span class="gn">3</span><div><b>Cero texto que no sea el logo.</b> Repasa carteles, matrículas, señales y camisetas buscando letras inventadas. Los modelos las cuelan siempre.</div></div>
+      <div class="g"><span class="gn">4</span><div><b>Ninguna matrícula legible.</b> Si sale una que se lee, se difumina antes de subirla.</div></div>
+      <div class="g"><span class="gn">5</span><div><b>Señales de tráfico: o bien o fuera.</b> Si en una foto se ve una señal mal dibujada, esa imagen se descarta. En una autoescuela no hay margen con eso.</div></div>
+      <div class="g"><span class="gn">6</span><div><b>Cuenta los dedos.</b> Manos y volantes son el punto flaco clásico. Míralo con lupa en las escenas 03 y 12.</div></div>
+      <div class="g"><span class="gn">7</span><div><b>Todas a WebP.</b> Calidad 78-82, ancho máximo 2400 px. Su web pesa hoy 3 MB solo en el slider de portada: no vamos a repetir el error.</div></div>
+      <div class="g"><span class="gn">8</span><div><b>Todas con alt descriptivo.</b> Aprovechando que estamos: «Coche de la Autoescuela Tecnovial en el barrio de la Macarena, Sevilla», no «imagen1».</div></div>
+    </div>
+
+    <div class="warn red" style="margin-top:34px">
+      <h3>🚫 El equipo no se genera con IA. Nunca.</h3>
+      <p>El equipo son personas reales, con nombre y apellidos, a las que los alumnos citan en las reseñas de Google. <b>Generar caras con IA y presentarlas como el equipo de Tecnovial sería fabricar personas que no existen y atribuirles una identidad real.</b> Eso no lo hacemos, y además se nota siempre.</p>
+      <p style="margin-top:10px"><b>Lo que hay que hacer:</b> una sesión de fotos real, media mañana, en la oficina y junto al coche. Retratos naturales con luz de ventana, sin fondo blanco de estudio. Cuesta poco y es el activo con más valor de toda la web: la gente que deja cinco estrellas está hablando del profesorado. Que se les vea la cara es el mejor argumento que tiene esta autoescuela — con su permiso y solo con quien siga en plantilla.</p>
+      <p style="margin-top:10px">Las personas de las escenas 01, 04 y 06 son <b>figurantes anónimos</b> en situaciones genéricas, sin nombre ni identidad atribuida. Eso sí es legítimo. Presentar una cara generada como «tu profesora» no lo es.</p>
+    </div>
+
+    <h2 style="margin-top:44px">Resumen</h2>
+    <table>
+      <tr><th>Qué</th><th>Cuántas</th><th>Cómo</th></tr>
+      <tr><td><b>Escenas con el logo integrado</b></td><td>11</td><td>01, 02, 04, 05, 06, 07, 08, 09, 10, 13, 15</td></tr>
+      <tr><td><b>Escenas sin logo</b></td><td>3</td><td>03, 11, 12</td></tr>
+      <tr><td><b>Fondo + composición en post</b></td><td>2</td><td>14 (WhatsApp) y 16 (mapa)</td></tr>
+      <tr><td><b>Vectorial a mano</b></td><td>4</td><td>Isotipo, semáforo, placas de permisos, patrón de señales</td></tr>
+      <tr><td><b>Fotografía real</b></td><td>El equipo</td><td>Sesión presencial. No negociable.</td></tr>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>bd DesignIA</b> · Prompts de imagen para Autoescuela Tecnovial · 25 de agosto de 2026<br>
+    Documento interno. Archivos del logo en <code style="background:rgba(255,255,255,.1);color:#fff">assets/logo-referencia/</code><br>
+    design.bd2022@gmail.com · +34 644 18 07 45
+  </div>
+</footer>
+
+<script>
+/* Copia el texto del bloque.
+   Ojo: abierto por doble clic (file:// o data:) NO hay contexto seguro y
+   navigator.clipboard no existe, así que hace falta el plan B y el plan C. */
+function textoDe(pre){
+  const clon = pre.cloneNode(true);
+  const b = clon.querySelector('.copy');
+  if(b) b.remove();
+  return clon.textContent.trim();
+}
+
+function aviso(btn, msg, ok){
+  const original = btn.dataset.orig || btn.textContent;
+  btn.dataset.orig = original;
+  btn.textContent = msg;
+  btn.classList.toggle('ok', !!ok);
+  btn.classList.toggle('warn-btn', !ok);
+  clearTimeout(btn._t);
+  btn._t = setTimeout(()=>{
+    btn.textContent = original;
+    btn.classList.remove('ok','warn-btn');
+  }, ok ? 1600 : 3200);
+}
+
+function copiaLegacy(txt){
+  const ta = document.createElement('textarea');
+  ta.value = txt;
+  ta.setAttribute('readonly','');
+  ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;';
+  document.body.appendChild(ta);
+  ta.select();
+  ta.setSelectionRange(0, txt.length);
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch(e) { ok = false; }
+  ta.remove();
+  return ok;
+}
+
+function seleccionaBloque(pre){
+  const r = document.createRange();
+  const nodos = [...pre.childNodes].filter(n => !(n.nodeType===1 && n.classList.contains('copy')));
+  if(!nodos.length) return;
+  r.setStartBefore(nodos[0]);
+  r.setEndAfter(nodos[nodos.length-1]);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(r);
+}
+
+/* Enseña el aviso solo si el portapapeles no va a estar disponible */
+(function(){
+  const puede = navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext;
+  if(!puede){
+    const a = document.getElementById('aviso-copiar');
+    if(a) a.style.display = 'block';
+  }
+})();
+
+function cp(btn){
+  const pre = btn.parentElement;
+  const txt = textoDe(pre);
+
+  // Plan A: API moderna (solo en https:// o localhost)
+  if(navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext){
+    navigator.clipboard.writeText(txt)
+      .then(()=> aviso(btn,'✓ Copiado',true))
+      .catch(()=>{
+        if(copiaLegacy(txt)) aviso(btn,'✓ Copiado',true);
+        else { seleccionaBloque(pre); aviso(btn,'Pulsa Ctrl+C',false); }
+      });
+    return;
+  }
+
+  // Plan B: execCommand, que sí funciona abriendo el archivo con doble clic
+  if(copiaLegacy(txt)){ aviso(btn,'✓ Copiado',true); return; }
+
+  // Plan C: te lo dejo seleccionado y lo copias tú
+  seleccionaBloque(pre);
+  aviso(btn,'Pulsa Ctrl+C',false);
+}
+</script>
+</body>
+</html>
