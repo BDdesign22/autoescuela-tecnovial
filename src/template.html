@@ -101,9 +101,11 @@ section{padding:clamp(44px,6vw,100px) 0;position:relative}
   background-blend-mode:multiply;
 }
 .bg-pattern-dark{
+  background-color:var(--navy) !important;
   background-image:linear-gradient(172deg,rgba(8,14,56,.96) 0%,rgba(16,29,92,.95) 55%,rgba(27,47,176,.94) 100%), url("{{IMG_PATRON}}");
   background-repeat:repeat;
   background-size:420px;
+  color:#fff !important;
 }
 
 .demobar{background:#FFE082;color:#4E342E;font-size:12.5px;font-weight:600;
@@ -251,21 +253,24 @@ section{padding:clamp(44px,6vw,100px) 0;position:relative}
 
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
 @media(max-width:960px){.price-grid{grid-template-columns:1fr}}
-.pcard{background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);position:relative;transition:.25s}
+.pcard{background:#ffffff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);position:relative;transition:.25s;color:var(--body)}
 .pcard:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
 .pcard.hi{border-color:var(--blue);box-shadow:var(--shadow-lg);transform:translateY(-6px)}
 @media(max-width:960px){.pcard.hi{transform:none}}
 .pcard-badge{position:absolute;top:16px;right:16px;background:var(--amber);color:#3A2500;font-family:Archivo,sans-serif;
   font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:99px}
-.pcard-h{padding:22px 22px 18px;border-bottom:1px solid var(--line)}
-.pcard.hi .pcard-h{background:linear-gradient(160deg,#0E2350,#1B4FD8);border-bottom-color:transparent}
-.pcard.hi .pcard-h *{color:#fff!important}
+.pcard-h{padding:22px 22px 18px;border-bottom:1px solid var(--line);background:var(--paper-2);color:var(--ink)}
 .pcard-t{font-family:Archivo,sans-serif;font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
 .pcard-p{font-family:Archivo,sans-serif;font-size:clamp(2.4rem,4.5vw,3rem);font-weight:800;color:var(--ink);letter-spacing:-.035em;line-height:1}
 .pcard-p small{font-size:.85rem;font-weight:500;color:var(--body);letter-spacing:0}
-.pcard-b{padding:20px 22px 24px}
-.plist{list-style:none;margin:0;padding:0;font-size:14.5px}
-.plist li{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.pcard.hi .pcard-h{background:linear-gradient(160deg,#0E2350,#1B4FD8);border-bottom-color:transparent}
+.pcard.hi .pcard-h .pcard-t{color:#A8C7FA!important}
+.pcard.hi .pcard-h .pcard-p{color:#ffffff!important}
+.pcard.hi .pcard-h .pcard-p small{color:rgba(255,255,255,0.85)!important}
+.pcard-b{padding:20px 22px 24px;background:#ffffff;color:var(--body)}
+.pcard.hi .pcard-b{background:#ffffff;color:var(--body)}
+.plist{list-style:none;margin:0;padding:0;font-size:14.5px;color:var(--body)}
+.plist li{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);color:var(--body)}
 .plist li:last-child{border:0}
 .plist li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:50%;
   background:var(--green-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232FA84F' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/11px no-repeat}
@@ -468,11 +473,7 @@ footer .f-brand img{height:36px;border-radius:8px;background:#fff;padding:5px 8p
 <nav class="nav">
   <div class="wrap nav-in">
     <button class="brand" onclick="go('inicio')" aria-label="Autoescuela Tecnovial">
-      <img src="{{IMG_LOGO}}" alt="Autoescuela Tecnovial">
-      <div class="brand-name">
-        <b>Tecnovial</b>
-        <span>Autoescuela en la Macarena</span>
-      </div>
+      <img src="{{IMG_LOGO}}" alt="Autoescuela Tecnovial" style="height:38px;width:auto;border-radius:6px">
     </button>
     <div class="tabs">
       <button class="tab on" data-t="inicio" onclick="go('inicio')">Inicio</button>
@@ -739,12 +740,12 @@ footer .f-brand img{height:36px;border-radius:8px;background:#fff;padding:5px 8p
     </div>
   </section>
 
-  <section class="alt bg-pattern-dark" style="color:#fff">
+  <section class="bg-pattern-dark">
     <div class="wrap">
       <div class="sec-head">
         <div class="kicker" style="color:var(--amber)">Calculadora en Vivo</div>
         <h2 style="color:#fff">¿Cuánto me va a costar mi carné?</h2>
-        <p style="color:rgba(255,255,255,.8)">Ajusta el número de clases prácticas estimadas y calcula tu presupuesto exacto al momento.</p>
+        <p style="color:rgba(255,255,255,.88)">Ajusta el número de clases prácticas estimadas y calcula tu presupuesto exacto al momento.</p>
       </div>
 
       <div class="calc">
@@ -1201,6 +1202,40 @@ footer .f-brand img{height:36px;border-radius:8px;background:#fff;padding:5px 8p
         <div class="shot-card-body">
           <h4>Flota & Branding</h4>
           <p>Consistencia de marca en calle y entorno digital</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 2 / ESCALABILIDAD & AUDITORÍA DE EMPRESA -->
+    <div class="card" style="margin:0 0 48px;padding:36px;background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%);border:2px dashed var(--blue);box-shadow:var(--shadow-lg);border-radius:24px">
+      <div class="sec-head" style="margin-bottom:22px">
+        <div class="kicker" style="color:var(--blue)">Evolución del Negocio · Fase 2</div>
+        <h3 style="font-size:1.85rem;color:var(--ink)">Un Pack Inicial para liderar el cambio — y la puerta hacia la automatización total</h3>
+        <p style="color:var(--body);max-width:78ch;margin-top:10px;font-size:15px;line-height:1.6">
+          Este <b>Pack Inicial</b> está diseñado como la primera palanca de transformación: una solución llave en mano, rápida y de alto impacto para modernizar vuestra imagen y activar la captación 24/7 sin interferir en vuestro día a día.
+        </p>
+      </div>
+
+      <div class="card" style="background:#fff;border-left:5px solid var(--green);padding:24px;box-shadow:none;border-radius:14px">
+        <h4 style="font-size:17.5px;font-family:Archivo,sans-serif;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;gap:8px">
+          <span>🚀</span> Siguiente paso: Auditoría Integral de Empresa & Sistemas Automatizados a Medida
+        </h4>
+        <p style="font-size:14.5px;color:var(--body);line-height:1.65;margin-bottom:14px">
+          Una vez validado el servicio y cuando estéis <b>100% satisfechas con los resultados y el flujo de nuevos alumnos</b>, podemos dar el siguiente paso juntos mediante una <b>Auditoría Operativa de Negocio</b>:
+        </p>
+        <div class="grid-3" style="gap:16px;margin-top:16px">
+          <div style="background:var(--paper-2);padding:16px;border-radius:12px;border:1px solid var(--line)">
+            <b style="font-family:Archivo,sans-serif;color:var(--ink);display:block;font-size:14px;margin-bottom:6px">📁 Trámites & DGT en 1 Clic</b>
+            <p style="font-size:13px;color:var(--body);line-height:1.5;margin:0">Diagnóstico de procesos internos para digitalizar y automatizar la gestión de matrículas, expedientes y tasas oficiales.</p>
+          </div>
+          <div style="background:var(--paper-2);padding:16px;border-radius:12px;border:1px solid var(--line)">
+            <b style="font-family:Archivo,sans-serif;color:var(--ink);display:block;font-size:14px;margin-bottom:6px">📅 Agenda & Clases Prácticas</b>
+            <p style="font-size:13px;color:var(--body);line-height:1.5;margin:0">Sistemas de reserva y confirmación automática por WhatsApp con recordatorios para eliminar ausencias y cancelaciones.</p>
+          </div>
+          <div style="background:var(--paper-2);padding:16px;border-radius:12px;border:1px solid var(--line)">
+            <b style="font-family:Archivo,sans-serif;color:var(--ink);display:block;font-size:14px;margin-bottom:6px">🤖 IA & Software a Medida</b>
+            <p style="font-size:13px;color:var(--body);line-height:1.5;margin:0">Integración de herramientas inteligentes conectadas a vuestro software para ahorrar más de 40 horas de oficina al mes.</p>
+          </div>
         </div>
       </div>
     </div>
