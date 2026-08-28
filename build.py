@@ -20,6 +20,8 @@ IMAGENES = {
     "{{IMG_PATRON}}": "web/patron_senales.webp",
     "{{IMG_PLACA_L}}": "logo-referencia/isotipo-placa-L-transparente.png",
     "{{IMG_LOGO_TRANSPARENTE}}": "logo-referencia/logo-tecnovial-transparente.png",
+    "{{IMG_BD_LOGO}}": "web/bd-logo.webp",
+    "{{IMG_BD_ISOTIPO}}": "web/bd-isotipo.webp",
 }
 
 # Las 16 fotos de la sesion, en assets/web/01.webp ... 16.webp
@@ -30,7 +32,14 @@ def data_uri(nombre: str) -> str:
     ruta = ASSETS / nombre
     if not ruta.exists():
         sys.exit(f"ERROR: falta el activo {ruta}")
-    mime = "image/webp" if ruta.suffix == ".webp" else "image/jpeg"
+    ext = ruta.suffix.lower()
+    mime = {"webp": "image/webp", ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg"}.get(ext, "image/webp")
+    if ext == ".webp":
+        mime = "image/webp"
+    elif ext == ".png":
+        mime = "image/png"
+    else:
+        mime = "image/jpeg"
     b64 = base64.b64encode(ruta.read_bytes()).decode("ascii")
     return f"data:{mime};base64,{b64}"
 
