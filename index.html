@@ -140,15 +140,16 @@ section{padding:clamp(44px,6vw,100px) 0;position:relative}
 .btn-o:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-soft)}
 .btn-sm{padding:8px 14px;font-size:13px;border-radius:9px;min-height:38px;white-space:nowrap}
 
+/* Barra de navegación inferior móvil — default oculta, visible en móvil vía media query */
 .mnav{display:none}
 
 @media(max-width:1180px){
-  .tabs{display:none !important}
+  .tabs{display:none}
   .nav-cta{display:flex;align-items:center;gap:8px;flex-shrink:0}
   .nav-cta .btn-tel{display:inline-flex;padding:7px 12px;font-size:12px;min-height:38px;white-space:nowrap}
   .nav-cta .btn-p{padding:7px 12px;font-size:12px;min-height:38px}
   .mnav{
-    display:flex !important;position:fixed;bottom:0;left:0;right:0;z-index:70;
+    display:flex;position:fixed;bottom:0;left:0;right:0;z-index:70;
     background:rgba(255,255,255,.97);backdrop-filter:blur(18px);
     border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom));
     box-shadow:0 -4px 20px rgba(8,14,56,.08);
