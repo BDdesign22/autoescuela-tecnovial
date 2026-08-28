@@ -140,13 +140,15 @@ section{padding:clamp(44px,6vw,100px) 0;position:relative}
 .btn-o:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-soft)}
 .btn-sm{padding:8px 14px;font-size:13px;border-radius:9px;min-height:38px;white-space:nowrap}
 
+.mnav{display:none}
+
 @media(max-width:1180px){
-  .tabs{display:none}
+  .tabs{display:none !important}
   .nav-cta{display:flex;align-items:center;gap:8px;flex-shrink:0}
   .nav-cta .btn-tel{display:inline-flex;padding:7px 12px;font-size:12px;min-height:38px;white-space:nowrap}
   .nav-cta .btn-p{padding:7px 12px;font-size:12px;min-height:38px}
   .mnav{
-    display:flex;position:fixed;bottom:0;left:0;right:0;z-index:70;
+    display:flex !important;position:fixed;bottom:0;left:0;right:0;z-index:70;
     background:rgba(255,255,255,.97);backdrop-filter:blur(18px);
     border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom));
     box-shadow:0 -4px 20px rgba(8,14,56,.08);
@@ -187,8 +189,6 @@ section{padding:clamp(44px,6vw,100px) 0;position:relative}
   .nav-cta .btn-tel{padding:5px 6px;font-size:10.5px}
   .nav-cta .btn-calc{padding:4px 6px;font-size:10px}
 }
-
-.mnav{display:none}
 
 .screen{display:none;animation:fade .28s cubic-bezier(.16,1,.3,1)}
 .screen.on{display:block}
