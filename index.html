@@ -111,24 +111,23 @@ section{padding:clamp(44px,6vw,100px) 0;position:relative}
 .demobar b{font-weight:800}
 @media(max-width:480px){.demobar{font-size:11.5px;padding:6px 10px}}
 
-.nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);
+.nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.95);
   backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid var(--line)}
-.nav-in{display:flex;align-items:center;gap:12px;padding:10px 0;flex-wrap:nowrap;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:10px;margin-right:auto;cursor:pointer;background:none;border:0;padding:0;text-align:left;min-width:0;flex-shrink:0}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0}
+.brand{display:flex;align-items:center;gap:10px;cursor:pointer;background:none;border:0;padding:0;text-align:left;flex-shrink:0}
 .brand img{height:34px;width:auto;border-radius:6px;box-shadow:var(--shadow-sm);flex:none}
-.brand-name{display:flex;flex-direction:column;min-width:0}
+.brand-name{display:flex;flex-direction:column;flex-shrink:0}
 .brand-name b{font-family:Archivo,sans-serif;font-weight:800;font-size:17px;color:var(--ink);letter-spacing:-.02em;line-height:1.1;white-space:nowrap}
-.brand-name span{font-size:11px;color:var(--blue);font-weight:600;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tabs{display:flex;gap:3px;background:var(--paper-2);padding:4px;border-radius:14px;border:1px solid var(--line);flex-shrink:1;min-width:0}
-.tab{font-family:Archivo,sans-serif;font-size:13.5px;font-weight:650;color:var(--body);
-  background:none;border:0;padding:7px 14px;border-radius:10px;cursor:pointer;transition:.18s;white-space:nowrap;flex-shrink:0}
-.tab:hover{color:var(--ink);background:rgba(255,255,255,.6)}
+.brand-name span{font-size:11px;color:var(--blue);font-weight:600;letter-spacing:.01em;white-space:nowrap}
+.tabs{display:flex;align-items:center;gap:4px;background:var(--paper-2);padding:4px;border-radius:12px;border:1px solid var(--line);flex-shrink:0}
+.tab{font-family:Archivo,sans-serif;font-size:13.5px;font-weight:700;color:var(--body);
+  background:none;border:0;padding:7px 14px;border-radius:9px;cursor:pointer;transition:.18s;white-space:nowrap;flex-shrink:0}
+.tab:hover{color:var(--ink);background:rgba(255,255,255,.7)}
 .tab.on{background:var(--paper);color:var(--blue);box-shadow:0 2px 6px rgba(8,14,56,.08)}
-.nav-cta{display:flex;align-items:center;gap:8px;flex-shrink:0;white-space:nowrap}
-.nav-cta .btn{white-space:nowrap;flex-shrink:0;word-break:keep-all}
-.btn-tel{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums;word-break:keep-all}
+.nav-cta{display:flex;align-items:center;gap:10px;flex-shrink:0;white-space:nowrap}
+.btn-tel{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums;word-break:keep-all;flex-shrink:0}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:Archivo,sans-serif;font-weight:700;
-  font-size:15px;padding:12px 22px;border-radius:12px;border:1px solid transparent;cursor:pointer;transition:.2s;text-decoration:none;line-height:1.2;min-height:44px;white-space:nowrap}
+  font-size:14.5px;padding:11px 20px;border-radius:12px;border:1px solid transparent;cursor:pointer;transition:.2s;text-decoration:none;line-height:1.2;min-height:42px;white-space:nowrap;flex-shrink:0}
 .btn:hover{transform:translateY(-1.5px)}
 .btn:active{transform:translateY(0)}
 .btn-p{background:var(--blue);color:#fff;box-shadow:0 6px 20px -4px rgba(27,47,176,.5)}
@@ -139,17 +138,11 @@ section{padding:clamp(44px,6vw,100px) 0;position:relative}
 .btn-o:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-soft)}
 .btn-sm{padding:8px 14px;font-size:13px;border-radius:9px;min-height:38px;white-space:nowrap}
 
-@media(max-width:1220px) and (min-width:1041px){
-  .tab{padding:6px 10px;font-size:12.5px}
-  .brand-name span{display:none}
-  .nav-cta .btn-sm{padding:7px 11px;font-size:12.5px}
-}
-
-@media(max-width:1040px){
+@media(max-width:1180px){
   .tabs{display:none}
-  .nav-cta{display:flex;align-items:center;gap:8px;flex-shrink:0;white-space:nowrap}
-  .nav-cta .btn-tel{display:inline-flex;padding:7px 11px;font-size:12px;min-height:36px;white-space:nowrap}
-  .nav-cta .btn-p{padding:7px 13px;font-size:12px;min-height:36px;white-space:nowrap}
+  .nav-cta{display:flex;align-items:center;gap:8px;flex-shrink:0}
+  .nav-cta .btn-tel{display:inline-flex;padding:7px 12px;font-size:12.5px;min-height:36px;white-space:nowrap}
+  .nav-cta .btn-p{padding:7px 14px;font-size:12.5px;min-height:36px;white-space:nowrap}
   .mnav{
     display:flex;position:fixed;bottom:0;left:0;right:0;z-index:70;
     background:rgba(255,255,255,.97);backdrop-filter:blur(18px);
@@ -168,14 +161,14 @@ section{padding:clamp(44px,6vw,100px) 0;position:relative}
   body{padding-bottom:calc(70px + env(safe-area-inset-bottom))}
 }
 
-@media(max-width:520px){
+@media(max-width:480px){
   .brand-name span{display:none}
   .nav-cta .btn-tel{padding:6px 9px;font-size:11.5px}
   .nav-cta .btn-p{padding:6px 10px;font-size:11.5px}
 }
-@media(max-width:380px){
+@media(max-width:360px){
   .nav-cta .btn-tel{display:none}
-  .nav-cta .btn-p{padding:7px 11px;font-size:11.5px}
+  .nav-cta .btn-p{padding:7px 12px;font-size:12px}
 }
 
 .mnav{display:none}
@@ -483,9 +476,9 @@ footer .f-brand img{height:36px;border-radius:8px;background:#fff;padding:5px 8p
     </button>
     <div class="tabs">
       <button class="tab on" data-t="inicio" onclick="go('inicio')">Inicio</button>
-      <button class="tab" data-t="precios" onclick="go('precios')">Precios & Calculadora</button>
+      <button class="tab" data-t="precios" onclick="go('precios')">Precios</button>
       <button class="tab" data-t="permisos" onclick="go('permisos')">Permisos</button>
-      <button class="tab" data-t="nosotros" onclick="go('nosotros')">Nosotros & Opiniones</button>
+      <button class="tab" data-t="nosotros" onclick="go('nosotros')">Nosotros</button>
       <button class="tab" data-t="propuesta" onclick="go('propuesta')">La Propuesta</button>
     </div>
     <div class="nav-cta">
