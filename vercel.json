@@ -3,7 +3,7 @@
   "cleanUrls": true,
   "routes": [
     { "src": "/prompts", "dest": "/prompts.html" },
-    { "src": "/prompts-3d", "dest": "/prompts-3d.html" },
+    { "src": "/prompts-precision", "dest": "/prompts-precision.html" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }

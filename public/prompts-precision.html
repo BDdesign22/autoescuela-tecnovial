@@ -1,0 +1,1196 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Línea Precisión · Prompts de imagen y vídeo · Autoescuela Tecnovial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --night:#070B18;--night-2:#0D1428;--navy:#080E38;--ink:#0F1626;--body:#4A5468;
+  --line:#DDE2EC;--line-dark:rgba(255,255,255,.13);
+  --azul:#1B2FB0;--azul-cl:#4A90D9;--naranja:#F07E26;--rojo:#E23B2E;--ambar:#F5B301;--verde:#2FA84F;
+  --paper:#fff;--paper2:#F5F6F9;--code:#080C18;
+  --shadow:0 1px 2px rgba(7,11,24,.04),0 16px 38px -22px rgba(7,11,24,.30);
+  --r:6px;
+}
+body{margin:0;background:var(--paper2);color:var(--body);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.66}
+h1,h2,h3,h4{font-family:Archivo,system-ui,sans-serif;color:var(--ink);line-height:1.12;letter-spacing:-.03em;margin:0}
+h1{font-size:clamp(2.1rem,5vw,3.6rem);font-weight:800}
+h2{font-size:clamp(1.5rem,2.9vw,2.2rem);font-weight:700}
+h3{font-size:1.16rem;font-weight:700}
+h4{font-size:1rem;font-weight:700}
+p{margin:0 0 1em}
+a{color:var(--azul)}
+strong{color:var(--ink)}
+em{font-style:normal;color:var(--naranja);font-weight:600}
+code{font-family:'JetBrains Mono',monospace;font-size:.88em;background:#E9ECF3;padding:2px 6px;border-radius:3px;color:var(--ink)}
+.wrap{width:min(1060px,92vw);margin-inline:auto}
+section{padding:56px 0}
+
+/* CABECERA TECNICA */
+header.top{background:var(--night);color:#fff;padding:66px 0 74px;position:relative;overflow:hidden}
+header.top::before{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:radial-gradient(ellipse 90% 70% at 30% 40%,#000 30%,transparent 100%)}
+header.top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,var(--naranja) 22%,var(--naranja) 42%,transparent 70%)}
+header.top .wrap{position:relative}
+header.top h1{color:#fff;max-width:20ch}
+header.top p{color:rgba(255,255,255,.72);max-width:64ch;margin-top:20px;font-size:1.05rem}
+.chip{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.22);
+  padding:6px 15px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:24px;color:rgba(255,255,255,.8)}
+.chip b{color:var(--naranja);font-weight:500}
+/* cota decorativa */
+.cota{position:absolute;right:6%;top:96px;width:190px;height:110px;border:1px solid rgba(255,255,255,.16);border-radius:2px;display:none}
+@media(min-width:1100px){.cota{display:block}}
+.cota::before,.cota::after{content:"";position:absolute;background:var(--naranja)}
+.cota::before{left:-1px;top:-5px;width:1px;height:10px}
+.cota::after{right:-1px;bottom:-5px;width:1px;height:10px}
+.cota span{position:absolute;bottom:-30px;left:0;right:0;text-align:center;font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;letter-spacing:.18em;color:rgba(255,255,255,.42)}
+
+.kick{font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--naranja);margin-bottom:14px;display:flex;align-items:center;gap:11px}
+.kick::before{content:"";width:22px;height:1px;background:var(--naranja)}
+.lead{font-size:1.05rem;max-width:72ch}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:28px 0}
+@media(max-width:820px){.grid3,.grid2{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);position:relative}
+.card h3{margin-bottom:7px;font-size:1.02rem}
+.card p{font-size:14.6px;margin:0}
+.card .n{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--naranja);margin-bottom:13px;display:block}
+
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  box-shadow:var(--shadow);font-size:14.4px;margin:24px 0}
+th{background:#EDEFF4;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink);text-align:left;padding:12px 16px;font-weight:500}
+td{padding:13px 16px;border-top:1px solid var(--line);vertical-align:top}
+td b{color:var(--ink);font-family:Archivo,sans-serif}
+
+.warn{background:#fff;border:1px solid var(--line);border-left:2px solid var(--naranja);border-radius:var(--r);padding:22px 26px;margin:26px 0;box-shadow:var(--shadow)}
+.warn.blue{border-left-color:var(--azul)}
+.warn.red{border-left-color:var(--rojo)}
+.warn.dark{background:var(--night);border-color:var(--night);color:rgba(255,255,255,.74)}
+.warn.dark h3{color:#fff}
+.warn.dark strong,.warn.dark b{color:#fff}
+.warn.dark code{background:rgba(255,255,255,.1);color:#fff}
+.warn h3{margin-bottom:9px;font-size:1.04rem}
+.warn p:last-child{margin:0}
+.warn ul{margin:9px 0 0;padding-left:20px;font-size:15px}
+.warn li{margin-bottom:7px}
+
+.pal{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:10px;margin:24px 0}
+.sw{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow)}
+.sw .c{height:62px}
+.sw .t{padding:9px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--body)}
+.sw .t b{display:block;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:700;margin-bottom:2px;letter-spacing:0;color:var(--ink)}
+
+.brief{background:#fff;border:1px solid var(--night);border-radius:var(--r);overflow:hidden;box-shadow:0 22px 50px -28px rgba(7,11,24,.6);margin:26px 0}
+.brief-head{background:var(--night);color:#fff;padding:18px 24px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.brief-head h3{color:#fff;margin:0}
+.brief-head small{color:rgba(255,255,255,.6);display:block;font-size:12px;margin-top:3px;font-family:'JetBrains Mono',monospace}
+.brief-head .once{margin-left:auto;border:1px solid rgba(255,255,255,.26);font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:.1em;padding:6px 12px;border-radius:3px;white-space:nowrap;color:rgba(255,255,255,.82)}
+
+pre{margin:0;background:var(--code);color:#D6DEEC;padding:22px;font-family:'JetBrains Mono',monospace;
+  font-size:12.6px;line-height:1.7;white-space:pre-wrap;word-wrap:break-word;position:relative}
+.copy{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;padding:6px 12px;border-radius:3px;cursor:pointer}
+.copy:hover{background:rgba(255,255,255,.24)}
+.copy.ok{background:var(--verde);border-color:var(--verde)}
+pre ::selection{background:var(--naranja);color:#120A02}
+
+.p{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);margin-bottom:20px;overflow:hidden}
+.p-head{padding:20px 24px 16px;border-bottom:1px solid var(--line);display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.p-id{flex:none;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;color:#fff;background:var(--night);
+  padding:8px 11px;border-radius:3px}
+.p-id.o{background:var(--naranja)}
+.p-id.b{background:var(--azul)}
+.p-id.r{background:var(--rojo)}
+.p-head h3{margin-bottom:3px}
+.p-where{font-size:13.3px;color:#78829A}
+.p-meta{margin-left:auto;display:flex;gap:7px;flex-wrap:wrap}
+.mtag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.07em;background:#EDEFF4;color:var(--ink);padding:6px 10px;border-radius:3px;white-space:nowrap}
+.mtag.o{background:#FDF0E4;color:#A8530C}
+.p-foot{padding:0}
+.layer{padding:15px 24px;background:#FBFCFD;border-top:1px solid var(--line);font-size:14.2px}
+.layer b{font-family:Archivo,sans-serif;color:var(--azul)}
+.anim{padding:15px 24px;background:#FBFCFD;border-top:1px solid var(--line);font-size:14.2px}
+.anim b{font-family:Archivo,sans-serif;color:var(--ink)}
+
+.vs{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);margin:28px 0;background:#fff}
+@media(max-width:760px){.vs{grid-template-columns:1fr}}
+.vs>div{padding:26px}
+.vs .old{background:#F8F9FB;border-right:1px solid var(--line)}
+.vs h4{margin-bottom:13px}
+.vs .tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  padding:5px 10px;border-radius:3px;background:#E6E9EF;color:#69738A}
+.vs .new .tag{background:var(--night);color:#fff}
+.vs ul{margin:0;padding-left:19px;font-size:14.5px}
+.vs li{margin-bottom:7px}
+
+.toc{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 0}
+.toc a{background:#fff;border:1px solid var(--line);border-radius:3px;padding:8px 15px;font-family:'JetBrains Mono',monospace;
+  font-size:12px;letter-spacing:.05em;color:var(--ink);text-decoration:none;box-shadow:var(--shadow)}
+.toc a:hover{border-color:var(--naranja);color:var(--naranja)}
+footer{background:var(--night);color:rgba(255,255,255,.55);padding:44px 0;font-size:14px}
+footer b{color:#fff;font-family:Archivo,sans-serif}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="cota"><span>ESPACIO RESERVADO</span></div>
+  <div class="wrap">
+    <div class="chip"><b>02</b> · LÍNEA PRECISIÓN · SUSTITUYE A LA LÍNEA 3D</div>
+    <h1>Conducir es una técnica. La web tiene que parecerlo.</h1>
+    <p>Dirección de arte, formato y producción completa de imagen y vídeo para Autoescuela Tecnovial. Fotografía cinematográfica de automoción con una capa gráfica de precisión superpuesta. Pensada para ganar a Hoy-Voy, SOY18 y Torcal por el flanco que ninguna de las tres cubre.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="toc">
+      <a href="#competencia">01 · La competencia</a>
+      <a href="#direccion">02 · La dirección</a>
+      <a href="#formato">03 · El formato</a>
+      <a href="#capa">04 · La capa técnica</a>
+      <a href="#estilo">05 · Brief de estilo</a>
+      <a href="#imagenes">06 · Las 18 escenas</a>
+      <a href="#videos">07 · Los vídeos</a>
+      <a href="#reglas">08 · Control de calidad</a>
+    </div>
+  </div>
+</section>
+
+<section id="competencia" style="background:#fff;border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="kick">01 · Posicionamiento</div>
+    <h2>Dónde está el hueco que las tres han dejado libre</h2>
+    <p class="lead">Hoy-Voy, SOY18 y Torcal son cadenas o franquicias, y las tres compiten en terrenos que Tecnovial no puede ganar de frente. Pero las tres dejan el mismo flanco descubierto.</p>
+
+    <table>
+      <tr><th>Competidor</th><th>Cómo compite</th><th>Flanco descubierto</th></tr>
+      <tr>
+        <td><b>Hoy-Voy</b><br><span style="font-size:13px">39 centros</span></td>
+        <td>Low cost con imagen de calidad. Precio adaptado a la demanda, siete días a la semana, Minis rotulados, iPad a bordo, app de seguimiento. Espíritu declaradamente <em>joven y optimista</em>.</td>
+        <td>Es <b>precio y juventud</b>. Si Tecnovial se pone alegre y colorista, juega en su campo con menos presupuesto y parece la versión pobre.</td>
+      </tr>
+      <tr>
+        <td><b>SOY18</b><br><span style="font-size:13px">Cataluña y Málaga</span></td>
+        <td>Método propio B.A.S.A.M. (bus, aula, simuladores, automático, manual), app con tests oficiales, WhatsApp directo con el profesor. Imagen moderna y juvenil.</td>
+        <td>Otra vez <b>lo juvenil y el método empaquetado</b>. Terreno saturado y con dueño.</td>
+      </tr>
+      <tr>
+        <td><b>Torcal</b><br><span style="font-size:13px">Líder en Andalucía</span></td>
+        <td>Escala y autoridad institucional. 30 años, más de 180.000 alumnos, tercera de España, app con algoritmos, 41 certificados profesionales del SEPE.</td>
+        <td>Es <b>grande e impersonal</b>. Dentro de 180.000 alumnos no te conoce nadie, y ese es exactamente el miedo del que se matricula.</td>
+      </tr>
+    </table>
+
+    <div class="warn dark">
+      <h3>El hueco</h3>
+      <p>Ninguna de las tres ocupa el terreno de la <strong>escuela seria de trato adulto</strong>: la que te enseña una técnica, te trata como a alguien de 25 años que va a pagar más de mil euros, y te pone el precio por escrito antes de matricularte. Tecnovial ya <em>es</em> eso — mismas profesoras siempre, más de diez años, 4,9 sobre 5 con 199 reseñas — pero no lo parecía.</p>
+      <p style="margin-top:12px">La palabra que ordena toda la línea nueva no es <em>diversión</em>. Es <strong>oficio</strong>.</p>
+    </div>
+
+    <div class="warn red">
+      <h3>Por qué se descarta la línea 3D</h3>
+      <p>No solo por infantil. El error de fondo era estratégico: el 3D de juguete metía a Tecnovial <strong>de cabeza en el terreno de Hoy-Voy y SOY18</strong>, que llevan años construyendo ahí y tienen mucho más músculo. Competir en simpático contra dos cadenas cuya identidad es ser simpáticas es perder antes de empezar.</p>
+    </div>
+  </div>
+</section>
+
+<section id="direccion">
+  <div class="wrap">
+    <div class="kick">02 · Dirección de arte</div>
+    <h2>Precisión: fotografía de automoción con capa de ingeniería</h2>
+    <p class="lead">Dos capas que nunca se mezclan. Abajo, fotografía cinematográfica real: luz dura y controlada, penumbra, hora azul, planos cerrados. Encima, una capa gráfica de trazados, cotas y ángulos, dibujada con lenguaje de plano técnico. La foto pone la emoción. La capa pone la autoridad.</p>
+
+    <div class="grid3">
+      <div class="card"><span class="n">01</span><h3>Se parece a una marca de coches</h3><p>Y no a una autoescuela. Ese es el punto: el alumno adulto reconoce inmediatamente el código visual de algo caro y bien hecho, aunque el precio sea el mismo.</p></div>
+      <div class="card"><span class="n">02</span><h3>Nadie lo hace en el sector</h3><p>El estándar español de autoescuela es foto de archivo con gente sonriendo y pulgares arriba. Cualquier cosa con dirección de fotografía real ya destaca. Con capa técnica encima, es irreplicable sin rehacer la marca entera.</p></div>
+      <div class="card"><span class="n">03</span><h3>Resuelve el problema de las caras</h3><p>El lenguaje de plano cerrado — manos, pedales, retrovisor, silueta a contraluz — es el que mejor genera la IA y el único éticamente limpio. No hay que inventarse el equipo de nadie.</p></div>
+    </div>
+
+    <div class="vs">
+      <div class="old">
+        <h4><span class="tag">Línea 3D · descartada</span></h4>
+        <ul>
+          <li>Render de juguete, plastilina, azul cielo, conos mullidos.</li>
+          <li>Personajes de cabeza redonda y rebotes elásticos.</li>
+          <li>Lectura: <em>app para adolescentes</em>.</li>
+          <li>Terreno de Hoy-Voy y SOY18.</li>
+          <li>La animación era el protagonista.</li>
+        </ul>
+      </div>
+      <div class="new">
+        <h4><span class="tag">Línea Precisión</span></h4>
+        <ul>
+          <li>Fotografía nocturna y de hora azul, luz dura, negros profundos.</li>
+          <li>Manos adultas, gestos técnicos, nadie mirando a cámara.</li>
+          <li>Lectura: <em>escuela de conducción seria</em>.</li>
+          <li>Terreno propio: precisión y oficio.</li>
+          <li>La animación es la capa técnica dibujándose sola.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:36px">La paleta</h3>
+    <div class="pal">
+      <div class="sw"><div class="c" style="background:#070B18"></div><div class="t"><b>Noche</b>#070B18</div></div>
+      <div class="sw"><div class="c" style="background:#0D1428"></div><div class="t"><b>Habitáculo</b>#0D1428</div></div>
+      <div class="sw"><div class="c" style="background:#1B2FB0"></div><div class="t"><b>Azul marca</b>#1B2FB0</div></div>
+      <div class="sw"><div class="c" style="background:#4A90D9"></div><div class="t"><b>Luz fría</b>#4A90D9</div></div>
+      <div class="sw"><div class="c" style="background:#F07E26"></div><div class="t"><b>Sodio</b>#F07E26</div></div>
+      <div class="sw"><div class="c" style="background:#E23B2E"></div><div class="t"><b>Freno</b>#E23B2E</div></div>
+      <div class="sw"><div class="c" style="background:#FFFFFF;border-bottom:1px solid var(--line)"></div><div class="t"><b>Marca vial</b>#FFFFFF</div></div>
+    </div>
+    <p style="font-size:14.6px">El naranja deja de ser un color decorativo y pasa a tener una coartada física: es la <strong>luz de sodio de las farolas de Sevilla</strong>, el intermitente y el cono. Aparece siempre como fuente de luz real dentro de la escena, nunca pintado encima. Eso es lo que separa esta línea de una plantilla.</p>
+  </div>
+</section>
+
+<section id="formato" style="background:#fff;border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="kick">03 · Formato</div>
+    <h2>El Recorrido se mantiene, pero se vuelve sobrio</h2>
+    <p class="lead">La estructura no era el problema y sigue siendo lo que diferencia estructuralmente a Tecnovial: ni scroll infinito ni carrusel horizontal, sino pantallas completas encadenadas. Lo que cambia es cómo se comportan.</p>
+    <div class="grid3">
+      <div class="card"><span class="n">HUB</span><h3>Entrada por decisión</h3><p>La portada no es un hero con scroll debajo: el alumno elige destino desde el primer segundo. Coche, moto, profesional, reciclaje, precio, dónde estáis.</p></div>
+      <div class="card"><span class="n">PANTALLA</span><h3>Una idea por pantalla</h3><p>Cada tema ocupa el 100% de la ventana y encaja solo al desplazar. Nunca se ven dos secciones a medias. En móvil se pasa con el pulgar.</p></div>
+      <div class="card"><span class="n">CARRIL</span><h3>Progreso, no menú</h3><p>Una regla de cotas vertical marca en qué punto del recorrido estás. Ya no es una carretera de dibujos: es la escala de un plano.</p></div>
+    </div>
+    <div class="warn blue">
+      <h3>Cambia también el ritmo de la animación</h3>
+      <p>En la línea 3D todo rebotaba. Aquí <strong>la imagen apenas se mueve</strong> — respira, cambia el foco, pasa un reflejo — y quien anima es la capa técnica, que se dibuja sobre la foto cuando la pantalla entra. Un trazado que aparece resiguiendo la trayectoria de una maniobra es infinitamente más adulto y más memorable que un cono botando, y además pesa cien veces menos porque es SVG.</p>
+    </div>
+  </div>
+</section>
+
+<section id="capa">
+  <div class="wrap">
+    <div class="kick">04 · La capa técnica</div>
+    <h2>Esto no se genera con IA. Se dibuja en vectorial.</h2>
+    <p class="lead">Es la decisión de producción más importante del documento. Ningún generador de imagen dibuja una cota limpia, una línea de trazado constante o un ángulo bien rotulado: sale siempre torcido, con números inventados y grosores irregulares.</p>
+
+    <div class="warn">
+      <h3>Cómo se reparte el trabajo</h3>
+      <ul>
+        <li><b>La IA genera la fotografía</b>, limpia, sin ningún grafismo encima, con el espacio negativo reservado que indica cada ficha.</li>
+        <li><b>Nosotros dibujamos la capa técnica en SVG</b> sobre ese espacio: trazados, cotas, ángulos, círculos de foco, retículas. Grosor de línea constante, tipografía de la marca, cifras reales.</li>
+        <li><b>La capa se anima con <code>stroke-dasharray</code></b>: la línea se dibuja sola al entrar la pantalla, en unos 900 ms. Coste: unos pocos kilobytes.</li>
+      </ul>
+      <p style="margin-top:12px">Cada ficha de escena lleva una línea <b>CAPA TÉCNICA</b> con lo que va dibujado encima. No forma parte del prompt: es la instrucción de montaje.</p>
+    </div>
+
+    <div class="warn dark">
+      <h3>El logotipo, igual que antes</h3>
+      <p>Nunca dentro de la imagen generada. Ninguna IA reproduce bien el logotipo de Tecnovial con el punto de la «i» convertido en semáforo. Las fotos salen limpias de texto y de marca, y el logo real se monta en SVG en el montaje.</p>
+    </div>
+  </div>
+</section>
+
+<section id="estilo" style="background:#fff;border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="kick">05 · ADN visual</div>
+    <h2>Brief de estilo</h2>
+    <p class="lead">Se pega <strong>una sola vez</strong> al abrir el chat, antes de cualquier escena. Fija cámara, luz, paleta, tratamiento de las personas y prohibiciones para que las 18 piezas parezcan rodadas por el mismo director de fotografía en la misma semana.</p>
+
+    <div class="brief">
+      <div class="brief-head">
+        <div><h3>Brief de estilo · Tecnovial Precisión</h3><small>pegar 1 vez al abrir el chat</small></div>
+        <span class="once">SOLO UNA VEZ</span>
+      </div>
+      <pre><button class="copy">Copiar</button>Vas a crear un set de 18 fotografías para la web de una autoescuela real.
+Todas deben parecer rodadas por el mismo director de fotografía, con el mismo
+equipo y en la misma semana. Este mensaje define ese estilo y se aplica a
+TODAS las imágenes que te pida a continuación.
+
+LA EMPRESA
+Autoescuela Tecnovial, barrio de la Macarena, Sevilla. Más de diez años
+formando conductores, 4,9 sobre 5 en Google con 199 reseñas. Enseñan coche,
+moto, camión y autobús. No es una franquicia ni una cadena low cost: es una
+escuela pequeña que enseña una técnica y trata al alumno como a un adulto.
+El tono es serio, preciso y sin artificio. Nada de simpatía forzada, nada de
+alegría publicitaria, nada infantil.
+
+ESTILO FOTOGRÁFICO
+Fotografía cinematográfica de automoción. Referencia de lenguaje: la campaña
+de una marca de coches premium, no el catálogo de una academia.
+- Luz dura, direccional y muy controlada. Una sola fuente principal que
+  modela el sujeto y deja el resto cayendo a negro. Nada de luz plana.
+- Penumbra dominante: negros profundos con detalle, medios tonos densos,
+  pocas zonas claras y muy elegidas.
+- Momento del día: hora azul, anochecer o noche urbana. Alguna escena puede
+  ser amanecer, nunca mediodía.
+- Poca profundidad de campo, foco muy selectivo, fondos disueltos.
+- Grano de película fino y contraste alto. Colorimetría fría en las sombras,
+  cálida solo en las fuentes de luz.
+- Composición limpia, ordenada y con mucho espacio negativo.
+
+PALETA
+- Negro azulado de la noche: #070B18
+- Azul de habitáculo en penumbra: #0D1428
+- Azul de marca, presente en la luz fría y en detalles: #1B2FB0
+- Azul claro de luz fría de ventanilla o pantalla: #4A90D9
+- Naranja de luz de sodio de las farolas de Sevilla: #F07E26
+- Rojo de piloto de freno: #E23B2E
+- Blanco puro de las marcas viales
+El naranja SIEMPRE tiene una causa física dentro de la escena: una farola,
+un intermitente, un cono reflectante, una luz de obra. Nunca es un color
+decorativo aplicado encima.
+
+CÁMARA
+Cámara full frame, objetivos fijos. Según la escena usaré 35 mm, 50 mm,
+85 mm o macro 100 mm, con diafragmas entre f/1.4 y f/2.8. Nada de gran
+angular deformado, nada de ojo de pez, nada de perspectivas imposibles.
+Altura de cámara realista, como si hubiera una persona sosteniéndola.
+
+LAS PERSONAS, REGLA IMPORTANTE
+Solo aparecen adultos de entre 18 y 45 años, y SIEMPRE en plano parcial:
+manos sobre el volante o la palanca, pies sobre los pedales, nuca, hombro,
+silueta a contraluz, reflejo parcial en un retrovisor, rostro cortado por el
+encuadre o disuelto por el desenfoque.
+- Nunca un rostro nítido, completo y reconocible mirando a cámara.
+- Nunca poses publicitarias, sonrisas forzadas, pulgares arriba ni gestos de
+  celebración exagerados.
+- Ropa de calle real, sobria, sin logotipos ni estampados llamativos.
+- Manos verosímiles: cinco dedos, proporciones correctas, sin anillos
+  llamativos. Revisa siempre las manos.
+- Variedad natural de edades, tonos de piel y complexiones a lo largo del
+  set, sin que parezca un reparto elegido a propósito.
+
+PROHIBIDO EN TODAS LAS IMÁGENES
+- Nada de texto, letras, números, palabras, matrículas legibles, carteles
+  escritos, señales con texto ni indicadores con cifras. Los paneles,
+  pantallas y documentos aparecen apagados, en blanco o desenfocados.
+- Nada de logotipos, marcas de agua, firmas ni marcas de coche reconocibles.
+  Los emblemas del volante y de la carrocería quedan fuera de encuadre o
+  desenfocados.
+- Nada de grafismos, líneas de trazado, cotas, flechas, retículas ni
+  esquemas dibujados sobre la foto. Esa capa la añadimos nosotros después en
+  vectorial: la fotografía tiene que llegar completamente limpia.
+- Nada de elementos de interfaz: botones, iconos, cursores, ventanas.
+- Nada de monumentos reconocibles con derechos ni personas identificables.
+- Nada de aspecto de foto de archivo: si parece un banco de imágenes
+  genérico, está mal.
+
+ESPACIO NEGATIVO
+En cada escena te indicaré en qué zona del encuadre debe quedar una
+superficie oscura, limpia y sin detalle. Es donde irán el titular y la capa
+gráfica. Respétalo con exactitud: sin objetos, sin texturas marcadas y sin
+fuentes de luz en esa zona.
+
+Cuando lo hayas entendido, responde solo "listo" y espera mi primera escena.</pre>
+    </div>
+
+    <h3 style="margin-top:36px">Método y medidas</h3>
+    <div class="grid3">
+      <div class="card"><span class="n">PASO 01</span><h3>Chat nuevo y brief</h3><p>El brief de arriba, una sola vez. Sin él, cada imagen sale de un mundo distinto.</p></div>
+      <div class="card"><span class="n">PASO 02</span><h3>Escena 01 y validación</h3><p>La portada fija la luz de todo el set. Cuando esté aprobada, se adjunta como referencia visual en todas las demás.</p></div>
+      <div class="card"><span class="n">PASO 03</span><h3>Las 17 restantes</h3><p>Una por turno, en el mismo chat, adjuntando siempre la 01. Los vídeos solo cuando el set esté cerrado.</p></div>
+    </div>
+    <table>
+      <tr><th>Pieza</th><th>Proporción</th><th>Píxeles</th><th>Uso</th></tr>
+      <tr><td>Escenas 01–13 y 17</td><td>16:9</td><td><code>2560 × 1440</code></td><td>Pantalla completa en escritorio</td></tr>
+      <tr><td>Escena 14</td><td>9:16</td><td><code>1440 × 2560</code></td><td>Portada en móvil</td></tr>
+      <tr><td>Escena 15</td><td>1,91:1</td><td><code>2400 × 1260</code></td><td>WhatsApp y Open Graph</td></tr>
+      <tr><td>Escena 16</td><td>1:1</td><td><code>2048 × 2048</code></td><td>Textura de fondo</td></tr>
+      <tr><td>Escena 18</td><td>4:5</td><td><code>1600 × 2000</code></td><td>Detalles para tarjetas y fichas</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="imagenes">
+  <div class="wrap">
+    <div class="kick">06 · Producción de imagen</div>
+    <h2>Las 18 escenas</h2>
+    <p class="lead">Ordenadas por importancia: con las diez primeras la web ya se sostiene entera. Cada ficha lleva el prompt, la zona de espacio negativo, lo que se dibuja encima en vectorial y cómo se anima después.</p>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id">01</div>
+        <div><h3>Las manos en el volante</h3><div class="p-where">Portada · la imagen que fija la luz de todo el set</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2560×1440</span><span class="mtag o">Prioridad máxima</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica de automoción, plano cerrado desde el asiento
+trasero derecho, ligeramente elevado.
+
+Las dos manos de una persona adulta sujetan el volante en la posición
+correcta, a las nueve y diez. Son manos normales, sin anillos llamativos ni
+manicura de estudio, en reposo pero firmes. Se ve el antebrazo hasta media
+manga de una prenda oscura y lisa.
+
+El habitáculo está en penumbra casi total, en negro azulado. Una única luz
+fría entra por la ventanilla del conductor desde la izquierda y dibuja el
+borde de los nudillos, el aro del volante y un fragmento del salpicadero,
+dejando todo lo demás cayendo a negro. Al fondo, muy desenfocado a través del
+parabrisas, el halo naranja de una farola de sodio y algunas luces urbanas
+disueltas en bokeh.
+
+El emblema del volante queda fuera de encuadre. El cuadro de instrumentos
+está apagado y desenfocado, sin ninguna cifra visible.
+
+Objetivo de 50 mm a f/1.8, foco exacto en los nudillos de la mano izquierda,
+grano de película fino, contraste alto, sombras frías.
+
+ESPACIO NEGATIVO: toda la mitad derecha del encuadre debe quedar en penumbra
+limpia y sin detalle, solo negro azulado.
+
+Sin texto, sin números, sin logotipos, sin grafismos dibujados, sin interfaz.
+FORMATO: apaisado 16:9 (2560 × 1440 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> sobre la mitad derecha, un arco fino de trayectoria que nace del aro del volante y describe el giro, con dos cotas cortas y un ángulo rotulado. Se dibuja sola al cargar, en 900 ms.</div>
+      <div class="anim"><b>VÍDEO:</b> las manos corrigen mínimamente el volante, el bokeh naranja del fondo late y un reflejo recorre el aro. Nada más.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id">02</div>
+        <div><h3>El coche en la hora azul</h3><div class="p-where">Permiso B · 180 € y primera clase de regalo</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2560×1440</span><span class="mtag">Espacio a la izquierda</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica de automoción a la hora azul, cámara muy baja, casi
+a la altura del asfalto.
+
+Un turismo compacto blanco, moderno y sin marca reconocible, aparcado en tres
+cuartos traseros en una calle urbana de Sevilla. Las luces de posición
+encendidas dibujan dos líneas rojas contenidas en la parte trasera. El asfalto
+está húmedo y devuelve un reflejo alargado de las luces y de una farola de
+sodio naranja situada fuera de encuadre a la derecha.
+
+El cielo conserva el azul profundo del final del crepúsculo, sin nubes
+marcadas. Al fondo, fachadas urbanas desenfocadas en penumbra con dos o tres
+ventanas iluminadas. Sobre el techo del coche, una barra portaequipajes lisa;
+el señalizador de autoescuela queda insinuado, oscuro y sin ningún texto.
+
+Todos los emblemas, molduras identificativas y la matrícula quedan fuera de
+encuadre o completamente desenfocados.
+
+Objetivo de 35 mm a f/2.0, foco en el pilar trasero, grano fino, contraste
+alto, dominante fría con el único acento cálido del reflejo naranja.
+
+ESPACIO NEGATIVO: todo el tercio izquierdo, ocupado por asfalto húmedo en
+penumbra sin detalle ni reflejos.
+
+Sin texto, sin números, sin matrícula legible, sin logotipos, sin grafismos
+dibujados, sin interfaz.
+FORMATO: apaisado 16:9 (2560 × 1440 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> sobre el asfalto de la izquierda, la geometría de una plaza de aparcamiento en perspectiva, con la cota del hueco y una línea de trayectoria de entrada.</div>
+      <div class="anim"><b>VÍDEO:</b> el reflejo del asfalto ondula levemente, las luces traseras respiran y pasa un faro lejano por el fondo.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id">03</div>
+        <div><h3>El casco antes de salir</h3><div class="p-where">Permisos AM, A1, A2 y A · pistas en Sevilla capital</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2560×1440</span><span class="mtag">Espacio arriba</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica, plano cerrado y lateral, luz muy dura.
+
+Las manos de una persona adulta con guantes técnicos negros sostienen un casco
+integral blanco mate a la altura del pecho, justo antes de ponérselo. Se ve
+el torso hasta el cuello, con una chaqueta oscura de protección, y el rostro
+queda cortado por el borde superior del encuadre.
+
+Detrás y muy desenfocada, la silueta de una motocicleta en penumbra sobre el
+asfalto de una pista de prácticas al anochecer, con dos conos naranjas
+reflectantes disueltos en bokeh.
+
+Una única luz fría y dura entra desde la derecha y perfila el canto del casco
+y el nudillo de los guantes; el resto cae a negro azulado. En el reflejo curvo
+de la pantalla del casco se insinúa, deformado, el naranja de una farola.
+
+La marca del casco y de la moto quedan fuera de encuadre o desenfocadas.
+
+Objetivo de 85 mm a f/1.8, foco en el canto superior del casco, grano fino,
+contraste alto.
+
+ESPACIO NEGATIVO: toda la franja superior del encuadre, en negro limpio.
+
+Sin texto, sin números, sin logotipos, sin grafismos dibujados, sin interfaz.
+FORMATO: apaisado 16:9 (2560 × 1440 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> arriba, el trazado cenital de un eslalon de conos con las distancias acotadas, dibujado como un plano de pista.</div>
+      <div class="anim"><b>VÍDEO:</b> rack focus del casco al fondo de la pista, y el reflejo naranja se desplaza por la pantalla del casco.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id">04</div>
+        <div><h3>La cabina del camión</h3><div class="p-where">Permisos profesionales C, D y Certificado de Aptitud Profesional</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2560×1440</span><span class="mtag">Espacio a la derecha</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica industrial, contrapicado muy pronunciado desde el
+suelo, de noche.
+
+La cabina blanca de un camión visto en tres cuartos delanteros desde muy abajo,
+imponente dentro del encuadre y ocupando el tercio izquierdo y el centro. Los
+faros y las luces de gálibo superiores están encendidos y forman una línea de
+puntos cálidos contra el cielo negro. La parrilla y el parabrisas quedan en
+penumbra, sin ningún emblema visible.
+
+El suelo es hormigón de nave logística, húmedo, con la luz de un foco alto que
+entra en diagonal desde la izquierda y deja una zona de reflejo controlada.
+Al fondo, la silueta apenas insinuada de un muelle de carga en negro.
+
+La matrícula, los rótulos del remolque y cualquier marca quedan fuera de
+encuadre o completamente desenfocados.
+
+Objetivo de 35 mm a f/2.8, foco en el faro izquierdo, grano fino, contraste
+muy alto, atmósfera densa y seria.
+
+ESPACIO NEGATIVO: todo el tercio derecho del encuadre, en negro limpio, solo
+cielo nocturno sin estrellas ni detalle.
+
+Sin texto, sin números, sin matrícula legible, sin logotipos, sin grafismos
+dibujados, sin interfaz.
+FORMATO: apaisado 16:9 (2560 × 1440 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> a la derecha, el alzado esquemático del vehículo con las cotas de longitud y altura, como una ficha de homologación.</div>
+      <div class="anim"><b>VÍDEO:</b> travelling ascendente muy lento por la cabina; las luces de gálibo mantienen su brillo constante.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id">05</div>
+        <div><h3>El retrovisor al amanecer</h3><div class="p-where">Clases de reciclaje y amaxofobia · volver a conducir</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2560×1440</span><span class="mtag">Espacio a la izquierda</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica, plano detalle del retrovisor exterior izquierdo de
+un coche, tomado desde dentro del habitáculo, al amanecer.
+
+En el espejo se refleja parcialmente la mirada serena de una persona adulta:
+solo los ojos y parte de la sien, recortados por el marco del espejo. La
+expresión es de calma y concentración, no de sonrisa. Detrás, en el reflejo,
+la carretera vacía y una franja de cielo que empieza a clarear.
+
+El habitáculo está en penumbra fría; la primera luz del día entra rasante por
+la izquierda y perfila el borde del espejo y la línea de la ventanilla. El
+resto cae a negro azulado.
+
+El fondo real, fuera del espejo, está completamente desenfocado: una carretera
+abierta y vacía disuelta en bokeh, sin vehículos ni señales legibles.
+
+Objetivo de 85 mm a f/2.0, foco exacto en el reflejo del ojo, grano fino,
+contraste alto, temperatura fría con un punto cálido en el horizonte.
+
+ESPACIO NEGATIVO: toda la mitad izquierda, en penumbra limpia del interior del
+coche, sin detalle.
+
+Sin texto, sin números, sin logotipos, sin grafismos dibujados, sin interfaz.
+FORMATO: apaisado 16:9 (2560 × 1440 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> a la izquierda, el diagrama del ángulo muerto: dos líneas de visión que salen del espejo con el sector marcado y acotado.</div>
+      <div class="anim"><b>VÍDEO:</b> la luz del amanecer sube muy despacio y el reflejo del paisaje se desplaza. La mirada parpadea una vez.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id o">06</div>
+        <div><h3>El expediente sobre la mesa</h3><div class="p-where">Precios y calculadora · el precio por escrito</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2560×1440</span><span class="mtag o">Ni una cifra legible</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica de bodegón, plano cenital exacto sobre una mesa de
+madera oscura, con luz de foco dura.
+
+Sobre la mesa, dispuestos con orden casi geométrico y bastante separación
+entre ellos: una carpeta de cartón gris entreabierta con documentos en blanco,
+completamente sin imprimir; un bolígrafo metálico oscuro apoyado en diagonal;
+un juego de llaves de coche sin mando visible; y unas gafas dobladas.
+
+Una única luz cenital dura cae desde arriba a la izquierda y proyecta sombras
+largas, limpias y bien definidas de cada objeto sobre la madera. El resto de
+la mesa cae a penumbra. La textura de la madera se ve en la zona iluminada y
+desaparece en la oscura.
+
+Los documentos están completamente en blanco: sin líneas impresas, sin
+membretes, sin cifras, sin firmas, sin sellos.
+
+Objetivo de 50 mm a f/4 para tener todo el bodegón nítido, cenital perfecto,
+grano fino, contraste alto, tonos fríos con la madera cálida.
+
+ESPACIO NEGATIVO: toda la mitad derecha de la mesa, vacía y en penumbra.
+
+Sin texto, sin números, sin logotipos, sin grafismos dibujados, sin interfaz.
+FORMATO: apaisado 16:9 (2560 × 1440 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> a la derecha, el desglose del presupuesto compuesto con la tipografía de la marca sobre la penumbra, con líneas de guía finas que lo conectan con la carpeta. Aquí se monta la calculadora real.</div>
+      <div class="anim"><b>VÍDEO:</b> la luz cenital oscila mínimamente, como si alguien pasara cerca. Las sombras se alargan un punto. Nada más.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id">07</div>
+        <div><h3>Estudiar de madrugada</h3><div class="p-where">Plataforma NovaTest · tests oficiales 24 h</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2560×1440</span><span class="mtag">Espacio a la derecha</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica en interior nocturno, plano medio corto y lateral.
+
+Una persona adulta joven, sentada en un sofá en una habitación a oscuras,
+sostiene un teléfono móvil cuya pantalla es la única fuente de luz de la
+escena. Esa luz fría azulada le ilumina la mandíbula, la mano y parte del
+pecho desde abajo, y deja el resto del rostro cortado por el borde superior
+del encuadre y en sombra.
+
+La pantalla del móvil se ve de canto o muy desenfocada: no se distingue ningún
+contenido, ningún icono y ninguna interfaz, solo un rectángulo de luz.
+
+Detrás, la habitación en negro casi absoluto, con una ventana al fondo por la
+que entra el resplandor naranja lejano de una farola de sodio, disuelto en
+bokeh. La postura es concentrada y relajada, sin ninguna teatralidad.
+
+Objetivo de 50 mm a f/1.4, foco en la mano que sujeta el móvil, grano fino
+visible por la poca luz, contraste muy alto.
+
+ESPACIO NEGATIVO: toda la mitad derecha, en negro limpio de la habitación.
+
+Sin texto, sin números, sin logotipos, sin interfaz en pantalla, sin
+grafismos dibujados.
+FORMATO: apaisado 16:9 (2560 × 1440 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> a la derecha, una retícula de progreso de estudio: pequeños módulos cuadrados que se van rellenando, con la cifra de preguntas acertadas.</div>
+      <div class="anim"><b>VÍDEO:</b> la luz de la pantalla cambia sutilmente de intensidad, como al pasar de pregunta. El bokeh de la ventana late.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id">08</div>
+        <div><h3>El aula a oscuras</h3><div class="p-where">Instalaciones y método · aula climatizada con proyector</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2560×1440</span><span class="mtag">Espacio arriba</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica de interior, plano general desde el fondo del aula,
+a la altura de los hombros de las personas sentadas.
+
+Un aula pequeña y ordenada, a oscuras, iluminada únicamente por la luz de un
+proyector encendido que baña la pared del fondo con un rectángulo de luz
+blanca y limpia, sin ninguna imagen ni texto proyectado.
+
+En primer plano y de espaldas, las siluetas recortadas de tres personas
+adultas sentadas en pupitres, en contraluz total: solo se ven sus contornos,
+sin rostros ni detalle. Delante, junto a la pared iluminada, la silueta de pie
+de una cuarta persona, también en contraluz, en actitud de explicar.
+
+El haz del proyector se insinúa en el aire por una leve bruma. Las mesas
+devuelven un reflejo tenue de la luz. Todo lo demás cae a negro.
+
+Objetivo de 35 mm a f/2.0, foco en la silueta de pie, grano fino, contraste
+muy alto, dominante fría.
+
+ESPACIO NEGATIVO: toda la franja superior del encuadre, techo en negro
+absoluto sin luminarias visibles.
+
+Sin texto, sin números, sin nada proyectado, sin logotipos, sin grafismos
+dibujados, sin interfaz.
+FORMATO: apaisado 16:9 (2560 × 1440 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> dentro del rectángulo del proyector, el esquema de una intersección con la trayectoria correcta resaltada. Es el único sitio del set donde la capa vive dentro de la foto.</div>
+      <div class="anim"><b>VÍDEO:</b> la bruma del haz se mueve, una silueta cambia de postura, el rectángulo de luz parpadea al cambiar de diapositiva.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id b">09</div>
+        <div><h3>La L en la luna</h3><div class="p-where">Aprobados y opiniones · 4,9★ con 199 reseñas</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2560×1440</span><span class="mtag o">La pieza emocional</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica, plano detalle desde el exterior del coche, al
+atardecer avanzado.
+
+Las manos de una persona adulta joven colocan desde dentro una placa
+rectangular blanca sobre la luna trasera de un turismo. La placa está limpia y
+vacía, sin ninguna letra ni símbolo impreso, solo el rectángulo blanco con un
+fino borde rojo.
+
+El cristal devuelve el reflejo del cielo del atardecer y, disuelta y
+deformada, la silueta de una calle de Sevilla con una farola de sodio naranja
+encendida. Ese reflejo ocupa la parte superior del cristal y se funde con la
+penumbra del interior del coche.
+
+De la persona solo se ven las manos y un fragmento de hombro a través del
+cristal, en penumbra y parcialmente desenfocados. No hay rostro visible.
+
+Objetivo de 85 mm a f/2.0, foco en el canto de la placa, grano fino, contraste
+alto, la única zona cálida es el reflejo naranja.
+
+ESPACIO NEGATIVO: todo el tercio izquierdo, carrocería oscura en penumbra sin
+reflejos ni detalle.
+
+Sin texto, sin números, sin letras en la placa, sin logotipos, sin grafismos
+dibujados, sin interfaz.
+FORMATO: apaisado 16:9 (2560 × 1440 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> la L real de la marca se compone en vectorial dentro de la placa blanca, perfecta y con la perspectiva del cristal. A la izquierda, la nota media y el recuento de reseñas.</div>
+      <div class="anim"><b>VÍDEO:</b> las manos terminan de asentar la placa y se retiran del encuadre; el reflejo del atardecer se desplaza por el cristal.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id">10</div>
+        <div><h3>La fachada encendida</h3><div class="p-where">Dónde estamos · C/ Adelantado 22, la Macarena</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2560×1440</span><span class="mtag">Espacio a la izquierda</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica urbana nocturna, plano general frontal desde la
+acera de enfrente, cámara a la altura de los ojos.
+
+El bajo comercial de una pequeña autoescuela de barrio en Sevilla, con un
+escaparate amplio y limpio, es la única fachada iluminada de toda la calle. La
+luz interior, cálida y neutra, sale por el cristal y proyecta un rectángulo de
+claridad sobre la acera y el asfalto húmedo.
+
+A ambos lados, fachadas residenciales en penumbra, con persianas bajadas y una
+o dos ventanas encendidas muy al fondo. Una farola de sodio naranja a la
+derecha del encuadre añade un halo cálido y un reflejo alargado en el suelo
+mojado. Un naranjo de acera recorta su silueta contra la luz.
+
+El interior del local se ve a través del cristal, ordenado y vacío a esa hora:
+una mesa, dos sillas y una pared lisa. El rótulo sobre la puerta está apagado,
+en sombra y sin ningún texto ni logotipo legible.
+
+Objetivo de 35 mm a f/2.8, foco en el marco del escaparate, grano fino,
+contraste alto, exposición para las luces.
+
+ESPACIO NEGATIVO: todo el tercio izquierdo, fachada vecina en penumbra sin
+detalle ni ventanas encendidas.
+
+Sin texto, sin números, sin rótulos legibles, sin logotipos, sin grafismos
+dibujados, sin interfaz.
+FORMATO: apaisado 16:9 (2560 × 1440 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> a la izquierda, un plano de situación esquemático del barrio con la retícula de calles, el punto marcado y las distancias acotadas a las paradas de autobús y al Sevici.</div>
+      <div class="anim"><b>VÍDEO:</b> pasa un coche fuera de campo y su faro barre la fachada; la luz del escaparate se mantiene fija.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id">11</div>
+        <div><h3>Los pedales</h3><div class="p-where">Cómo empezar · el método y las cuatro etapas</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2560×1440</span><span class="mtag">Espacio a la derecha</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica, plano detalle en el hueco reposapiés de un coche,
+cámara muy baja desde el asiento del acompañante.
+
+El pie derecho de una persona adulta, con una zapatilla oscura de suela fina,
+apoyado sobre el pedal del freno; el pie izquierdo, en penumbra, reposa junto
+al embrague. Se ven los tres pedales metálicos con su textura antideslizante y
+el borde de la alfombrilla.
+
+Una luz fría y estrecha entra desde la puerta entreabierta a la izquierda y
+recorta el canto del pedal, la puntera de la zapatilla y el metal, dejando el
+resto del hueco en negro azulado profundo. Sobre el metal del pedal hay un
+brillo especular limpio y controlado.
+
+Nada de suciedad, nada de desorden: el habitáculo está impecable.
+
+Objetivo macro de 100 mm a f/2.8, foco exacto en el canto del pedal de freno,
+grano fino, contraste muy alto, temperatura fría.
+
+ESPACIO NEGATIVO: toda la mitad derecha, en negro limpio del hueco del
+habitáculo.
+
+Sin texto, sin números, sin logotipos, sin grafismos dibujados, sin interfaz.
+FORMATO: apaisado 16:9 (2560 × 1440 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> a la derecha, las cuatro etapas del proceso numeradas en vertical, unidas por una línea fina que arranca del pedal: expediente, teórico, prácticas, examen.</div>
+      <div class="anim"><b>VÍDEO:</b> el pie presiona el freno una vez, el metal cambia de brillo y la luz de la puerta oscila levemente.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id">12</div>
+        <div><h3>El intermitente</h3><div class="p-where">Atención 24 h · agente web y WhatsApp</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2560×1440</span><span class="mtag">Espacio arriba a la derecha</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica, plano macro del piloto intermitente delantero de un
+coche encendido, de noche.
+
+El intermitente naranja está encendido y ocupa el tercio inferior izquierdo del
+encuadre, con la óptica facetada devolviendo la luz en múltiples destellos
+pequeños y limpios. Su resplandor cálido se derrama sobre la chapa mojada de la
+carrocería y muere a pocos centímetros.
+
+Todo lo demás está en negro azulado profundo: la carrocería en penumbra, el
+asfalto húmedo apenas insinuado por un reflejo naranja alargado, y el fondo
+completamente disuelto en oscuridad.
+
+No se ve ningún emblema, ninguna moldura identificativa ni la matrícula.
+
+Objetivo macro de 100 mm a f/2.8, foco en las facetas de la óptica, grano fino,
+contraste extremo, la única fuente de color es el naranja del propio piloto.
+
+ESPACIO NEGATIVO: toda la zona superior derecha, en negro absoluto.
+
+Sin texto, sin números, sin logotipos, sin grafismos dibujados, sin interfaz.
+FORMATO: apaisado 16:9 (2560 × 1440 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> arriba a la derecha, una franja horaria de 24 horas con el tramo de oficina marcado y el resto cubierto por la atención automática.</div>
+      <div class="anim"><b>VÍDEO:</b> el intermitente parpadea con su cadencia real y el reflejo del asfalto se enciende y se apaga con él. Es el bucle más limpio del set.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id">13</div>
+        <div><h3>La mesa de estudio</h3><div class="p-where">Blog y guías · contenido de SEO local</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2560×1440</span><span class="mtag">Espacio a la derecha</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica de bodegón nocturno, plano en escorzo sobre una mesa
+de estudio, con la luz de un flexo como única fuente.
+
+Un cuaderno abierto de páginas completamente en blanco, sin una sola línea
+escrita ni impresa, ocupa el centro izquierda. Junto a él, un bolígrafo, una
+taza oscura y unas llaves de coche. El flexo entra desde la izquierda con una
+luz cálida y dura que recorta un círculo nítido sobre el papel y deja el resto
+de la mesa cayendo a negro.
+
+Al fondo, muy desenfocada, una ventana nocturna con el resplandor naranja de
+una farola. No hay libros con lomos legibles ni ningún papel impreso.
+
+Objetivo de 50 mm a f/2.0, foco en el canto del cuaderno, grano fino, contraste
+alto, contraste de temperatura entre el flexo cálido y la noche fría.
+
+ESPACIO NEGATIVO: toda la mitad derecha de la mesa, en penumbra limpia.
+
+Sin texto, sin números, sin nada escrito, sin logotipos, sin grafismos
+dibujados, sin interfaz.
+FORMATO: apaisado 16:9 (2560 × 1440 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> a la derecha, el índice del artículo con líneas de guía finas que lo anclan al cuaderno. Cabecera fija de todo el blog.</div>
+      <div class="anim"><b>VÍDEO:</b> la página del cuaderno se mueve levemente, la luz del flexo tiembla un punto y el bokeh de la ventana late.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id">14</div>
+        <div><h3>Portada vertical</h3><div class="p-where">Portada en móvil · misma escena recompuesta</div></div>
+        <div class="p-meta"><span class="mtag">9:16 · 1440×2560</span><span class="mtag o">Imprescindible</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica de automoción en formato vertical, plano desde el
+asiento trasero, encuadre alto.
+
+En el tercio inferior del encuadre, las dos manos de una persona adulta sujetan
+el volante en la posición correcta, iluminadas por una única luz fría que entra
+por la ventanilla izquierda y perfila los nudillos y el aro. Se ve el arranque
+del salpicadero, apagado y desenfocado.
+
+Por encima, a través del parabrisas, la noche urbana de Sevilla completamente
+desenfocada: puntos de luz naranja de farolas de sodio y algunas luces blancas
+disueltas en bokeh sobre un fondo azul muy oscuro, sin ninguna forma
+reconocible ni cartel legible.
+
+Los dos tercios superiores del encuadre son esa penumbra de bokeh oscuro,
+uniforme y sin detalle marcado.
+
+Objetivo de 35 mm a f/1.8, foco en las manos, grano fino, contraste alto.
+
+ESPACIO NEGATIVO: toda la mitad superior, en penumbra limpia, sin puntos de luz
+brillantes en el centro.
+
+Sin texto, sin números, sin logotipos, sin grafismos dibujados, sin interfaz.
+FORMATO: vertical 9:16 (1440 × 2560 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> arriba, el titular y una cota vertical fina que baja hasta las manos, marcando la entrada de la pantalla.</div>
+      <div class="anim"><b>VÍDEO:</b> el bokeh de la noche se desplaza muy despacio y las manos corrigen mínimamente el volante.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id">15</div>
+        <div><h3>Tarjeta para compartir</h3><div class="p-where">Open Graph · lo que se ve al mandar el enlace por WhatsApp</div></div>
+        <div class="p-meta"><span class="mtag">1,91:1 · 2400×1260</span><span class="mtag">Se ve muy pequeña</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica de automoción a la hora azul, composición muy ancha
+y extremadamente simple.
+
+En el tercio derecho, el frontal de un turismo compacto blanco en tres cuartos,
+con los faros encendidos proyectando dos haces limpios hacia la izquierda sobre
+el asfalto húmedo. Silueta grande, rotunda y perfectamente legible a tamaño
+muy pequeño.
+
+Los dos tercios izquierdos son asfalto y penumbra azul en degradado, sin
+objetos, sin reflejos marcados y sin detalle: superficie limpia para el
+logotipo y el titular.
+
+Cielo del crepúsculo azul profundo en la franja superior. Ninguna farola, ningún
+edificio, ninguna señal. Emblemas y matrícula fuera de encuadre o desenfocados.
+
+Objetivo de 50 mm a f/2.8, foco en el faro derecho, grano fino, contraste alto.
+
+Sin texto, sin números, sin matrícula, sin logotipos, sin grafismos dibujados,
+sin interfaz.
+FORMATO: apaisado 1,91:1 (2400 × 1260 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> logotipo y titular montados sobre la penumbra izquierda. Pieza fija, no se anima.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id">16</div>
+        <div><h3>Asfalto</h3><div class="p-where">Textura de fondo para franjas y tarjetas</div></div>
+        <div class="p-meta"><span class="mtag">1:1 · 2048×2048</span><span class="mtag">Sustituye al patrón</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía macro cenital de asfalto real, iluminado por una luz rasante muy
+dura desde la izquierda.
+
+Se ve el grano del aglomerado con todo detalle: el árido, los poros, la textura
+irregular. Cruzando el encuadre en diagonal suave, el borde de una marca vial
+blanca reflectante, envejecida por el uso, con el canto ligeramente desgastado.
+
+Superficie ligeramente húmeda, con un brillo especular contenido en las crestas
+del árido. Colorimetría fría, gris azulado profundo, el blanco de la marca como
+única zona clara.
+
+Sin hojas, sin suciedad, sin chicles, sin grietas grandes. Textura homogénea y
+utilizable como fondo.
+
+Objetivo macro de 100 mm a f/8, cenital exacto, grano fino, contraste alto.
+
+Sin texto, sin números, sin logotipos, sin grafismos dibujados, sin interfaz.
+FORMATO: cuadrado 1:1 (2048 × 2048 px).</pre>
+      <div class="layer"><b>USO:</b> al 8-12% de opacidad como textura sobre las franjas oscuras, y a plena opacidad tras las tarjetas de precios. Sustituye al patrón de señales.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id r">17</div>
+        <div><h3>Calle cortada</h3><div class="p-where">Página 404 · enlace roto</div></div>
+        <div class="p-meta"><span class="mtag">16:9 · 2560×1440</span><span class="mtag">Espacio a la derecha</span></div>
+      </div>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica urbana nocturna, plano frontal a la altura de los
+ojos, de una calle cortada.
+
+En el tercio izquierdo, dos conos de tráfico naranjas con banda reflectante y
+una valla metálica ligera cruzan la calzada. Sobre la valla, una luz de obra
+intermitente encendida en ámbar proyecta un halo cálido sobre el asfalto
+húmedo y sobre la banda reflectante de los conos, que devuelve el destello.
+
+Más allá de la valla, la calle continúa en penumbra total y se pierde en negro:
+no se ve el final. A los lados, fachadas en sombra sin ventanas encendidas.
+
+La escena es sobria y ligeramente inquietante, sin dramatismo. Ningún cartel
+con texto, ninguna señal con símbolo legible.
+
+Objetivo de 35 mm a f/2.0, foco en la banda reflectante del cono delantero,
+grano fino, contraste muy alto.
+
+ESPACIO NEGATIVO: todo el tercio derecho, fachada y calzada en negro limpio.
+
+Sin texto, sin números, sin logotipos, sin grafismos dibujados, sin interfaz.
+FORMATO: apaisado 16:9 (2560 × 1440 px).</pre>
+      <div class="layer"><b>CAPA TÉCNICA:</b> a la derecha, una flecha de desvío dibujada con lenguaje de señalización y el enlace de vuelta al inicio.</div>
+      <div class="anim"><b>VÍDEO:</b> la luz de obra parpadea con su ritmo real y el reflejo del asfalto se enciende con ella.</div>
+    </div>
+
+    <div class="p">
+      <div class="p-head">
+        <div class="p-id o">18</div>
+        <div><h3>Los detalles</h3><div class="p-where">Fichas, tarjetas y fondos de sección</div></div>
+        <div class="p-meta"><span class="mtag">4:5 · 1600×2000</span><span class="mtag o">Uno por turno</span></div>
+      </div>
+      <p style="padding:18px 24px 0;font-size:14.6px;margin:0">Se pide <strong>uno por turno</strong> cambiando solo la línea del sujeto. Son los planos de apoyo que rellenan tarjetas y fondos de sección sin repetir las escenas grandes.</p>
+      <pre><button class="copy">Copiar</button>Fotografía cinematográfica, plano detalle macro, luz dura y muy direccional.
+
+SUJETO: [aquí va uno de la lista de abajo]
+
+Una única luz fría entra desde la izquierda, perfila el canto del objeto con un
+brillo especular limpio y deja el resto cayendo a negro azulado profundo. Fondo
+completamente oscuro y sin detalle. Superficies impecables, sin suciedad ni
+desgaste.
+
+Objetivo macro de 100 mm a f/2.8, foco exacto en el punto de máximo detalle,
+grano de película fino, contraste muy alto, colorimetría fría.
+
+Composición centrada con el sujeto ocupando la mitad inferior del encuadre y la
+mitad superior en negro limpio, sin detalle.
+
+Sin texto, sin números, sin cifras en ningún indicador, sin logotipos, sin
+emblemas, sin grafismos dibujados, sin interfaz.
+FORMATO: vertical 4:5 (1600 × 2000 px).
+
+--- LISTA DE SUJETOS, uno por generación ---
+1.  La palanca de cambios manual, con la mano adulta apoyada encima
+2.  El cinturón de seguridad tensado sobre el hombro, con su anclaje
+3.  La llave de contacto en la mano, sin mando ni emblema
+4.  El espejo retrovisor interior, con la calle nocturna disuelta al fondo
+5.  El freno de mano accionado
+6.  Los guantes de moto doblados sobre el depósito
+7.  El casco integral apoyado, visto desde arriba
+8.  El faro delantero apagado, con la óptica facetada en penumbra
+9.  El limpiaparabrisas sobre el cristal con gotas de agua
+10. La rueda y el neumático, con el dibujo de la banda de rodadura
+11. El cono de tráfico reflectante, plano contrapicado
+12. La marca vial blanca sobre asfalto húmedo, en diagonal</pre>
+      <div class="layer"><b>USO:</b> fondos de tarjeta con el texto encima en la penumbra superior, y cabeceras de las fichas de cada permiso.</div>
+    </div>
+  </div>
+</section>
+
+<section id="videos" style="background:#fff;border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="kick">07 · Producción de vídeo</div>
+    <h2>Los vídeos, con Seedance 2.5</h2>
+    <p class="lead">No se toca hasta tener el set de imágenes cerrado. Cada clip se genera en modo imagen a vídeo con la fotografía validada como fotograma inicial. Y aquí la línea nueva cambia el planteamiento por completo.</p>
+
+    <div class="warn dark">
+      <h3>La imagen apenas se mueve. Quien anima es la capa técnica.</h3>
+      <p>En la línea 3D el vídeo era el espectáculo: conos botando, chincheta rebotando, confeti. Aquí el vídeo es <strong>una fotografía que respira</strong>: un cambio de foco, un reflejo que pasa, un intermitente que parpadea con su cadencia real. Cinco segundos en los que casi no pasa nada, y por eso parece caro.</p>
+      <p style="margin-top:12px">El movimiento con intención lo pone el SVG dibujándose encima. Un trazado de maniobra que se resigue solo en 900 ms dice <em>esto lo hace gente que sabe</em>. Un objeto rebotando dice lo contrario.</p>
+    </div>
+
+    <div class="warn blue">
+      <h3>Cómo escribe uno Seedance, y por qué estos prompts son cortos</h3>
+      <p>Seedance 2.5 pierde adherencia con los prompts largos y llenos de reglas. Su fórmula es <strong>sujeto + acción + entorno + cámara + estilo + una o dos restricciones</strong>, en <strong>60-100 palabras</strong>, y las primeras 20-30 son las que más pesan. Van en inglés, que es donde responde con más precisión; cada ficha lleva encima una línea en español con lo que hace el plano.</p>
+    </div>
+
+    <div class="warn">
+      <h3>El truco del bucle: misma imagen en primer y último fotograma</h3>
+      <p>Seedance 2.5 tiene modo de <strong>fotograma inicial y final</strong>. Subiendo la <strong>misma imagen en las dos ranuras</strong>, el clip termina donde empezó y el bucle cierra sin salto. Con esta línea funciona mejor todavía que con la anterior, porque el movimiento es mínimo y el modelo tiene poco que inventar. Pruébalo en la escena 01 antes de lanzar el resto; si sale congelado, se vuelve al modo de una imagen y se resuelve con un fundido de 0,3 s en montaje.</p>
+    </div>
+
+    <table>
+      <tr><th>Parámetro</th><th>Valor</th><th>Por qué</th></tr>
+      <tr><td><code>duration</code></td><td><code>5</code> s</td><td>Un ciclo y un archivo ligero. Los 30 s del modelo no aportan nada a un fondo web.</td></tr>
+      <tr><td><code>aspect_ratio</code></td><td><code>16:9</code></td><td>Excepto V14 en <code>9:16</code> y V16 en <code>4:5</code>.</td></tr>
+      <tr><td><code>resolution</code></td><td><code>1080p</code></td><td>Suficiente a pantalla completa. El 4K multiplica el peso sin ganancia visible.</td></tr>
+      <tr><td><code>camera_fixed</code></td><td><code>true</code> por defecto</td><td>Al revés que en la línea 3D: aquí la cámara casi nunca se mueve. Solo a <code>false</code> en V04, V10 y V14.</td></tr>
+      <tr><td><code>watermark</code></td><td><code>false</code></td><td>Una marca de agua invalida la pieza.</td></tr>
+      <tr><td><code>seed</code></td><td>anotar el que funcione</td><td>Permite repetir una escena que salió bien con variaciones mínimas.</td></tr>
+    </table>
+
+    <h3 style="margin-top:36px">Los 16 planos</h3>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id">V01</div><div><h3>Las manos en el volante</h3><div class="p-where">imagen 01 · corrección mínima del volante y bokeh que late</div></div><div class="p-meta"><span class="mtag o">Portada</span></div></div>
+      <pre><button class="copy">Copiar</button>Adult hands on a steering wheel make a small, precise correction and settle back, knuckles catching the cold window light. The orange sodium bokeh beyond the windscreen breathes gently in and out of focus. A soft specular reflection travels along the wheel rim. Everything else stays perfectly still in the blue-black darkness. Camera: locked off, static shot. Cinematic automotive photography, hard directional light, deep blacks, fine film grain, identical to the input image. No text, no camera shake.</pre>
+    </div>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id">V02</div><div><h3>El coche en la hora azul</h3><div class="p-where">imagen 02 · reflejo del asfalto y un faro que cruza el fondo</div></div></div>
+      <pre><button class="copy">Copiar</button>The reflection of the tail lights ripples slowly on the wet asphalt as the red rear lamps pulse almost imperceptibly. A distant headlight sweeps across the background façades from left to right and disappears. The blue twilight sky stays completely still. Camera: locked off, static shot. Cinematic automotive photography, blue hour, wet reflections, deep blacks, fine film grain, identical to the input image. No text, no new vehicles entering the frame.</pre>
+    </div>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id">V03</div><div><h3>El casco antes de salir</h3><div class="p-where">imagen 03 · cambio de foco del casco a la pista</div></div></div>
+      <pre><button class="copy">Copiar</button>Gloved hands hold the white helmet steady while a slow rack focus shifts from the helmet edge to the blurred motorcycle and orange cones behind, then returns. The warm orange reflection glides across the curved visor. The rider breathes once; nothing else moves in the dark. Camera: locked off, static shot. Cinematic photography, hard side light, deep blacks, fine film grain, identical to the input image. No text, no face reveal.</pre>
+    </div>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id">V04</div><div><h3>La cabina del camión</h3><div class="p-where">imagen 04 · travelling ascendente lento</div></div><div class="p-meta"><span class="mtag">camera_fixed: false</span></div></div>
+      <pre><button class="copy">Copiar</button>The white truck cab stands still at night, its headlights and roof marker lights burning steadily against the black sky. Faint mist drifts across the beams and the wet concrete reflection shifts slowly. Camera: very slow crane up along the cab, four percent, low angle held throughout. Cinematic industrial photography, hard raking light, deep blacks, high contrast, fine film grain, identical to the input image. No text, no vehicle movement.</pre>
+    </div>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id">V05</div><div><h3>El retrovisor al amanecer</h3><div class="p-where">imagen 05 · la luz del amanecer sube, un parpadeo</div></div></div>
+      <pre><button class="copy">Copiar</button>Reflected in the wing mirror, adult eyes hold their calm gaze and blink once, while the empty road behind drifts slowly past in the reflection. Dawn light rises gradually across the mirror housing and the window line, warming the horizon a fraction. The dark cabin stays untouched. Camera: locked off, static shot. Cinematic photography, cold interior, soft dawn key light, fine film grain, identical to the input image. No text, no full face reveal.</pre>
+    </div>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id o">V06</div><div><h3>El expediente sobre la mesa</h3><div class="p-where">imagen 06 · la luz cenital oscila, las sombras se alargan</div></div></div>
+      <pre><button class="copy">Copiar</button>The hard overhead light drifts a fraction, and the long clean shadows of the folder, pen and keys stretch and settle across the dark wood. A single blank page lifts slightly and falls back. Nothing else moves in the still life. Camera: locked off, static top-down shot. Cinematic still life photography, hard key light, deep shadows, fine film grain, identical to the input image. No text appearing on the blank pages.</pre>
+    </div>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id">V07</div><div><h3>Estudiar de madrugada</h3><div class="p-where">imagen 07 · la pantalla cambia de intensidad</div></div></div>
+      <pre><button class="copy">Copiar</button>The phone screen light shifts subtly in brightness, as if moving between questions, and its cold blue glow rises and falls across the jaw and hand. The person breathes and adjusts their grip once. The distant orange window bokeh pulses softly. The room stays in near total darkness. Camera: locked off, static shot. Cinematic low-light photography, single practical source, heavy grain, identical to the input image. No text, no interface on the screen.</pre>
+    </div>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id">V08</div><div><h3>El aula a oscuras</h3><div class="p-where">imagen 08 · la bruma del haz, una silueta se mueve</div></div></div>
+      <pre><button class="copy">Copiar</button>Haze drifts slowly through the projector beam while the white rectangle of light flickers once, as if a slide changed. One seated silhouette shifts posture; the standing silhouette moves a hand and settles. Faint reflections crawl across the desk surfaces. Camera: locked off, static shot. Cinematic backlit interior, extreme contrast, deep blacks, fine film grain, identical to the input image. No text or image appearing in the projected rectangle.</pre>
+    </div>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id b">V09</div><div><h3>La L en la luna</h3><div class="p-where">imagen 09 · las manos asientan la placa y se retiran</div></div></div>
+      <pre><button class="copy">Copiar</button>Adult hands press the blank white plate flat against the rear window, hold for a moment and withdraw out of frame. The sunset reflection slides slowly across the glass, the orange sodium glow drifting with it. The dark bodywork stays still. Camera: locked off, static shot. Cinematic automotive photography, late golden hour, shallow focus, fine film grain, identical to the input image. No text or letters appearing on the plate.</pre>
+    </div>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id">V10</div><div><h3>La fachada encendida</h3><div class="p-where">imagen 10 · un faro barre la fachada</div></div><div class="p-meta"><span class="mtag">camera_fixed: false</span></div></div>
+      <pre><button class="copy">Copiar</button>Warm light spills steadily from the shop window onto the wet pavement while an unseen car passes and its headlight sweeps across the façade from left to right, then fades. The orange sodium halo flickers once and the reflections stretch on the wet asphalt. The empty interior stays still. Camera: very slow push in, three percent. Cinematic urban night photography, deep blacks, fine film grain, identical to the input image. No text, no people entering the frame.</pre>
+    </div>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id">V11</div><div><h3>Los pedales</h3><div class="p-where">imagen 11 · el pie presiona el freno una vez</div></div></div>
+      <pre><button class="copy">Copiar</button>The right foot presses the brake pedal down once, holds, and eases back to rest, the specular highlight sliding across the textured metal as it moves. The cold light from the half open door wavers slightly. The rest of the footwell stays in deep blue-black shadow. Camera: locked off, static macro shot. Cinematic macro photography, hard narrow key light, extreme contrast, fine film grain, identical to the input image. No text.</pre>
+    </div>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id">V12</div><div><h3>El intermitente</h3><div class="p-where">imagen 12 · parpadeo real · el bucle más limpio del set</div></div></div>
+      <pre><button class="copy">Copiar</button>The amber indicator lamp blinks at its real cadence, its faceted lens flaring and dying, and the warm spill on the wet bodywork and the long reflection on the asphalt rise and fall with it. Between blinks the frame falls to near total darkness. Nothing else moves. Camera: locked off, static macro shot. Cinematic macro photography, single amber source, extreme contrast, fine film grain, identical to the input image. No text.</pre>
+    </div>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id">V13</div><div><h3>La mesa de estudio</h3><div class="p-where">imagen 13 · la página se mueve, el flexo tiembla</div></div></div>
+      <pre><button class="copy">Copiar</button>A blank notebook page lifts gently and settles back under the desk lamp, the hard circle of warm light trembling a fraction across the paper. The distant orange window bokeh breathes softly in the darkness behind. Nothing else on the desk moves. Camera: locked off, static shot. Cinematic night still life, single warm practical against cold night, deep shadows, fine film grain, identical to the input image. No text appearing on the page.</pre>
+    </div>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id">V14</div><div><h3>Portada vertical</h3><div class="p-where">imagen 14 · el bokeh nocturno se desplaza</div></div><div class="p-meta"><span class="mtag">9:16</span><span class="mtag">camera_fixed: false</span></div></div>
+      <pre><button class="copy">Copiar</button>Adult hands make one small correction on the steering wheel while the out of focus night city beyond the windscreen drifts slowly sideways, orange sodium points sliding across the dark blue haze. Cold window light holds steady on the knuckles. Camera: very slow push in, three percent, vertical composition. Cinematic automotive photography, deep blacks, shallow focus, fine film grain, identical to the input image. No text, no bright lights entering the upper centre of the frame.</pre>
+    </div>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id r">V15</div><div><h3>Calle cortada</h3><div class="p-where">imagen 17 · la luz de obra parpadea</div></div></div>
+      <pre><button class="copy">Copiar</button>The amber work light on the barrier flashes at its slow real cadence, each pulse catching the reflective bands of the traffic cones and the wet asphalt before falling back to darkness. Thin mist drifts across the closed street. Nothing beyond the barrier is ever revealed. Camera: locked off, static shot. Cinematic urban night photography, single amber source, deep blacks, fine film grain, identical to the input image. No text.</pre>
+    </div>
+
+    <div class="p">
+      <div class="p-head"><div class="p-id o">V16</div><div><h3>Los detalles, en bucle</h3><div class="p-where">cada plano de la imagen 18 · fondos de tarjeta</div></div><div class="p-meta"><span class="mtag">4 s · 4:5</span></div></div>
+      <pre><button class="copy">Copiar</button>A single soft specular highlight travels slowly across the surface of the object from left to right and returns, revealing its texture as it passes. The object itself does not move. The surrounding darkness stays absolute and empty throughout. Camera: locked off, static macro shot. Cinematic macro photography, hard directional key light, extreme contrast, deep blue-black shadows, fine film grain, identical to the input image. No text, no new objects.</pre>
+      <div class="layer"><b>NOTA:</b> cuatro segundos es el mínimo del modelo. Estos clips van al 40% de opacidad detrás del texto de las tarjetas, casi imperceptibles.</div>
+    </div>
+  </div>
+</section>
+
+<section id="reglas">
+  <div class="wrap">
+    <div class="kick">08 · Control de calidad</div>
+    <h2>Qué mirar antes de dar una pieza por buena</h2>
+
+    <div class="grid2">
+      <div class="card"><span class="n">01</span><h3>Las manos</h3><p>Es el fallo número uno del set entero, porque media línea son planos de manos. Cinco dedos, proporciones correctas, nudillos coherentes. Se amplía al 200% y se cuenta. Si hay duda, se regenera.</p></div>
+      <div class="card"><span class="n">02</span><h3>Ni una letra</h3><p>Matrículas, rótulos, cuadros de instrumentos, documentos. Cualquier garabato que imite escritura invalida la pieza. La tipografía la pone la web.</p></div>
+      <div class="card"><span class="n">03</span><h3>Ningún grafismo</h3><p>Si la IA ha dibujado líneas de trazado, flechas o retículas sobre la foto, se descarta. Esa capa es nuestra y vectorial; una versión generada nunca casará con la de las otras diecisiete.</p></div>
+      <div class="card"><span class="n">04</span><h3>El negro tiene que ser negro</h3><p>Se comparan las 18 juntas. Si una tiene las sombras levantadas o grises, rompe el set. Los negros son profundos pero con detalle, nunca aplastados a cero.</p></div>
+      <div class="card"><span class="n">05</span><h3>La luz viene siempre de la izquierda</h3><p>Salvo las tres escenas donde la ficha dice lo contrario. Es lo que hace que dieciocho fotos parezcan una sola sesión.</p></div>
+      <div class="card"><span class="n">06</span><h3>El naranja tiene coartada</h3><p>Farola, intermitente, luz de obra, cono reflectante. Si aparece naranja sin una fuente física que lo justifique, la imagen se ha ido a decoración y hay que rehacerla.</p></div>
+      <div class="card"><span class="n">07</span><h3>Ningún rostro completo</h3><p>Ni nítido, ni reconocible, ni mirando a cámara. No es solo estilo: es no atribuir a Tecnovial una cara que no existe. Las profesoras reales, si algún día se fotografían, van aparte.</p></div>
+      <div class="card"><span class="n">08</span><h3>El espacio negativo, intacto</h3><p>Cada ficha dice dónde va. Si el sujeto se ha comido esa zona, el titular no cabe y la capa técnica no tiene dónde dibujarse. Es motivo de descarte aunque la foto sea preciosa.</p></div>
+    </div>
+
+    <div class="warn">
+      <h3>Orden de trabajo</h3>
+      <p>Escenas <b>01, 02, 06 y 10</b> primero: portada, coche, precio y local. Con esas cuatro se monta una maqueta navegable y se valida la dirección antes de invertir en el resto. Después <b>03, 04, 05, 07, 08, 09 y 11</b>, que completan las pantallas de contenido. Al final las utilidades: <b>12, 13, 14, 15, 16, 17</b> y los planos de detalle. Y solo entonces, los vídeos.</p>
+    </div>
+
+    <div class="warn dark">
+      <h3>Qué necesito de vuelta</h3>
+      <p>Las imágenes generadas en el orden de las fichas, con el número de escena en el nombre del archivo — <code>01-volante.jpg</code>, <code>02-coche-hora-azul.jpg</code> — y en la máxima calidad que dé la herramienta, sin comprimir. Con ellas monto la maqueta del formato con la capa técnica ya dibujada encima, y en cuanto valides el conjunto lanzamos los dieciséis vídeos.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>Autoescuela Tecnovial · Línea Precisión 2026</b><br>
+    Documento de producción de imagen y vídeo · desarrollado por bd DesignIA
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var pre = btn.closest('pre');
+    var txt = pre.innerText.replace(/^\s*Copiar\s*/, '');
+    var done = function(){
+      btn.textContent = 'Copiado';
+      btn.classList.add('ok');
+      setTimeout(function(){ btn.textContent = 'Copiar'; btn.classList.remove('ok'); }, 1800);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(txt).then(done, function(){ sel(pre); });
+    } else { sel(pre); }
+  });
+});
+function sel(pre){
+  var r = document.createRange();
+  r.selectNodeContents(pre);
+  var s = window.getSelection();
+  s.removeAllRanges();
+  s.addRange(r);
+}
+</script>
+</body>
+</html>
