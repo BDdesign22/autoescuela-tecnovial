@@ -2,9 +2,8 @@
   "version": 2,
   "cleanUrls": true,
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+    { "src": "/prompts", "dest": "/prompts.html" },
+    { "src": "/prompts-3d", "dest": "/prompts-3d.html" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
