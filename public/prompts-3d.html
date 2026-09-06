@@ -161,7 +161,7 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:44px 0}
   <div class="wrap">
     <div class="chip">Nueva línea visual · 3D ilustrado</div>
     <h1>Otra web, otro formato y otra piel para Tecnovial</h1>
-    <p>Dejamos la fotografía documental y pasamos a un universo 3D ilustrado, luminoso y animable. Aquí está el plan completo: el formato nuevo de la web, el brief de estilo, los prompts de las 18 imágenes y los prompts de vídeo que se generan después usando cada imagen como primer fotograma.</p>
+    <p>Dejamos la fotografía documental y pasamos a un universo 3D ilustrado, luminoso y animable. Aquí está el plan completo: el formato nuevo de la web, el brief de estilo, los prompts de las 18 imágenes y los prompts de vídeo para Seedance 2.5, que se generan después usando cada imagen como primer fotograma.</p>
   </div>
   <div class="cone"></div>
   <div class="road"></div>
@@ -176,7 +176,7 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:44px 0}
       <a href="#metodo">3 · Cómo se trabaja</a>
       <a href="#estilo">4 · Brief de estilo</a>
       <a href="#imagenes">5 · Los 18 prompts de imagen</a>
-      <a href="#videos">6 · Los prompts de vídeo</a>
+      <a href="#videos">6 · Vídeo con Seedance 2.5</a>
       <a href="#reglas">7 · Reglas de oro</a>
     </div>
   </div>
@@ -1037,289 +1037,146 @@ totalmente transparente.
 16. Nube blanca redondeada
 17. Bocadillo de conversación verde, liso y vacío
 18. Reloj de esfera blanca sin números con agujas naranjas</pre>
-      <div class="p-foot"><div class="anim"><b>Después se anima:</b> cada objeto en bucle de 3 s de flotación y giro suave, exportado en WebM con transparencia. Son los que se mueven al pasar el ratón por encima de los botones y las tarjetas.</div></div>
+      <div class="p-foot"><div class="anim"><b>Después se anima:</b> cada objeto en bucle de 4 s de flotación y giro suave, exportado en WebM con transparencia. Son los que se mueven al pasar el ratón por encima de los botones y las tarjetas.</div></div>
     </div>
   </div>
 </section>
 
 <section id="videos">
   <div class="wrap">
-    <div class="kick">6 · Vídeos</div>
+    <div class="kick">6 · Vídeos con Seedance 2.5</div>
     <h2>Los vídeos, con cada imagen como primer fotograma</h2>
-    <p class="lead">Este bloque <strong>no se toca hasta tener el set de imágenes cerrado y aprobado</strong>. Cada vídeo se genera en modo imagen a vídeo, subiendo la imagen ya validada como fotograma inicial. Así el movimiento nace de la pieza real y no de una interpretación nueva.</p>
+    <p class="lead">Este bloque <strong>no se toca hasta tener el set de imágenes cerrado y aprobado</strong>. Los prompts están escritos para Seedance 2.5 en modo imagen a vídeo: se sube la imagen ya validada como fotograma inicial y el prompt solo describe el movimiento.</p>
+
+    <div class="warn blue">
+      <h3>Cómo escribe uno Seedance, y por qué estos prompts son cortos</h3>
+      <p>Seedance 2.5 no funciona como un generador de imagen: los prompts largos con listas de reglas le hacen perder adherencia. Su fórmula es <strong>sujeto + acción + entorno + cámara + estilo + una o dos restricciones</strong>, en <strong>60-100 palabras</strong>, y las primeras 20-30 palabras son las que más pesan en el resultado. Por eso cada bloque de abajo empieza directamente por lo que se mueve, y todo lo demás (duración, proporción, resolución) sale del prompt y pasa a ser un parámetro.</p>
+    </div>
 
     <div class="grid3">
-      <div class="card"><div class="n">1</div><h3>Duración: 5 segundos</h3><p>Suficiente para un ciclo completo y ligero de peso. Se reproducen en bucle silencioso y con <code>autoplay</code>.</p></div>
-      <div class="card"><div class="n o">2</div><h3>Movimiento mínimo</h3><p>La escena respira, no actúa. Si el vídeo llama más la atención que el titular, está mal hecho.</p></div>
-      <div class="card"><div class="n g">3</div><h3>Bucle limpio</h3><p>El último fotograma tiene que poder empalmar con el primero. Por eso los movimientos son cíclicos o de ida y vuelta.</p></div>
+      <div class="card"><div class="n">1</div><h3>En inglés, a propósito</h3><p>Seedance responde con mucha más precisión en inglés que en español. Cada ficha lleva arriba en una línea qué hace el plano, y debajo el prompt listo para pegar.</p></div>
+      <div class="card"><div class="n o">2</div><h3>Movimiento mínimo</h3><p>La escena respira, no actúa. Si el vídeo llama más la atención que el titular, está mal hecho. De ahí los <i>3 por ciento</i> de cámara.</p></div>
+      <div class="card"><div class="n g">3</div><h3>Bucle limpio</h3><p>Se reproducen en bucle, silenciosos y con autoplay. El último fotograma tiene que empalmar con el primero, y para eso hay un truco.</p></div>
     </div>
 
-    <div class="brief">
-      <div class="brief-head">
-        <div><h3>Instrucción base de vídeo</h3><small>se antepone a cada prompt de movimiento</small></div>
-        <span class="once">Va en todos</span>
-      </div>
-      <pre><button class="copy">Copiar</button>Anima la imagen adjunta usándola como PRIMER FOTOGRAMA exacto.
-
-REGLAS PARA TODOS LOS VÍDEOS:
-- No cambies el estilo, los colores, los materiales, la iluminación ni la
-  composición de la imagen. El vídeo es la misma escena, en movimiento.
-- No añadas, elimines ni transformes ningún objeto. Nada de morphing, nada
-  de elementos que aparezcan de la nada salvo lo que yo indique.
-- No introduzcas texto, letras, números, logotipos ni interfaz en ningún
-  fotograma.
-- Movimiento suave, continuo y ligero, con aceleraciones y frenadas
-  redondeadas, como una animación de estudio. Nada brusco.
-- La cámara se mueve muy poco: como máximo un desplazamiento lento o un
-  acercamiento del 3 al 5 por ciento. Sin sacudidas ni zooms bruscos.
-- El plano tiene que poder repetirse en bucle: el último fotograma debe
-  parecerse mucho al primero.
-- Duración 5 segundos, 24 fotogramas por segundo, resolución 1920 × 1080
-  como mínimo. Sin sonido.
-
-MOVIMIENTO DE ESTA ESCENA:
-[aquí va el bloque de movimiento de cada vídeo]</pre>
+    <div class="warn green">
+      <h3>El truco del bucle: primer y último fotograma con la misma imagen</h3>
+      <p>Seedance 2.5 tiene un modo de <strong>fotograma inicial y final</strong> en el que se pasan dos imágenes clave y el modelo interpola entre ellas. Si en las dos ranuras se sube <strong>exactamente la misma imagen</strong>, el clip está obligado a terminar donde empezó: el bucle cierra perfecto y desaparece el salto que se nota al repetir el vídeo en la web.</p>
+      <p style="margin-top:10px">Merece la pena probarlo en la escena 01 antes de lanzar el resto. Si el resultado sale demasiado quieto — porque el modelo interpreta que casi no debe cambiar nada — se vuelve al modo de una sola imagen y el empalme se resuelve en el montaje con un fundido corto de 0,3 s.</p>
     </div>
 
-    <h3 style="margin-top:38px">Movimiento escena por escena</h3>
-    <p style="font-size:14.6px">Se pega el bloque de arriba y se sustituye la última línea por el texto que corresponda.</p>
+    <h3 style="margin-top:38px">Parámetros, iguales para todo el set</h3>
+    <table>
+      <tr><th>Parámetro</th><th>Valor</th><th>Por qué</th></tr>
+      <tr><td><code>duration</code></td><td><code>5</code> s</td><td>Un ciclo completo y un archivo ligero. El máximo de 30 s no aporta nada a un fondo web.</td></tr>
+      <tr><td><code>aspect_ratio</code></td><td><code>16:9</code></td><td>Excepto V14, que va en <code>9:16</code>, y V16, en <code>1:1</code>.</td></tr>
+      <tr><td><code>resolution</code></td><td><code>1080p</code></td><td>Suficiente para fondo a pantalla completa. El 4K multiplica el peso sin ganancia visible.</td></tr>
+      <tr><td><code>camera_fixed</code></td><td><code>false</code> · <code>true</code></td><td>A <code>true</code> en V06, V10, V12, V14 y V16, donde la cámara no debe moverse ni un píxel.</td></tr>
+      <tr><td><code>watermark</code></td><td><code>false</code></td><td>Imprescindible: una marca de agua invalida la pieza para la web.</td></tr>
+      <tr><td><code>seed</code></td><td>anotar el que funcione</td><td>Permite repetir una escena que salió bien con variaciones mínimas.</td></tr>
+    </table>
+    <p style="font-size:14.6px">Si se trabaja desde una interfaz en vez de la API, estos valores son los desplegables de la propia página de generación. El audio no se activa: en imagen a vídeo Seedance no lo expone y los fondos de la web van mudos.</p>
+
+    <div class="warn">
+      <h3>Dos cosas que Seedance agradece y que no van en el prompt</h3>
+      <ul>
+        <li><b>La imagen 01 como referencia de estilo.</b> Seedance 2.5 admite hasta 50 materiales de referencia por generación y pondera más los primeros. Adjuntar la portada validada como referencia adicional ayuda a que los 16 clips mantengan el mismo azul y los mismos materiales.</li>
+        <li><b>Una o dos restricciones como mucho.</b> Cada prompt cierra con <i>no text</i> y a lo sumo una más. Amontonar prohibiciones diluye las que importan — es justo lo contrario de lo que pedía el brief de imagen.</li>
+      </ul>
+    </div>
+
+    <h3 style="margin-top:38px">Los 16 planos</h3>
+    <p style="font-size:14.6px">Cada uno se genera con su imagen correspondiente como fotograma inicial.</p>
 
     <div class="p">
-      <div class="p-head"><div class="p-id">V01</div><div><h3>El cruce de entrada</h3><div class="p-where">a partir de la imagen 01</div></div><div class="p-meta"><span class="mtag o">Portada</span></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-El semáforo cumple un ciclo completo y calmado: la luz verde se apaga poco a
-poco, se enciende el ámbar durante un instante, después el rojo, y al final
-del plano vuelve a estar en verde como al principio. Los brillos de cada luz
-crecen y decrecen con suavidad.
-Las tres nubes se desplazan muy despacio hacia la izquierda, cada una a
-velocidad ligeramente distinta.
-El marcador de mapa naranja del fondo flota subiendo y bajando unos pocos
-píxeles, con un balanceo mínimo.
-Los trazos naranjas de destello del cielo laten, apareciendo y desapareciendo
-en un pulso lento.
-El cono tumbado se queda quieto. La hierba y los arbustos se mecen apenas.
-La cámara avanza hacia la curva de la carretera un 3 por ciento, muy despacio
-y de forma continua.</pre>
+      <div class="p-head"><div class="p-id">V01</div><div><h3>El cruce de entrada</h3><div class="p-where">imagen 01 · el semáforo cicla, las nubes derivan, la cámara entra en la curva</div></div><div class="p-meta"><span class="mtag o">Portada</span><span class="mtag n">camera_fixed: false</span></div></div>
+      <pre><button class="copy">Copiar</button>Toy-style 3D traffic light cycles from green to amber to red and back to green, its glass domes glowing softly. White clouds drift slowly left across the flat blue sky. The orange map pin above the distant city skyline bobs up and down, and the orange sparkle strokes pulse. The winding road, cones and bushes stay perfectly still. Camera: very slow dolly in toward the curve, three percent. Glossy matte plastic diorama, soft studio lighting, identical style to the input image. No text, no camera shake.</pre>
     </div>
 
     <div class="p">
-      <div class="p-head"><div class="p-id">V02</div><div><h3>El coche del permiso B</h3><div class="p-where">a partir de la imagen 02</div></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-El coche da un rebote suave sobre su suspensión, como un juguete que se
-asienta: baja un poco, sube y vuelve a su posición, dos veces durante el
-plano. Las ruedas giran unos pocos grados adelante y atrás sin que el coche
-se desplace de sitio.
-Un reflejo blanco recorre despacio la carrocería y el cartel azul del techo,
-de izquierda a derecha.
-El cono naranja del parachoques se balancea muy levemente.
-Las dos nubes del fondo derivan hacia la derecha.
-La cámara gira alrededor del coche un par de grados hacia la izquierda,
-lentísima.</pre>
+      <div class="p-head"><div class="p-id">V02</div><div><h3>El coche del permiso B</h3><div class="p-where">imagen 02 · rebote de suspensión y reflejo que recorre la chapa</div></div></div>
+      <pre><button class="copy">Copiar</button>White toy driving-school car bounces gently on its suspension twice, settling like a soft rubber toy, wheels turning a few degrees without leaving its spot. A white specular highlight sweeps across the body and the blue roof sign. The orange cone by the bumper sways slightly and two clouds drift right across the flat blue sky. Camera: very slow orbit two degrees to the left. Matte plastic 3D diorama, soft studio lighting, identical style to the input image. No text, no morphing.</pre>
     </div>
 
     <div class="p">
-      <div class="p-head"><div class="p-id">V03</div><div><h3>La pista de moto</h3><div class="p-where">a partir de la imagen 03</div></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-La moto recorre el eslalon entre los conos, inclinándose a un lado y al otro
-con un balanceo elegante, avanzando poco y regresando al final del plano a
-una posición muy parecida a la inicial.
-Los conos por los que va pasando vibran ligeramente y vuelven a su sitio.
-El scooter del fondo permanece inmóvil.
-El casco del primer plano se mantiene quieto y en foco constante.
-La hierba de alrededor se mece apenas y una nube cruza el cielo.
-La cámara se acerca un 3 por ciento hacia el centro de la pista.</pre>
+      <div class="p-head"><div class="p-id">V03</div><div><h3>La pista de moto</h3><div class="p-where">imagen 03 · eslalon entre conos y vuelta a la posición inicial</div></div></div>
+      <pre><button class="copy">Copiar</button>White and blue toy motorcycle leans left and right as it weaves through the orange slalom cones, returning to its starting position by the end. The cones it passes wobble slightly and settle. The helmet in the foreground stays perfectly still and in focus, grass sways and one cloud crosses the flat blue sky. Camera: slow push in three percent toward the practice track. Matte plastic 3D diorama, soft studio lighting, identical style to the input image. No text, no camera shake.</pre>
     </div>
 
     <div class="p">
-      <div class="p-head"><div class="p-id">V04</div><div><h3>El camión y el CAP</h3><div class="p-where">a partir de la imagen 04</div></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-El camión avanza muy poco hacia delante y se detiene con un rebote de
-suspensión en la cabina y el remolque, dos veces durante el plano.
-Las ruedas giran despacio y de forma coherente con ese leve desplazamiento.
-El autobús del fondo permanece quieto, con un balanceo mínimo.
-La hoja blanca del portapapeles naranja ondea suavemente por una brisa.
-Las nubes del fondo derivan hacia la izquierda.
-La cámara se desplaza lateralmente hacia la derecha un 3 por ciento.</pre>
+      <div class="p-head"><div class="p-id">V04</div><div><h3>El camión y el CAP</h3><div class="p-where">imagen 04 · el camión arranca y frena, la hoja del portapapeles ondea</div></div></div>
+      <pre><button class="copy">Copiar</button>Chunky white toy truck rolls forward a few centimetres and stops, cab and blue trailer bouncing on their suspension, twice, wheels turning to match. The white sheet on the orange clipboard flutters in a light breeze. The bus behind stays still and the clouds drift left across the flat blue sky. Camera: slow tracking shot right, three percent. Matte plastic 3D diorama, soft studio lighting, identical style to the input image. No text, no morphing.</pre>
     </div>
 
     <div class="p">
-      <div class="p-head"><div class="p-id">V05</div><div><h3>La carretera abierta</h3><div class="p-where">a partir de la imagen 05</div></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-El coche blanco circula despacio por el carril derecho alejándose hacia el
-horizonte, sin llegar a desaparecer: recorre una distancia corta y constante.
-Las marcas viales blancas del asfalto se desplazan hacia el espectador de
-forma continua, dando sensación de avance.
-Las cuatro nubes grandes derivan muy lentamente hacia la izquierda a
-velocidades distintas.
-La hierba de las colinas se mece con una brisa suave.
-La cámara asciende un 3 por ciento, ganando cielo, con un movimiento continuo
-y sereno. Es el plano más calmado del conjunto.</pre>
+      <div class="p-head"><div class="p-id">V05</div><div><h3>La carretera abierta</h3><div class="p-where">imagen 05 · el plano más calmado del set, a propósito</div></div></div>
+      <pre><button class="copy">Copiar</button>A single white toy car drives slowly away along the right lane of a wide curving road, shrinking gently toward the horizon without disappearing. The white lane markings flow steadily toward the viewer, four large clouds drift left at different speeds and the rounded green hills sway softly. Camera: very slow crane up, three percent, revealing more blue sky. Matte plastic 3D diorama, soft studio lighting, calm and serene, identical style to the input image. No text, no camera shake.</pre>
     </div>
 
     <div class="p">
-      <div class="p-head"><div class="p-id o">V06</div><div><h3>El podio del presupuesto</h3><div class="p-where">a partir de la imagen 06</div></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-Las tres plataformas cilíndricas flotan subiendo y bajando de forma
-desacompasada, cada una con su propio ritmo lento, y sus sombras de contacto
-crecen y se encogen al compás.
-Las fichas circulares ámbar giran despacio sobre su eje vertical, mostrando
-el canto.
-Las dos monedas sueltas del aire giran también, más rápido, sin desplazarse.
-Las tres tarjetas blancas flotan y se abren en abanico ligeramente, para
-volver casi a su posición inicial al final del plano.
-El coche diminuto del podio da un pequeño rebote.
-La cámara permanece prácticamente fija, con una deriva mínima hacia arriba.</pre>
+      <div class="p-head"><div class="p-id o">V06</div><div><h3>El podio del presupuesto</h3><div class="p-where">imagen 06 · flotación desacompasada y monedas girando</div></div><div class="p-meta"><span class="mtag">camera_fixed: true</span></div></div>
+      <pre><button class="copy">Copiar</button>Three floating plastic cylinders bob up and down out of sync, their soft contact shadows growing and shrinking with them. The stacked amber coin discs rotate slowly on their vertical axis, two loose coins spin faster in mid-air, three blank white cards fan open and return, and the tiny white car on top gives a small bounce. Camera: locked off, static shot. Matte plastic 3D diorama, soft studio lighting, identical style to the input image. No text, no new objects.</pre>
     </div>
 
     <div class="p">
-      <div class="p-head"><div class="p-id">V07</div><div><h3>Los test desde el sofá</h3><div class="p-where">a partir de la imagen 07</div></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-Las cuatro señales de tráfico orbitan lentamente alrededor del personaje
-sentado, describiendo un arco completo y volviendo a una posición muy
-parecida a la inicial al final del plano. Cada una gira además un poco sobre
-sí misma.
-La marca de verificación verde late: crece un 10 por ciento y vuelve a su
-tamaño, dos veces.
-Un brillo blanco recorre la pantalla azul de la tablet de arriba abajo.
-El personaje se mueve apenas: una respiración y un ligero cabeceo, sin gestos
-grandes ni cambios de expresión.
-Las hojas de la planta se mecen. Las nubes derivan.
-La cámara se acerca un 3 por ciento.</pre>
+      <div class="p-head"><div class="p-id">V07</div><div><h3>Los test desde el sofá</h3><div class="p-where">imagen 07 · las señales orbitan, la marca verde late</div></div></div>
+      <pre><button class="copy">Copiar</button>Four simplified 3D road signs orbit slowly around the seated toy character, each rotating gently, completing one arc and returning to their starting positions. The thick green check mark pulses twice, a white highlight sweeps down the blank blue tablet screen, and the character breathes and nods slightly. Camera: slow push in three percent. Matte plastic 3D diorama, soft studio lighting, identical style to the input image. No text, no change of facial expression.</pre>
     </div>
 
     <div class="p">
-      <div class="p-head"><div class="p-id">V08</div><div><h3>El aula abierta</h3><div class="p-where">a partir de la imagen 08</div></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-Las señales de tráfico y el semáforo que flotan sobre el aula suben y bajan
-con ritmos distintos y giran muy despacio sobre su eje.
-El personaje que explica hace un gesto contenido con el puntero, de un lado
-al otro de la pantalla blanca, y vuelve a su posición. Los dos personajes
-sentados cabecean levemente, atentos.
-Un brillo suave recorre la pantalla de proyección blanca, de izquierda a
-derecha, sin llegar a mostrar nada.
-Las hojas de la planta se mecen.
-La cámara orbita alrededor del aula dos grados hacia la derecha, muy despacio,
-manteniendo el interior siempre visible.</pre>
+      <div class="p-head"><div class="p-id">V08</div><div><h3>El aula abierta</h3><div class="p-where">imagen 08 · órbita mínima manteniendo el interior visible</div></div></div>
+      <pre><button class="copy">Copiar</button>Small 3D road signs and a tiny traffic light float up and down above the open cutaway classroom, rotating slowly. The standing toy teacher sweeps the pointer once across the blank white screen and returns, while the two seated characters nod slightly. A soft highlight travels across the blank projection screen and the plant leaves sway. Camera: slow orbit two degrees right, interior always visible. Matte plastic 3D diorama, soft studio lighting, identical style to the input image. No text, no new objects.</pre>
     </div>
 
     <div class="p">
-      <div class="p-head"><div class="p-id g">V09</div><div><h3>El momento del aprobado</h3><div class="p-where">a partir de la imagen 09</div></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-El confeti cae de forma continua, girando sobre sí mismo mientras desciende,
-y sigue entrando por la parte superior del encuadre durante todo el plano
-para que el bucle no tenga corte.
-Las cinco estrellas ámbar aparecen una a una de izquierda a derecha, cada una
-con un pequeño rebote elástico al aparecer, y después flotan suavemente.
-El personaje del coche mueve el brazo levantado saludando dos veces.
-El coche da un pequeño bote de alegría sobre su suspensión.
-Los trazos naranjas de destello del cielo laten.
-La cámara se acerca un 4 por ciento hacia el coche.</pre>
+      <div class="p-head"><div class="p-id g">V09</div><div><h3>El momento del aprobado</h3><div class="p-where">imagen 09 · confeti continuo y estrellas que entran con rebote</div></div></div>
+      <pre><button class="copy">Copiar</button>Colourful confetti falls continuously, tumbling as it drops and still entering from the top of the frame at the end of the shot. Five thick amber stars pop in one by one from left to right, each with a small elastic bounce, then float in place. The toy character waves its raised arm twice, the white car bounces on its suspension and the orange sparkle strokes pulse. Camera: slow push in four percent toward the car. Matte plastic 3D diorama, soft studio lighting, identical style to the input image. No text.</pre>
     </div>
 
     <div class="p">
-      <div class="p-head"><div class="p-id">V10</div><div><h3>El mapa de la Macarena</h3><div class="p-where">a partir de la imagen 10</div></div><div class="p-meta"><span class="mtag o">El de más gancho</span></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-El marcador de mapa naranja desciende un poco, toca el tejado del edificio
-central, rebota hacia arriba con elasticidad y se queda flotando. En el
-momento del impacto, una onda circular blanca y fina se expande sobre el mapa
-y se desvanece. Esto ocurre una sola vez, al principio del plano.
-El autobús urbano recorre su calle a velocidad de juguete, cruzando el mapa
-sin salirse de la isla.
-Los dos coches diminutos avanzan por sus calles.
-Los árboles del parque se mecen apenas.
-La isla completa gira sobre su eje vertical dos o tres grados y vuelve, en un
-balanceo muy lento.
-La cámara permanece fija.</pre>
+      <div class="p-head"><div class="p-id">V10</div><div><h3>El mapa de la Macarena</h3><div class="p-where">imagen 10 · la chincheta cae, rebota y lanza una onda</div></div><div class="p-meta"><span class="mtag o">El de más gancho</span><span class="mtag">camera_fixed: true</span></div></div>
+      <pre><button class="copy">Copiar</button>The orange map pin drops, taps the central rooftop and bounces back up elastically, and a thin white ring ripples outward across the miniature map and fades, once. The toy bus drives along its street, two tiny cars move along theirs, and the park trees sway. The whole floating island rocks two degrees on its vertical axis and back. Camera: locked off, static shot. Matte plastic 3D isometric diorama, soft studio lighting, identical style to the input image. No text, no camera shake.</pre>
     </div>
 
     <div class="p">
-      <div class="p-head"><div class="p-id">V11</div><div><h3>Los cuatro pasos hasta la L</h3><div class="p-where">a partir de la imagen 11</div></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-Los puntos blancos que unen las plataformas avanzan en secuencia de una a la
-siguiente, de izquierda a derecha, como una trayectoria que se recorre, y el
-ciclo vuelve a empezar al final del plano.
-Cada plataforma se ilumina brevemente cuando la trayectoria llega a ella: un
-resplandor cálido que sube y baja.
-La carpeta naranja, la tablet y el coche dan un pequeño rebote al iluminarse
-su plataforma.
-La placa blanca de la cuarta plataforma gira lentamente sobre su eje vertical
-y emite un destello suave al final del recorrido.
-Las nubes derivan. La cámara se desplaza hacia la derecha un 3 por ciento,
-siguiendo el ascenso.</pre>
+      <div class="p-head"><div class="p-id">V11</div><div><h3>Los cuatro pasos hasta la L</h3><div class="p-where">imagen 11 · la trayectoria recorre los escalones y cada uno se ilumina</div></div></div>
+      <pre><button class="copy">Copiar</button>White dots travel in sequence along the arcs between the four stepped platforms, from left to right, then restart. Each platform glows warmly as the trail reaches it, and the orange folder, the tablet and the little car each give a small bounce as they light up. The white plate on the top platform rotates slowly and flashes softly. Camera: slow tracking shot right, three percent. Matte plastic 3D diorama, soft studio lighting, identical style to the input image. No text.</pre>
     </div>
 
     <div class="p">
-      <div class="p-head"><div class="p-id">V12</div><div><h3>La atención que no cierra</h3><div class="p-where">a partir de la imagen 12</div></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-Los cuatro bocadillos de conversación aparecen uno tras otro, escalonados,
-cada uno con un rebote elástico al surgir, como mensajes que van entrando; al
-final del plano se desvanecen suavemente para que el bucle empiece limpio.
-El teléfono flota subiendo y bajando y gira un par de grados.
-Un brillo blanco recorre su pantalla azul.
-Las agujas naranjas del reloj giran a velocidad acelerada y constante, dando
-una vuelta completa durante el plano.
-La luna y las estrellas laten suavemente.
-La cámara permanece casi fija, con una deriva mínima hacia la derecha.</pre>
+      <div class="p-head"><div class="p-id">V12</div><div><h3>La atención que no cierra</h3><div class="p-where">imagen 12 · mensajes que entran uno a uno y reloj acelerado</div></div><div class="p-meta"><span class="mtag">camera_fixed: true</span></div></div>
+      <pre><button class="copy">Copiar</button>Four blank chat bubbles pop in one after another with elastic bounces, like incoming messages, then fade away at the end of the shot. The white phone floats up and down while rotating two degrees, a highlight sweeping across its blank blue screen. The orange clock hands sweep one full turn and the small moon and stars pulse softly. Camera: locked off, static shot. Matte plastic 3D diorama, soft studio lighting, identical style to the input image. No text, no interface elements.</pre>
     </div>
 
     <div class="p">
-      <div class="p-head"><div class="p-id">V13</div><div><h3>El quiosco de consejos</h3><div class="p-where">a partir de la imagen 13</div></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-El coche minúsculo recorre la carretera que serpentea saliendo de las páginas
-del libro, de un extremo al otro, y al llegar al final vuelve a empezar el
-recorrido.
-Las páginas blancas del libro ondean muy levemente, como movidas por el aire.
-Las tres tarjetas blancas flotantes se abren en abanico y regresan.
-La lupa gira despacio sobre su eje.
-El semáforo diminuto que sale del libro cambia de luz una vez.
-Las nubes derivan y los arbustos se mecen.
-La cámara se acerca un 3 por ciento al libro.</pre>
+      <div class="p-head"><div class="p-id">V13</div><div><h3>El quiosco de consejos</h3><div class="p-where">imagen 13 · el coche recorre la carretera que sale del libro</div></div></div>
+      <pre><button class="copy">Copiar</button>A tiny white toy car drives along the winding road that rises out of the open book's pages, travelling from one end to the other and starting again. The blank white pages ripple gently, the three floating cards fan open and return, the orange magnifying glass rotates slowly and the small traffic light changes once. Camera: slow push in three percent toward the book. Matte plastic 3D diorama, soft studio lighting, identical style to the input image. No text.</pre>
     </div>
 
     <div class="p">
-      <div class="p-head"><div class="p-id d">V14</div><div><h3>Portada vertical para móvil</h3><div class="p-where">a partir de la imagen 14 · salida 1080 × 1920</div></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-El coche blanco del fondo asciende por la carretera alejándose, empequeñeciendo
-poco a poco, sin llegar a desaparecer del todo.
-Las marcas viales blancas del centro de la calzada se desplazan hacia el
-espectador de forma continua, dando sensación de avance.
-El semáforo del lateral izquierdo completa un ciclo de verde a ámbar, a rojo y
-de vuelta a verde.
-El marcador de mapa naranja del horizonte flota arriba y abajo.
-Las dos nubes de las esquinas superiores derivan muy despacio hacia dentro del
-encuadre sin invadir el centro, que debe quedar limpio en todo momento.
-La cámara permanece fija.
-FORMATO DE SALIDA: vertical 9:16, 1080 × 1920 píxeles.</pre>
+      <div class="p-head"><div class="p-id d">V14</div><div><h3>Portada vertical para móvil</h3><div class="p-where">imagen 14 · el centro del encuadre debe quedar limpio en todo momento</div></div><div class="p-meta"><span class="mtag">aspect_ratio: 9:16</span><span class="mtag">camera_fixed: true</span></div></div>
+      <pre><button class="copy">Copiar</button>White toy car drives away up the winding road, shrinking toward the horizon, while the white lane markings flow steadily toward the viewer. The traffic light on the left cycles green, amber, red and back to green. The orange map pin bobs above the distant skyline and the two corner clouds drift inward without entering the centre of the frame, which stays empty throughout. Camera: locked off, static shot, vertical composition. Matte plastic 3D diorama, soft studio lighting, identical style to the input image. No text.</pre>
     </div>
 
     <div class="p">
-      <div class="p-head"><div class="p-id r">V15</div><div><h3>El desvío</h3><div class="p-where">a partir de la imagen 17 · página 404</div></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-El coche blanco del primer plano se inclina hacia delante como si acabara de
-frenar en seco y se reequilibra con dos rebotes de suspensión.
-Con ese frenazo, uno de los conos naranjas cae y rueda un poco por el asfalto,
-hasta detenerse.
-La flecha blanca de la señal de desvío parpadea con un pulso suave, dos veces.
-La valla blanca y roja vibra levemente.
-Las nubes derivan hacia la izquierda por encima del corte de la carretera.
-La cámara retrocede un 4 por ciento, revelando un poco más del vacío azul que
-hay tras el final del asfalto.</pre>
+      <div class="p-head"><div class="p-id r">V15</div><div><h3>El desvío</h3><div class="p-where">imagen 17 · frenazo, cono que rueda y flecha que parpadea</div></div></div>
+      <pre><button class="copy">Copiar</button>White toy car pitches forward as if braking hard, then rocks back and settles with two suspension bounces. One orange cone tips over and rolls a short distance across the asphalt before stopping. The white arrow on the blue detour sign pulses twice, the red and white barrier vibrates slightly and clouds drift left. Camera: slow dolly out four percent, revealing more empty blue sky beyond the broken road. Matte plastic 3D diorama, soft studio lighting, identical style to the input image. No text.</pre>
     </div>
 
     <div class="p">
-      <div class="p-head"><div class="p-id o">V16</div><div><h3>Los objetos sueltos, en bucle</h3><div class="p-where">a partir de cada PNG de la imagen 18 · fondo transparente</div></div><div class="p-meta"><span class="mtag n">3 segundos</span></div></div>
-      <pre><button class="copy">Copiar</button>MOVIMIENTO DE ESTA ESCENA:
-El objeto flota suavemente subiendo y bajando una sola vez durante el plano, y
-al mismo tiempo gira muy despacio sobre su eje vertical unos 15 grados hacia
-un lado y otros 15 hacia el otro, volviendo exactamente a la posición inicial
-al terminar.
-Un brillo especular suave recorre su superficie de izquierda a derecha.
-Nada más se mueve. El fondo permanece completamente transparente y vacío en
-todos los fotogramas: no añadas suelo, sombra proyectada, entorno ni color de
-fondo.
-La cámara permanece totalmente fija.
-DURACIÓN: 3 segundos, bucle perfecto.</pre>
-      <div class="p-foot">Si la herramienta de vídeo no admite transparencia, se genera sobre un fondo verde plano y se recorta después con croma en el montaje.</div>
+      <div class="p-head"><div class="p-id o">V16</div><div><h3>Los objetos sueltos, en bucle</h3><div class="p-where">cada PNG de la imagen 18 · fondo transparente</div></div><div class="p-meta"><span class="mtag">4 s · 1:1</span><span class="mtag">camera_fixed: true</span></div></div>
+      <pre><button class="copy">Copiar</button>The single 3D toy object floats gently up and down once while rotating slowly fifteen degrees each way on its vertical axis, returning exactly to its starting pose. A soft specular highlight sweeps across its surface from left to right. Nothing else moves and the background stays completely empty in every frame: no ground, no cast shadow, no scenery, no colour fill. Camera: locked off, static shot. Matte plastic toy 3D style, soft studio lighting. No text, no added background.</pre>
+      <div class="p-foot">Cuatro segundos es el mínimo que admite Seedance. Si la salida no conserva la transparencia, se genera sobre un fondo verde plano y se recorta con croma en el montaje.</div>
+    </div>
+
+    <div class="warn red">
+      <h3>Qué revisar en cada clip antes de darlo por bueno</h3>
+      <ul>
+        <li><b>Que no haya aparecido texto.</b> Es el fallo más frecuente en vídeo generado: un cartel que se llena de garabatos o una matrícula que se inventa. Se mira fotograma a fotograma en el último segundo, que es donde suele colarse.</li>
+        <li><b>Que el estilo no derive.</b> Comparar el fotograma final con la imagen de partida: si el azul ha cambiado de tono o los materiales se han vuelto brillantes, se descarta.</li>
+        <li><b>Que nada haga morphing.</b> Los objetos de juguete tienden a fundirse entre sí cuando se cruzan. Si un cono atraviesa el coche, se regenera con otro <code>seed</code>.</li>
+        <li><b>Que el bucle cierre.</b> Reproducirlo tres veces seguidas: si se ve el salto, se prueba el modo de primer y último fotograma con la misma imagen.</li>
+      </ul>
     </div>
   </div>
 </section>
