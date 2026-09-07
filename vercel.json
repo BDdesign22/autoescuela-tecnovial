@@ -2,8 +2,7 @@
   "version": 2,
   "cleanUrls": true,
   "routes": [
-    { "src": "/prompts", "dest": "/prompts.html" },
-    { "src": "/prompts-precision", "dest": "/prompts-precision.html" },
+    { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
