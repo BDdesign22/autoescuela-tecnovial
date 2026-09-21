@@ -63,6 +63,12 @@ Aquí es donde más proyectos se hunden, y casi siempre por el mismo motivo: **f
 - **Tópico local.** Si la imagen podría ilustrar un folleto turístico del lugar, está mal. El sitio se reconoce por la luz y los materiales, no por sus monumentos.
 - **Manos, texto y simetrías.** Cuenta los dedos. Comprueba que no haya garabatos que imiten escritura.
 
+**Cuidado con pedir emoción: es lo que fabrica el banco de imágenes.** Si escribes «riéndose a carcajadas», «sonrisa radiante» o «celebrando», obtienes exactamente el cliché que nadie se cree — dientes perfectos, poses imposibles, gente mirando a cámara. La emoción creíble se consigue describiendo **un instante concreto y trivial** en vez de un sentimiento: alguien que se gira para hablar con los de atrás, una media sonrisa mientras se mira la carretera, un brazo apoyado en la ventanilla. Pide el gesto, no el estado de ánimo, y añade explícitamente qué no quieres: nadie posando, nadie mirando a cámara, nadie riéndose a pleno pulmón.
+
+**Nombra la nacionalidad o la región cuando el público es local.** Los modelos tienden por defecto a un aspecto anglosajón y a un imaginario norteamericano — el descapotable, la carretera infinita, la casa con porche. Si la web es para un negocio de barrio en Andalucía, hay que escribir que son jóvenes españoles del sur, que el coche es un utilitario europeo corriente y que el paisaje es de olivares. Sin eso, la imagen sale técnicamente correcta y culturalmente ajena, y el visitante local lo nota aunque no sepa decir por qué.
+
+**El atrezo también delata.** Un coche de lujo o un descapotable donde debería haber un utilitario usado destruye la credibilidad igual que un error de país. Elige objetos del nivel de vida real del público al que hablas.
+
 **Ojo con las contradicciones geométricas en el prompt.** Si pides que un elemento esté en un sitio donde físicamente no puede estar, el modelo resuelve la contradicción de la forma que puede, y suele ser la peor. Antes de lanzar, lee tu propio prompt preguntándote si la escena que describes puede existir.
 
 **La coherencia entre piezas importa más que la calidad de cada una.** Un set con la misma luz, la misma óptica y la misma paleta parece una sesión profesional aunque cada imagen sea modesta. Un set de piezas brillantes pero dispares parece un collage.
