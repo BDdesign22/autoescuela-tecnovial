@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tecnovial · Prototipo de navegación por marchas</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0B1020">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231B2FB0'/%3E%3Ccircle cx='16' cy='9' r='3' fill='%23E23B2E'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23FFC21A'/%3E%3Ccircle cx='16' cy='23' r='3' fill='%232FA84F'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,600..900&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#1B2FB0; --azul-900:#0E1758; --ambar:#FFC21A; --rojo:#E23B2E; --verde:#2FA84F;
+  --noche:#0B1020; --tinta:#10142B; --gris:#8B93A7; --blanco:#fff;
+  --t-sm:14px; --t-b:16px; --t-md:20px;
+  --dur:.62s; --ease:cubic-bezier(.22,.68,.24,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--noche);color:var(--blanco);
+  font-family:Figtree,system-ui,sans-serif;font-size:var(--t-b);line-height:1.55;
+  overflow:hidden;-webkit-font-smoothing:antialiased}
+.dsp{font-family:Archivo,'Arial Narrow',sans-serif;font-weight:900;text-transform:uppercase;
+  font-variation-settings:"wdth" 80;line-height:.94;letter-spacing:-.01em;margin:0}
+p{margin:0;color:#B9C0D2}
+a{color:inherit;text-decoration:none}
+
+/* ---------- ESCENA ---------- */
+.stage{position:fixed;inset:0;perspective:1100px;perspective-origin:50% 46%;overflow:hidden}
+.stage::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 60% at 50% 45%,transparent 40%,rgba(5,8,18,.82) 100%)}
+/* dos capas: X primero, Z despues. El retardo lo pone el JS. */
+.cam-x{position:absolute;inset:0;transform-style:preserve-3d;
+  transition:transform var(--dur) var(--ease)}
+.cam-z{position:absolute;inset:0;transform-style:preserve-3d;
+  transition:transform var(--dur) var(--ease)}
+
+/* suelo en perspectiva: es lo que hace visible el movimiento */
+.ground{position:absolute;left:50%;top:50%;width:9000px;height:9000px;
+  transform:translate(-50%,-50%) rotateX(82deg) translateZ(-280px);
+  background:
+    repeating-linear-gradient(90deg, rgba(130,160,255,.30) 0 2px, transparent 2px 280px),
+    repeating-linear-gradient(0deg,  rgba(130,160,255,.20) 0 2px, transparent 2px 280px);
+  -webkit-mask-image:radial-gradient(ellipse 46% 46% at 50% 50%,#000 14%,transparent 78%);
+  mask-image:radial-gradient(ellipse 46% 46% at 50% 50%,#000 14%,transparent 78%)}
+/* hitos: marcan dónde está cada marcha en el espacio */
+.mark{position:absolute;left:50%;top:50%;width:230px;height:230px;margin:-115px 0 0 -115px;
+  border-radius:50%;border:2px dashed rgba(255,255,255,.14);
+  display:grid;place-items:center;font-family:Archivo,sans-serif;font-weight:900;
+  font-variation-settings:"wdth" 78;font-size:120px;color:rgba(255,255,255,.075);
+  transform-style:preserve-3d}
+.panel{position:absolute;left:50%;top:50%;width:min(680px,84vw);
+  transform-style:preserve-3d;backface-visibility:hidden}
+.panel .inner{transform:translate(-50%,-50%);padding:34px 38px;border-radius:22px;
+  background:rgba(16,22,48,.72);border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(10px);box-shadow:0 30px 80px -30px rgba(0,0,0,.9);
+  opacity:.28;transition:opacity .45s ease}
+.panel.on .inner{opacity:1}
+.panel .tag{display:inline-flex;align-items:center;gap:9px;font-family:Archivo,sans-serif;
+  font-weight:800;font-variation-settings:"wdth" 86;text-transform:uppercase;font-size:12px;
+  letter-spacing:.14em;padding:6px 13px;border-radius:99px;margin-bottom:16px}
+.panel h2{font-size:clamp(30px,4.4vw,52px);margin-bottom:14px}
+.panel p{max-width:48ch;font-size:var(--t-md);line-height:1.45}
+.panel .row{display:flex;gap:26px;flex-wrap:wrap;margin-top:22px;padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.12)}
+.panel .row b{display:block;font-family:Archivo,sans-serif;font-weight:900;
+  font-variation-settings:"wdth" 82;font-size:26px;line-height:1}
+.panel .row span{font-size:12px;color:var(--gris);text-transform:uppercase;letter-spacing:.1em}
+
+.t-n{background:rgba(255,255,255,.14);color:#fff}
+.t-1{background:rgba(255,194,26,.18);color:var(--ambar)}
+.t-2{background:rgba(74,144,217,.2);color:#8FC2F5}
+.t-3{background:rgba(47,168,79,.2);color:#7BE0A0}
+.t-4{background:rgba(226,59,46,.2);color:#FF9E96}
+.t-5{background:rgba(160,120,255,.2);color:#C6ADFF}
+.t-r{background:rgba(255,255,255,.14);color:#fff}
+
+/* ---------- PALANCA ---------- */
+.shifter{position:fixed;right:34px;bottom:34px;z-index:40;
+  background:rgba(10,14,30,.82);backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:18px 20px 16px;
+  box-shadow:0 24px 60px -24px rgba(0,0,0,.9)}
+.shifter .lbl{font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth" 86;
+  text-transform:uppercase;font-size:11px;letter-spacing:.18em;color:var(--gris);
+  text-align:center;margin-bottom:12px}
+.gate{position:relative;width:186px;height:186px}
+.gate svg{position:absolute;inset:0;width:100%;height:100%}
+.slot{stroke:rgba(255,255,255,.18);stroke-width:15;stroke-linecap:round;fill:none}
+.slot-in{stroke:rgba(255,255,255,.06);stroke-width:9;stroke-linecap:round;fill:none}
+.gbtn{position:absolute;width:46px;height:46px;transform:translate(-50%,-50%);
+  border-radius:50%;border:0;background:transparent;cursor:pointer;padding:0;
+  font-family:Archivo,sans-serif;font-weight:900;font-size:17px;color:var(--gris);
+  display:grid;place-items:center;transition:color .2s}
+.gbtn:hover{color:#fff}
+.gbtn.on{color:var(--noche)}
+.gbtn:focus-visible{outline:3px solid var(--ambar);outline-offset:2px}
+.knob{position:absolute;width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(160deg,#fff,#C9CEDC);
+  box-shadow:0 5px 0 #7D8497, 0 12px 26px -8px rgba(0,0,0,.9);
+  transform:translate(-50%,-50%);pointer-events:none;z-index:3;
+  transition:left var(--dur) var(--ease), top var(--dur) var(--ease)}
+.knob::after{content:"";position:absolute;inset:13px;border-radius:50%;background:var(--azul);opacity:.9}
+
+/* ---------- HUD ---------- */
+.hud{position:fixed;left:34px;bottom:34px;z-index:40;display:flex;align-items:flex-end;gap:18px}
+.gear-now{font-family:Archivo,sans-serif;font-weight:900;font-variation-settings:"wdth" 78;
+  font-size:76px;line-height:.8;color:#fff;min-width:64px}
+.gear-now small{display:block;font-family:Figtree,sans-serif;font-weight:600;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gris);margin-top:8px}
+.brand{position:fixed;left:34px;top:30px;z-index:40;display:flex;align-items:center;gap:11px;
+  font-family:Archivo,sans-serif;font-weight:900;font-variation-settings:"wdth" 85;
+  font-size:22px;text-transform:uppercase}
+.sem{width:22px;height:34px;border-radius:7px;background:var(--azul);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:3px;padding:4px 0;flex:none}
+.sem i{width:7px;height:7px;border-radius:50%}
+.hint{position:fixed;right:34px;top:30px;z-index:40;font-size:12.5px;color:var(--gris);
+  text-align:right;line-height:1.6}
+.hint b{color:#fff;font-weight:600}
+kbd{font-family:inherit;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  border-radius:6px;padding:1px 6px;font-size:11px}
+
+@media(max-width:820px){
+  .shifter{right:50%;transform:translateX(50%);bottom:18px;padding:14px 16px 12px}
+  .gate{width:150px;height:150px}
+  .knob{width:38px;height:38px}
+  .hud{left:18px;bottom:196px}
+  .gear-now{font-size:56px}
+  .brand{left:18px;top:18px;font-size:18px}
+  .hint{display:none}
+  .panel .inner{padding:24px 22px}
+  .panel p{font-size:var(--t-b)}
+}
+@media(prefers-reduced-motion:reduce){
+  .cam-x,.cam-z,.knob{transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="brand"><span class="sem"><i style="background:#E23B2E"></i><i style="background:#FFC21A"></i><i style="background:#2FA84F"></i></span>Tecnovial</div>
+
+<div class="hint">Arrastra la palanca o usa las <b>flechas</b><br><kbd>N</kbd> <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> <kbd>5</kbd> <kbd>R</kbd></div>
+
+<div class="stage">
+  <div class="cam-x" id="camX">
+    <div class="cam-z" id="camZ">
+      <div class="ground"></div>
+
+      <section class="panel" data-gear="N"><div class="inner">
+        <span class="tag t-n">Punto muerto</span>
+        <h2 class="dsp">Aprender a conducir<br>tiene sus marchas</h2>
+        <p>Autoescuela en la Macarena desde hace más de diez años. Mete primera y te enseñamos el camino entero, desde la matrícula hasta el día que apruebas.</p>
+        <div class="row">
+          <div><b>180 €</b><span>Curso permiso B</span></div>
+          <div><b>4,9 ★</b><span>199 reseñas</span></div>
+          <div><b>1ª clase</b><span>De regalo</span></div>
+        </div>
+      </div></section>
+
+      <section class="panel" data-gear="1"><div class="inner">
+        <span class="tag t-1">Primera</span>
+        <h2 class="dsp">Arrancamos</h2>
+        <p>Abrimos tu expediente en la DGT y el mismo día entras en la plataforma de test. Tú solo traes el DNI y una foto.</p>
+        <div class="row">
+          <div><b>1 día</b><span>En ponerte en marcha</span></div>
+          <div><b>180 €</b><span>Matrícula y curso</span></div>
+        </div>
+      </div></section>
+
+      <section class="panel" data-gear="2"><div class="inner">
+        <span class="tag t-2">Segunda</span>
+        <h2 class="dsp">El teórico</h2>
+        <p>Preguntas oficiales de la DGT en el móvil, las 24 horas, y tutorías con tu profesora cuando algo no entra. A tu ritmo, sin clases obligatorias a las ocho de la tarde.</p>
+        <div class="row">
+          <div><b>24 h</b><span>Plataforma de test</span></div>
+          <div><b>Incluido</b><span>En el curso</span></div>
+        </div>
+      </div></section>
+
+      <section class="panel" data-gear="3"><div class="inner">
+        <span class="tag t-3">Tercera</span>
+        <h2 class="dsp">Las prácticas</h2>
+        <p>Siempre con la misma profesora, que sabe dónde flojeas. De mañana o de tarde, en las calles por las que vas a examinarte de verdad.</p>
+        <div class="row">
+          <div><b>25 €</b><span>Clase en bono de 10</span></div>
+          <div><b>35 €</b><span>Clase suelta</span></div>
+          <div><b>40 min</b><span>Cada clase</span></div>
+        </div>
+      </div></section>
+
+      <section class="panel" data-gear="4"><div class="inner">
+        <span class="tag t-4">Cuarta</span>
+        <h2 class="dsp">El examen</h2>
+        <p>Vas con el coche de siempre y tu profesora al lado. Clase de calentamiento antes, y si no sale, no hay recargos raros: examen y tasas, nada más.</p>
+        <div class="row">
+          <div><b>70 €</b><span>Por convocatoria</span></div>
+          <div><b>94,05 €</b><span>Tasas DGT</span></div>
+        </div>
+      </div></section>
+
+      <section class="panel" data-gear="5"><div class="inner">
+        <span class="tag t-5">Quinta</span>
+        <h2 class="dsp">Y lo que venga<br>después</h2>
+        <p>Moto con pistas en Sevilla capital, camión y autobús con el Certificado de Aptitud Profesional. Cuando quieras subir de marcha, seguimos aquí.</p>
+        <div class="row">
+          <div><b>AM · A1 · A2 · A</b><span>Moto</span></div>
+          <div><b>C · D + CAP</b><span>Profesionales</span></div>
+        </div>
+      </div></section>
+
+      <section class="panel" data-gear="R"><div class="inner">
+        <span class="tag t-r">Marcha atrás</span>
+        <h2 class="dsp">Volver a coger<br>el coche</h2>
+        <p>¿Años sin conducir? ¿Te impone la autovía o aparcar en el centro? Clases sueltas de reciclaje, sin matrícula y sin curso. Se empieza por donde tú digas.</p>
+        <div class="row">
+          <div><b>35 €</b><span>Clase de 40 min</span></div>
+          <div><b>55 €</b><span>Clase doble</span></div>
+          <div><b>Sin</b><span>Matrícula</span></div>
+        </div>
+      </div></section>
+
+    </div>
+  </div>
+</div>
+
+<div class="hud">
+  <div class="gear-now" id="gearNow">N<small id="gearName">Punto muerto</small></div>
+</div>
+
+<div class="shifter">
+  <div class="lbl">Cambia de marcha</div>
+  <div class="gate" id="gate">
+    <svg viewBox="0 0 186 186" aria-hidden="true">
+      <path class="slot" d="M28 28 V93 H158 V28"/>
+      <path class="slot" d="M28 158 V93 M93 158 V93 M158 158 V93"/>
+      <path class="slot" d="M93 28 V93"/>
+      <path class="slot-in" d="M28 28 V158 M93 28 V158 M158 28 V158 M28 93 H158"/>
+    </svg>
+    <button class="gbtn" data-g="1" style="left:15%;top:15%">1</button>
+    <button class="gbtn" data-g="2" style="left:15%;top:85%">2</button>
+    <button class="gbtn" data-g="3" style="left:50%;top:15%">3</button>
+    <button class="gbtn" data-g="4" style="left:50%;top:85%">4</button>
+    <button class="gbtn" data-g="5" style="left:85%;top:15%">5</button>
+    <button class="gbtn" data-g="R" style="left:85%;top:85%">R</button>
+    <button class="gbtn" data-g="N" style="left:50%;top:50%">N</button>
+    <div class="knob" id="knob" style="left:50%;top:50%"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* La H como sistema de coordenadas.
+     col:  -1 izquierda · 0 centro · 1 derecha
+     depth: -1 dentro (arriba) · 0 travesaño · 1 atrás (abajo)          */
+  var GEARS = {
+    N:{col:0,  depth:0,  name:'Punto muerto', x:50, y:50},
+    1:{col:-1, depth:-1, name:'Arrancamos',   x:15, y:15},
+    2:{col:-1, depth:1,  name:'El teórico',   x:15, y:85},
+    3:{col:0,  depth:-1, name:'Las prácticas',x:50, y:15},
+    4:{col:0,  depth:1,  name:'El examen',    x:50, y:85},
+    5:{col:1,  depth:-1, name:'Y después',    x:85, y:15},
+    R:{col:1,  depth:1,  name:'Reciclaje',    x:85, y:85}
+  };
+  var COL_W = 1150;   /* separación lateral entre carriles */
+  var DEPTH = 900;    /* separación en profundidad */
+  var LAG   = 340;    /* el eje Z espera a que termine el lateral */
+
+  var camX=document.getElementById('camX'), camZ=document.getElementById('camZ');
+  var knob=document.getElementById('knob');
+  var gearNow=document.getElementById('gearNow'), gearName=document.getElementById('gearName');
+  var panels=[].slice.call(document.querySelectorAll('.panel'));
+  var btns=[].slice.call(document.querySelectorAll('.gbtn'));
+  var current='N';
+
+  /* cada panel se coloca en su coordenada del mundo, con su hito detrás */
+  panels.forEach(function(p){
+    var g=GEARS[p.dataset.gear], t='translate3d('+(g.col*COL_W)+'px,0,'+(g.depth*DEPTH)+'px)';
+    p.style.transform=t;
+    var m=document.createElement('div');
+    m.className='mark'; m.textContent=p.dataset.gear;
+    m.style.transform=t+' translateZ(-260px)';
+    camZ.appendChild(m);
+  });
+
+  function shift(g){
+    if(!GEARS[g] || g===current) return;
+    var from=GEARS[current], to=GEARS[g];
+    var movesLateral = from.col!==to.col;
+
+    /* En dos tiempos, como al cambiar de verdad:
+       primero el carril, despues la profundidad.
+       Al volver al travesajo primero se sale en profundidad.  */
+    var zLag = movesLateral ? (to.depth===0 ? 0 : LAG) : 0;
+    var xLag = (movesLateral && from.depth!==0) ? LAG : 0;
+
+    camX.style.transitionDelay = xLag+'ms';
+    camZ.style.transitionDelay = zLag+'ms';
+    camX.style.transform='translate3d('+(-to.col*COL_W)+'px,0,0)';
+    camZ.style.transform='translate3d(0,0,'+(-to.depth*DEPTH)+'px)';
+
+    current=g;
+    gearNow.firstChild.nodeValue=g;
+    gearName.textContent=to.name;
+    knob.style.left=to.x+'%'; knob.style.top=to.y+'%';
+    panels.forEach(function(p){ p.classList.toggle('on', p.dataset.gear===g); });
+    btns.forEach(function(b){ b.classList.toggle('on', b.dataset.g===g); });
+    btns.forEach(function(b){ b.setAttribute('aria-current', b.dataset.g===g ? 'true':'false'); });
+  }
+
+  btns.forEach(function(b){ b.addEventListener('click',function(){ shift(b.dataset.g); }); });
+
+  /* teclado: flechas por la H, o la tecla de la marcha */
+  document.addEventListener('keydown',function(e){
+    var k=e.key.toUpperCase();
+    if(GEARS[k]){ shift(k); e.preventDefault(); return; }
+    var c=GEARS[current], col=c.col, d=c.depth, g;
+    if(e.key==='ArrowLeft')  col=Math.max(-1,col-1);
+    else if(e.key==='ArrowRight') col=Math.min(1,col+1);
+    else if(e.key==='ArrowUp')    d=Math.max(-1,d-1);
+    else if(e.key==='ArrowDown')  d=Math.min(1,d+1);
+    else return;
+    e.preventDefault();
+    for(var key in GEARS){ if(GEARS[key].col===col && GEARS[key].depth===d) g=key; }
+    /* fuera del carril central no hay posicion: se pasa por el travesano */
+    if(!g){ for(var k2 in GEARS){ if(GEARS[k2].col===col && GEARS[k2].depth===0) g=k2; } }
+    if(g) shift(g);
+  });
+
+  /* arrastre del pomo */
+  var gate=document.getElementById('gate'), dragging=false;
+  function nearest(px,py){
+    var best='N', bd=1e9;
+    for(var k in GEARS){
+      var g=GEARS[k], dx=g.x-px, dy=g.y-py, d=dx*dx+dy*dy;
+      if(d<bd){ bd=d; best=k; }
+    }
+    return best;
+  }
+  function pt(e){
+    var r=gate.getBoundingClientRect();
+    var t=e.touches?e.touches[0]:e;
+    return {x:(t.clientX-r.left)/r.width*100, y:(t.clientY-r.top)/r.height*100};
+  }
+  function down(e){ dragging=true; knob.style.transition='none'; move(e); }
+  function move(e){
+    if(!dragging) return;
+    var p=pt(e);
+    knob.style.left=Math.max(6,Math.min(94,p.x))+'%';
+    knob.style.top=Math.max(6,Math.min(94,p.y))+'%';
+    e.preventDefault();
+  }
+  function up(e){
+    if(!dragging) return;
+    dragging=false; knob.style.transition='';
+    var p=pt(e.changedTouches?{touches:e.changedTouches}:e);
+    var g=nearest(p.x,p.y);
+    if(g===current){ knob.style.left=GEARS[g].x+'%'; knob.style.top=GEARS[g].y+'%'; }
+    else shift(g);
+  }
+  gate.addEventListener('mousedown',down); gate.addEventListener('touchstart',down,{passive:false});
+  window.addEventListener('mousemove',move); window.addEventListener('touchmove',move,{passive:false});
+  window.addEventListener('mouseup',up);     window.addEventListener('touchend',up);
+
+  shift('N'); current='N';
+  panels[0].classList.add('on');
+  btns.forEach(function(b){ if(b.dataset.g==='N') b.classList.add('on'); });
+})();
+</script>
+</body>
+</html>
