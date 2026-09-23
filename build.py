@@ -22,6 +22,11 @@ IMAGENES = {
     "{{IMG_LOGO_TRANSPARENTE}}": "logo-referencia/logo-tecnovial-transparente.png",
     "{{IMG_BD_LOGO}}": "web/bd-logo.webp",
     "{{IMG_BD_ISOTIPO}}": "web/bd-isotipo.webp",
+    # Escenas de la palanca de cambios (N -> 1a)
+    "{{IMG_P_HERO}}": "palanca/n-hero.webp",
+    "{{IMG_P_BARRIDO}}": "palanca/barrido.webp",
+    "{{IMG_P_PASILLO}}": "palanca/1-pasillo.webp",
+    "{{IMG_P_RECEPCION}}": "palanca/1-recepcion.webp",
 }
 
 # Las 16 fotos de la sesion, en assets/web/01.webp ... 16.webp

@@ -195,6 +195,127 @@ section{padding:clamp(44px,6vw,100px) 0;position:relative}
 .screen.on{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
+/* ============ PALANCA DE CAMBIOS · escenas ============ */
+:root{--top:92px;--sky:#5BB8FD}
+@media(max-width:1180px){:root{--top:162px}}
+.scene{position:relative;overflow:hidden;isolation:isolate;display:flex;align-items:center;
+  min-height:max(520px,calc(100svh - var(--top)));background:var(--sky)}
+.scene-img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;z-index:-1}
+.scene-copy{position:relative;padding:clamp(40px,6vw,80px) 0 clamp(64px,8vw,96px)}
+.scene-copy>*{max-width:min(560px,44vw)}
+.scene-hero{align-items:flex-start}
+.scene-hero .scene-copy{width:auto;margin-left:clamp(16px,4.5vw,72px);padding-top:clamp(32px,7vh,84px)}
+.scene-hero .scene-copy>*{max-width:min(500px,36vw)}
+.scene-hero .scene-t{font-size:clamp(2rem,3.3vw,3.2rem)}
+.scene-hero .lead{max-width:min(460px,34vw)}
+.scene.brand .scene-copy>*,.scene.brand .lead{max-width:760px}
+.scene-t{font-size:clamp(2.1rem,4.3vw,3.9rem);font-weight:800;font-variation-settings:"wdth" 118;letter-spacing:-.03em;color:var(--navy)}
+.scene .lead{font-size:clamp(1rem,1.6vw,1.18rem);color:var(--navy-2);margin-top:16px;line-height:1.6;max-width:min(520px,42vw)}
+.scene .lead b{color:var(--navy)}
+.gear-kicker{display:inline-flex!important;align-items:center;gap:10px;font-family:Archivo,sans-serif;font-size:12px;font-weight:750;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--navy);background:rgba(255,255,255,.78);
+  padding:5px 14px 5px 5px;border-radius:99px;margin-bottom:18px;backdrop-filter:blur(6px);line-height:1.2}
+.gear-kicker b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:13px;letter-spacing:0}
+.scene-hint{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:2px;
+  font-family:Archivo,sans-serif;font-size:11px;font-weight:750;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);
+  opacity:.75;animation:hint 1.8s ease-in-out infinite;pointer-events:none;white-space:nowrap}
+.scene-hint span{font-size:16px;letter-spacing:0}
+@keyframes hint{50%{transform:translate(-50%,5px)}}
+.scene.brand{background-color:var(--navy)}
+.scene.brand .scene-t{color:#fff}
+.scene.brand .lead{color:rgba(255,255,255,.86)}
+.scene.brand .scene-hint{color:#fff}
+.scene.brand .gear-kicker{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.22)}
+.scene.brand .gear-kicker b{background:var(--amber);color:var(--navy)}
+.scene.brand .btn-o{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.28)}
+.scene-num{position:absolute;right:-.04em;bottom:-.2em;z-index:-1;pointer-events:none;font-family:Archivo,sans-serif;font-weight:800;
+  font-size:min(62vw,720px);line-height:1;font-variation-settings:"wdth" 125;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.2)}
+.scene-copy .scene-num{display:none}
+.why-head{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,56px);align-items:end;margin-bottom:clamp(28px,4vw,48px)}
+.why-head .sec-head{margin-bottom:0}
+@media(max-width:960px){.why-head{grid-template-columns:1fr}}
+.rev-card.light{background:var(--paper);border-color:var(--line);box-shadow:var(--shadow);backdrop-filter:none}
+.rev-card.light .rev-score{color:var(--ink)}
+.rev-card.light .rev-top{border-bottom-color:var(--line)}
+.rev-card.light .rev-top small{color:var(--body)}
+.rev-card.light .rev-q{color:var(--body)}
+.rev-card.light .rev-q b{color:var(--ink)}
+.rev-card.light .rev-who{color:#7A8496}
+[id="calculadora"],[id="tarifas"]{scroll-margin-top:70px}
+@media(max-width:760px),(max-aspect-ratio:1/1){
+  .scene{flex-direction:column;align-items:stretch;min-height:0}
+  .scene-hero .scene-copy{width:min(1200px,calc(100% - 32px));margin-inline:auto;padding-top:30px}
+  .scene-hero .scene-copy>*,.scene-hero .lead{max-width:none}
+  .scene-img{position:relative;inset:auto;order:2;height:min(56svh,460px);min-height:300px;z-index:0;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 16%);mask-image:linear-gradient(to bottom,transparent 0,#000 16%)}
+  .scene-copy{padding:30px 0 6px}
+  .scene-copy>*,.scene .lead{max-width:none}
+  .scene.brand .scene-copy{padding:56px 0 72px}
+  .scene-hint{display:none}
+}
+
+/* ============ PALANCA DE CAMBIOS · mando ============ */
+.tab .tg{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:5px;margin-right:7px;font-style:normal;
+  font-size:11px;font-weight:800;background:var(--line);color:var(--ink);vertical-align:1px;transition:.18s}
+.tab.on .tg{background:var(--blue);color:#fff}
+.shifter{position:fixed;right:20px;bottom:96px;z-index:90;transform-origin:bottom right;transition:transform .35s cubic-bezier(.3,1.3,.5,1),opacity .25s;padding:10px 10px 8px;border-radius:24px;user-select:none;-webkit-user-select:none;
+  background:radial-gradient(120% 90% at 50% 0%,#262d52 0%,#0d1230 70%);border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 20px 44px -14px rgba(8,14,56,.7),inset 0 1px 0 rgba(255,255,255,.08)}
+.sh-gate{position:relative;width:130px;height:130px}
+.sh-gate svg{position:absolute;inset:0;overflow:visible}
+.sh-lab{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border:0;border-radius:50%;background:none;cursor:pointer;padding:0;
+  font-family:Archivo,sans-serif;font-size:13px;font-weight:800;color:rgba(255,255,255,.5);transition:color .15s}
+.sh-lab:hover,.sh-lab:focus-visible{color:var(--amber);outline:none}
+.sh-knob{position:absolute;left:0;top:0;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;cursor:grab;touch-action:none;
+  display:grid;place-items:center;font-family:Archivo,sans-serif;font-size:14px;font-weight:800;color:#fff;will-change:transform;
+  background:radial-gradient(circle at 36% 30%,#56648f 0%,#1a2144 55%,#070a1a 100%);
+  box-shadow:0 8px 16px rgba(0,0,0,.55),0 0 0 3px rgba(255,255,255,.05),inset 0 1px 1px rgba(255,255,255,.3)}
+.sh-knob:active{cursor:grabbing}
+.sh-knob::after{content:"";position:absolute;inset:5px;border-radius:50%;border:1px solid rgba(255,255,255,.1)}
+.sh-cap{margin-top:4px;text-align:center;font-family:Archivo,sans-serif;font-size:10.5px;font-weight:750;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(255,255,255,.62);white-space:nowrap}
+.sh-cap b{color:var(--amber)}
+@media(max-height:760px){.shifter{transform:scale(.8)}}
+@media(max-width:1180px){
+  .shifter{right:auto;left:10px;bottom:calc(80px + env(safe-area-inset-bottom));transform:scale(.6);transform-origin:bottom left}
+  .shifter.lejos{transform:scale(.3) translateY(40px);opacity:0;pointer-events:none}
+}
+
+/* ============ PALANCA DE CAMBIOS · transición ============ */
+.gx{position:fixed;inset:0;z-index:85;overflow:hidden;background:#0B3FA8;display:none}
+.gx.on{display:block}
+.gx-stage,.gx-layer{position:absolute;inset:0}
+.gx-layer{overflow:hidden;will-change:transform,opacity,filter}
+.gx-layer>img{width:100%;height:100%;max-width:none;object-fit:cover;display:block}
+.gx-layer>.scene{height:100%;min-height:0}
+.gx-strip{position:absolute;top:0;left:0;height:100%;display:flex;will-change:transform}
+.gx-strip>.gx-layer{position:relative;flex:none;height:100%}
+.gx-streaks{position:absolute;inset:0;pointer-events:none;opacity:0;mix-blend-mode:screen;
+  background:
+    linear-gradient(90deg,transparent 0 8%,rgba(255,255,255,.55) 30% 34%,transparent 60%) 0 18%/100% 2px no-repeat,
+    linear-gradient(90deg,transparent 20%,rgba(255,255,255,.45) 45% 60%,transparent 85%) 0 31%/100% 3px no-repeat,
+    linear-gradient(90deg,transparent 0 40%,rgba(255,255,255,.5) 62% 70%,transparent) 0 47%/100% 2px no-repeat,
+    linear-gradient(90deg,transparent 5%,rgba(255,255,255,.35) 25% 40%,transparent 55%) 0 63%/100% 4px no-repeat,
+    linear-gradient(90deg,transparent 30%,rgba(255,255,255,.5) 55% 75%,transparent 95%) 0 79%/100% 2px no-repeat,
+    linear-gradient(90deg,transparent 0 10%,rgba(255,255,255,.4) 35% 45%,transparent 70%) 0 90%/100% 3px no-repeat}
+.gx-lines{position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:repeating-conic-gradient(from 0deg at var(--fx) var(--fy),rgba(255,255,255,0) 0deg 4deg,rgba(255,255,255,.55) 4deg 4.5deg,rgba(255,255,255,0) 4.5deg 9deg);
+  -webkit-mask-image:radial-gradient(circle at var(--fx) var(--fy),transparent 0 14%,#000 60%);
+  mask-image:radial-gradient(circle at var(--fx) var(--fy),transparent 0 14%,#000 60%)}
+.gx-tag{position:absolute;display:flex;align-items:center;gap:8px;transform:translate(-50%,calc(-100% - 14px));white-space:nowrap;
+  background:#fff;color:var(--navy);font-family:Archivo,sans-serif;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 14px 5px 5px;border-radius:99px;box-shadow:0 12px 30px -8px rgba(8,14,56,.5)}
+.gx-tag b{width:26px;height:26px;border-radius:50%;background:var(--amber);display:grid;place-items:center;letter-spacing:0}
+.gx-tag::after{content:"";position:absolute;left:50%;bottom:-6px;width:12px;height:12px;background:#fff;transform:translateX(-50%) rotate(45deg);border-radius:2px}
+.gx-tag i{position:absolute;left:50%;bottom:-30px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--amber);
+  box-shadow:0 0 0 0 rgba(245,179,1,.7);animation:ping 1s ease-out infinite}
+@keyframes ping{to{box-shadow:0 0 0 18px rgba(245,179,1,0)}}
+.gx-hud{position:absolute;top:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;
+  background:rgba(8,14,56,.72);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:6px 14px 6px 12px;
+  font-family:Archivo,sans-serif;color:#fff;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+.gx-hud small{font-size:10px;font-weight:750;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.gx-hud b{font-size:26px;font-weight:800;line-height:1;min-width:18px;text-align:center;color:var(--amber);font-variant-numeric:tabular-nums}
+
 .hero{position:relative;color:#fff;overflow:hidden;padding:clamp(40px,6vw,90px) 0 clamp(48px,7vw,110px)}
 .hero-glow{position:absolute;width:600px;height:600px;right:-150px;top:-180px;border-radius:50%;
   background:radial-gradient(circle,rgba(74,144,217,.32),transparent 65%);pointer-events:none}
@@ -492,11 +613,11 @@ footer .f-brand img{height:36px;border-radius:8px;background:#fff;padding:5px 8p
       <img src="{{IMG_LOGO}}" alt="Autoescuela Tecnovial" style="height:38px;width:auto;border-radius:6px">
     </button>
     <div class="tabs">
-      <button class="tab on" data-t="inicio" onclick="go('inicio')">Inicio</button>
-      <button class="tab" data-t="precios" onclick="go('precios')">Precios</button>
-      <button class="tab" data-t="permisos" onclick="go('permisos')">Permisos</button>
-      <button class="tab" data-t="nosotros" onclick="go('nosotros')">Nosotros</button>
-      <button class="tab" data-t="propuesta" onclick="go('propuesta')">La Propuesta</button>
+      <button class="tab on" data-t="inicio" onclick="go('inicio')"><i class="tg">N</i>Inicio</button>
+      <button class="tab" data-t="precios" onclick="go('precios')"><i class="tg">1</i>Precios</button>
+      <button class="tab" data-t="permisos" onclick="go('permisos')"><i class="tg">2</i>Permisos</button>
+      <button class="tab" data-t="nosotros" onclick="go('nosotros')"><i class="tg">3</i>Nosotros</button>
+      <button class="tab" data-t="propuesta" onclick="go('propuesta')"><i class="tg">4</i>La Propuesta</button>
     </div>
     <div class="nav-cta">
       <a class="btn btn-o btn-sm btn-tel" href="tel:+34955123107">📞 955 123 107</a>
@@ -510,44 +631,18 @@ footer .f-brand img{height:36px;border-radius:8px;background:#fff;padding:5px 8p
 
 <!-- ================= 1. INICIO ================= -->
 <div class="screen on" id="s-inicio">
-  <header class="hero bg-pattern-dark">
-    <div class="hero-glow"></div>
-    <div class="wrap hero-grid">
-      <div>
-        <span class="eyebrow">★ 4,9 sobre 5 con 199 reseñas · C/ Adelantado, Sevilla</span>
-        <h1>Tú nos conduces.<br>Nosotros ponemos<br>el resto.</h1>
-        <p class="lead">Autoescuela en la Macarena desde hace más de diez años. Curso del permiso B por <b style="color:#fff">180 €</b>, con la <b>primera clase práctica de regalo</b> y el presupuesto claro por escrito antes de matricularte.</p>
-        <div class="hero-btns">
-          <button class="btn btn-p" onclick="go('precios')">Calcular mi presupuesto en vivo →</button>
-          <a class="btn btn-o" href="#" onclick="openWA();return false">💬 Consultar por WhatsApp</a>
-        </div>
-      </div>
-      <div class="rev-card">
-        <div class="rev-top">
-          <div>
-            <div class="rev-score">4,9</div>
-            <div class="stars">★★★★★</div>
-          </div>
-          <div>
-            <b style="color:#fff;font-family:Archivo,sans-serif;font-size:16px">199 reseñas en Google</b>
-            <small>8 de cada 10 alumnos nos recomiendan</small>
-          </div>
-        </div>
-        <p class="rev-q">"<b>La mejor profesora del mundo.</b> Ha tenido muchísima paciencia conmigo y eso es lo que me ha hecho aprobar. Me transmitió total confianza desde la primera clase."</p>
-        <div class="rev-who">
-          <span style="color:var(--green)">●</span> Reseña real 100% verificada en Google
-        </div>
+  <header class="scene scene-hero" id="scene-inicio">
+    <img class="scene-img" id="sc-hero" src="{{IMG_P_HERO}}" alt="Tres alumnos de Tecnovial junto al coche de prácticas con la placa L" style="object-position:62% 50%" fetchpriority="high">
+    <div class="wrap scene-copy">
+      <div class="gear-kicker"><b>N</b>★ 4,9 · 199 reseñas · C/ Adelantado, Sevilla</div>
+      <h1 class="scene-t">Tú nos conduces.<br>Nosotros ponemos el resto.</h1>
+      <p class="lead">Autoescuela en la Macarena desde hace más de diez años. Curso del permiso B por <b>180 €</b>, con la <b>primera clase práctica de regalo</b> y el presupuesto claro por escrito antes de matricularte.</p>
+      <div class="hero-btns">
+        <button class="btn btn-p" onclick="go('precios')">Meter 1ª · Calcular mi carné →</button>
+        <a class="btn btn-o" href="#" onclick="openWA();return false">💬 Consultar por WhatsApp</a>
       </div>
     </div>
-
-    <div class="wrap hero-showcase">
-      <div class="hero-img-wrap">
-        <picture>
-          <source media="(max-width: 760px)" srcset="{{IMG_13}}">
-          <img class="shot" style="aspect-ratio:16/9;width:100%" src="{{IMG_01}}" alt="Coche de prácticas de Autoescuela Tecnovial en Sevilla">
-        </picture>
-      </div>
-    </div>
+    <div class="scene-hint" aria-hidden="true">Mete una marcha con la palanca<span>↘</span></div>
   </header>
 
   <div class="strip">
@@ -564,10 +659,26 @@ footer .f-brand img{height:36px;border-radius:8px;background:#fff;padding:5px 8p
   <!-- Por qué Tecnovial -->
   <section class="bg-pattern-light">
     <div class="wrap">
-      <div class="sec-head">
-        <div class="kicker">Por qué Tecnovial</div>
-        <h2>Aprender a conducir con tranquilidad y sin sorpresas</h2>
-        <p>Sabemos lo que importa: profesores con paciencia infinita, coches modernos y precios que no cambian a mitad de camino.</p>
+      <div class="why-head">
+        <div class="sec-head">
+          <div class="kicker">Por qué Tecnovial</div>
+          <h2>Aprender a conducir con tranquilidad y sin sorpresas</h2>
+          <p>Sabemos lo que importa: profesores con paciencia infinita, coches modernos y precios que no cambian a mitad de camino.</p>
+        </div>
+        <div class="rev-card light">
+          <div class="rev-top">
+            <div>
+              <div class="rev-score">4,9</div>
+              <div class="stars">★★★★★</div>
+            </div>
+            <div>
+              <b style="color:var(--ink);font-family:Archivo,sans-serif;font-size:16px">199 reseñas en Google</b>
+              <small>8 de cada 10 alumnos nos recomiendan</small>
+            </div>
+          </div>
+          <p class="rev-q">"<b>La mejor profesora del mundo.</b> Ha tenido muchísima paciencia conmigo y eso es lo que me ha hecho aprobar. Me transmitió total confianza desde la primera clase."</p>
+          <div class="rev-who"><span style="color:var(--green)">●</span> Reseña real 100% verificada en Google</div>
+        </div>
       </div>
 
       <div class="grid-3">
@@ -697,15 +808,24 @@ footer .f-brand img{height:36px;border-radius:8px;background:#fff;padding:5px 8p
 
 <!-- ================= 2. PRECIOS & CALCULADORA ================= -->
 <div class="screen" id="s-precios">
-  <section class="wrap">
+  <header class="scene" id="scene-precios">
+    <img class="scene-img" id="sc-recepcion" src="{{IMG_P_RECEPCION}}" alt="Administrativa de Tecnovial atendiendo en el mostrador de la oficina" style="object-position:72% 50%">
+    <div class="wrap scene-copy">
+      <div class="gear-kicker"><b>1</b>1ª marcha · Precios</div>
+      <h2 class="scene-t">Precios claros y por escrito desde el primer día</h2>
+      <p class="lead">Todas las tarifas de Autoescuela Tecnovial en la Macarena. Sin costes ocultos ni comisiones extrañas.</p>
+      <div class="hero-btns">
+        <button class="btn btn-p" onclick="bajar('calculadora')">Calcular mi carné ↓</button>
+        <button class="btn btn-o" onclick="bajar('tarifas')">Ver tarifas 2026</button>
+      </div>
+    </div>
+    <div class="scene-hint" aria-hidden="true">Desliza<span>↓</span></div>
+  </header>
+
+  <section class="wrap" id="tarifas">
     <div class="sec-head">
       <div class="kicker">Tarifas Oficiales 2026</div>
-      <h2>Precios claros y por escrito desde el primer día</h2>
-      <p>Todas las tarifas de Autoescuela Tecnovial en la Macarena. Sin costes ocultos ni comisiones extrañas.</p>
-    </div>
-
-    <div style="margin-bottom:36px">
-      <img class="shot" style="aspect-ratio:16/9;max-width:800px;margin-inline:auto" src="{{IMG_09}}" alt="Maniobra de aparcamiento durante una clase práctica en Sevilla">
+      <h2>Lo que pagas, línea a línea</h2>
     </div>
 
     <div class="price-grid">
@@ -759,7 +879,7 @@ footer .f-brand img{height:36px;border-radius:8px;background:#fff;padding:5px 8p
     </div>
   </section>
 
-  <section class="bg-pattern-dark">
+  <section class="bg-pattern-dark" id="calculadora">
     <div class="wrap">
       <div class="sec-head">
         <div class="kicker" style="color:var(--amber)">Calculadora en Vivo</div>
@@ -818,12 +938,17 @@ footer .f-brand img{height:36px;border-radius:8px;background:#fff;padding:5px 8p
 
 <!-- ================= 3. PERMISOS ================= -->
 <div class="screen" id="s-permisos">
-  <section class="wrap">
-    <div class="sec-head">
-      <div class="kicker">Oferta Formativa</div>
-      <h2>Todos los permisos a tu alcance</h2>
-      <p>Coche, moto con pistas en Sevilla capital, camión, autobús y cursos profesionales CAP.</p>
+  <header class="scene brand bg-pattern-dark" id="scene-permisos">
+    <span class="scene-num" aria-hidden="true">2</span>
+    <div class="wrap scene-copy">
+      <div class="gear-kicker"><b>2</b>2ª marcha · Permisos</div>
+      <h2 class="scene-t">Todos los permisos a tu alcance</h2>
+      <p class="lead">Coche, moto con pistas en Sevilla capital, camión, autobús y cursos profesionales CAP.</p>
     </div>
+    <div class="scene-hint" aria-hidden="true">Desliza<span>↓</span></div>
+  </header>
+
+  <section class="wrap">
 
     <div class="perm-card">
       <div class="plate">B</div>
@@ -892,6 +1017,15 @@ footer .f-brand img{height:36px;border-radius:8px;background:#fff;padding:5px 8p
 
 <!-- ================= 4. NOSOTROS & OPINIONES ================= -->
 <div class="screen" id="s-nosotros">
+  <header class="scene brand bg-pattern-dark" id="scene-nosotros">
+    <span class="scene-num" aria-hidden="true">3</span>
+    <div class="wrap scene-copy">
+      <div class="gear-kicker"><b>3</b>3ª marcha · Nosotros</div>
+      <h2 class="scene-t">Las mismas caras de siempre, en la Macarena</h2>
+      <p class="lead">Conoce a tus profesoras, el aula y lo que opinan los 199 alumnos que ya nos han valorado en Google.</p>
+    </div>
+    <div class="scene-hint" aria-hidden="true">Desliza<span>↓</span></div>
+  </header>
   <section class="wrap">
     <div class="grid-2" style="align-items:center;gap:clamp(32px,5vw,60px)">
       <div>
@@ -1029,6 +1163,15 @@ footer .f-brand img{height:36px;border-radius:8px;background:#fff;padding:5px 8p
 
 <!-- ================= 5. LA PROPUESTA (BD DESIGNIA) ================= -->
 <div class="screen" id="s-propuesta">
+  <header class="scene brand bg-pattern-dark" id="scene-propuesta">
+    <span class="scene-num" aria-hidden="true">4</span>
+    <div class="wrap scene-copy">
+      <div class="gear-kicker"><b>4</b>4ª marcha · La propuesta</div>
+      <h2 class="scene-t">La web que convierte visitas en matrículas</h2>
+      <p class="lead">Propuesta comercial de bd DesignIA para Autoescuela Tecnovial: diagnóstico, soluciones y plan de acción.</p>
+    </div>
+    <div class="scene-hint" aria-hidden="true">Desliza<span>↓</span></div>
+  </header>
   <section class="wrap">
     
     <div class="sec-head" style="max-width:860px">
@@ -1352,6 +1495,32 @@ footer .f-brand img{height:36px;border-radius:8px;background:#fff;padding:5px 8p
   </button>
 </nav>
 
+<!-- ============ PALANCA DE CAMBIOS ============ -->
+<div class="shifter" role="group" aria-label="Palanca de cambios: navegación por secciones">
+  <div class="sh-gate" id="sh-gate">
+    <svg viewBox="0 0 130 130" aria-hidden="true">
+      <path d="M20 22V108M110 22V108M20 65H110" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="16" stroke-linecap="round"/>
+      <path d="M20 22V108M110 22V108M20 65H110" fill="none" stroke="#04060f" stroke-width="11" stroke-linecap="round"/>
+    </svg>
+    <button class="sh-lab" style="left:20px;top:22px" onclick="go('precios')" aria-label="1ª marcha: Precios">1</button>
+    <button class="sh-lab" style="left:20px;top:108px" onclick="go('permisos')" aria-label="2ª marcha: Permisos">2</button>
+    <button class="sh-lab" style="left:65px;top:65px" onclick="go('inicio')" aria-label="Punto muerto: Inicio">N</button>
+    <button class="sh-lab" style="left:110px;top:22px" onclick="go('nosotros')" aria-label="3ª marcha: Nosotros">3</button>
+    <button class="sh-lab" style="left:110px;top:108px" onclick="go('propuesta')" aria-label="4ª marcha: La propuesta">4</button>
+    <div class="sh-knob" id="sh-knob" tabindex="0" role="slider" aria-label="Pomo de la palanca: arrástralo o usa las flechas">N</div>
+  </div>
+  <div class="sh-cap" id="sh-cap"><b>N</b> · Inicio</div>
+</div>
+
+<div class="gx" id="gx" aria-hidden="true">
+  <div class="gx-stage" id="gx-stage"></div>
+  <div class="gx-hud"><small>Marcha</small><b id="gx-n">N</b></div>
+</div>
+<div hidden>
+  <img id="sc-barrido" src="{{IMG_P_BARRIDO}}" alt="">
+  <img id="sc-pasillo" src="{{IMG_P_PASILLO}}" alt="">
+</div>
+
 <!-- ============ AGENTE WHATSAPP ============ -->
 <button class="wa-fab" onclick="toggleWA()" aria-label="Abrir asistente de WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z"/></svg>
@@ -1370,11 +1539,249 @@ footer .f-brand img{height:36px;border-radius:8px;background:#fff;padding:5px 8p
 </div>
 
 <script>
-function go(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on', s.id==='s-'+id));
-  document.querySelectorAll('[data-t]').forEach(b=>b.classList.toggle('on', b.dataset.t===id));
-  window.scrollTo({top:0,behavior:'instant'});
+/* ============ PALANCA DE CAMBIOS ============
+   Cada sección es una marcha de una caja en H:   1   3
+                                                  |-N-|
+                                                  2   4
+   Para llegar a una marcha la cámara hace el recorrido de la palanca:
+   barrido lateral por el punto muerto hasta la "puerta" de la columna
+   y viaje al fondo de esa imagen hasta la escena de la sección.
+   Para añadir la imagen de otra marcha basta con meter su <img id="sc-..."> y
+   apuntar "puerta"/"escena" a ella en MARCHAS. */
+const ESCENAS = {
+  // img: id del <img> con la imagen · pos: encuadre (object-position, %)
+  hero:      {img:'sc-hero',      pos:[62,50]},
+  barrido:   {img:'sc-barrido',   pos:[50,50]},
+  pasillo:   {img:'sc-pasillo',   pos:[34,50]},
+  recepcion: {img:'sc-recepcion', pos:[72,50]},
+  // Sin ilustración todavía: se usa la cabecera de la propia sección
+  permisos:  {cab:'scene-permisos'},
+  nosotros:  {cab:'scene-nosotros'},
+  propuesta: {cab:'scene-propuesta'},
+};
+// col: -1 izquierda, 0 centro, 1 derecha · fila: -1 arriba, 0 punto muerto, 1 abajo
+// foco: punto de la puerta (en % de la imagen) hacia el que viaja la cámara
+// llegada: punto de la escena final que coincide con ese foco
+const MARCHAS = {
+  inicio:    {n:'N', t:'Inicio',    col:0,  fila:0,  escena:'hero'},
+  precios:   {n:'1', t:'Precios',   col:-1, fila:-1, puerta:'pasillo', foco:[30.5,57], escena:'recepcion', llegada:[76,62]},
+  permisos:  {n:'2', t:'Permisos',  col:-1, fila:1,  puerta:'pasillo', foco:[46,47],   escena:'permisos'},
+  nosotros:  {n:'3', t:'Nosotros',  col:1,  fila:-1, puerta:'barrido', foco:[68.7,64], escena:'nosotros'},
+  propuesta: {n:'4', t:'Propuesta', col:1,  fila:1,  puerta:'barrido', foco:[26,75],   escena:'propuesta'},
+};
+const TECLAS = {n:'inicio','0':'inicio','1':'precios','2':'permisos','3':'nosotros','4':'propuesta'};
+const REJILLA = {col:{'-1':20,'0':65,'1':110}, fila:{'-1':22,'0':65,'1':108}};
+
+const GX = document.getElementById('gx'), STAGE = document.getElementById('gx-stage'),
+      HUD = document.getElementById('gx-n'), GATE = document.getElementById('sh-gate'),
+      KNOB = document.getElementById('sh-knob'), CAP = document.getElementById('sh-cap');
+const QUIETO = matchMedia('(prefers-reduced-motion: reduce)');
+const espera = ms => new Promise(r => setTimeout(r, ms));
+let actual = 'inicio', ocupado = false, pendiente = null, knobFijo = false, knobXY = [65,65];
+
+/* ---- mando ---- */
+const posMarcha = (m, enPM) => [REJILLA.col[m.col], REJILLA.fila[enPM ? 0 : m.fila]];
+function knobPon(p){ knobXY = p; KNOB.style.transform = `translate(${p[0]}px,${p[1]}px)`; }
+function knobA(p, dur, easing){
+  if(knobFijo) return;
+  const de = knobXY; knobPon(p);
+  KNOB.animate([{transform:`translate(${de[0]}px,${de[1]}px)`},{transform:`translate(${p[0]}px,${p[1]}px)`}],
+    {duration:dur, easing:easing || 'cubic-bezier(.6,0,.3,1)'});
 }
+function rotular(id){
+  const m = MARCHAS[id];
+  KNOB.textContent = m.n;
+  CAP.innerHTML = `<b>${m.n === 'N' ? 'N' : m.n + 'ª'}</b> · ${m.t}`;
+}
+function hud(n){ KNOB.textContent = n; if(HUD.textContent !== n){ HUD.textContent = n; HUD.animate([{transform:'translateY(-40%)',opacity:0},{transform:'none',opacity:1}],{duration:220,easing:'ease-out'}); } }
+
+/* ---- capas de la escena ---- */
+async function capa(k){
+  const e = ESCENAS[k], d = document.createElement('div');
+  d.className = 'gx-layer';
+  if(e.img){
+    const src = document.getElementById(e.img), i = new Image();
+    i.src = src.currentSrc || src.src; i.alt = '';
+    i.style.objectPosition = e.pos[0] + '% ' + e.pos[1] + '%';
+    d.appendChild(i);
+    try{ await i.decode(); }catch(_){}
+  } else {
+    const c = document.getElementById(e.cab).cloneNode(true);
+    c.removeAttribute('id');
+    c.querySelectorAll('[id]').forEach(x => x.removeAttribute('id'));
+    d.appendChild(c);
+  }
+  return d;
+}
+// Coordenadas en pantalla de un punto de la imagen (en %) con object-fit:cover
+function punto(k, f){
+  const e = ESCENAS[k], W = innerWidth, H = innerHeight;
+  if(!e.img || !f) return [W/2, H/2];
+  const im = document.getElementById(e.img), iw = im.naturalWidth || 1672, ih = im.naturalHeight || 941;
+  const s = Math.max(W/iw, H/ih), dw = iw*s, dh = ih*s;
+  return [(W-dw)*e.pos[0]/100 + dw*f[0]/100, (H-dh)*e.pos[1]/100 + dh*f[1]/100];
+}
+function montar(...nodos){ const viejos = [...STAGE.children]; STAGE.append(...nodos); viejos.forEach(v => v.remove()); }
+
+/* ---- fases del recorrido ---- */
+// Barrido lateral por el punto muerto. paneles: en orden de recorrido. dir -1 = palanca a la izquierda
+async function barrer(paneles, dir){
+  const W = innerWidth, n = paneles.length, tira = document.createElement('div');
+  tira.className = 'gx-strip'; tira.style.width = n*W + 'px';
+  const capas = await Promise.all(paneles.map(capa));
+  (dir < 0 ? capas.reverse() : capas).forEach(c => { c.style.width = W + 'px'; tira.appendChild(c); });
+  const ini = dir < 0 ? -(n-1)*W : 0, fin = dir < 0 ? 0 : -(n-1)*W, rebote = -dir*Math.min(28, W*.025);
+  const rayas = document.createElement('div'); rayas.className = 'gx-streaks';
+  tira.style.transform = `translateX(${ini}px)`;
+  montar(tira, rayas);
+  const dur = 560 + 230*(n-1), o = {duration:dur, easing:'cubic-bezier(.62,0,.38,1)', fill:'forwards'};
+  const a = tira.animate([
+    {transform:`translateX(${ini}px)`, filter:'blur(0px)'},
+    {transform:`translateX(${(ini+fin)/2}px)`, filter:'blur(5px)', offset:.5},
+    {transform:`translateX(${fin+rebote}px)`, filter:'blur(0px)', offset:.84},
+    {transform:`translateX(${fin}px)`, filter:'blur(0px)'}], o);
+  rayas.animate([{opacity:0},{opacity:1,offset:.45},{opacity:0,offset:.8},{opacity:0}], o);
+  return {dur, fin:a.finished};
+}
+// Viaje al fondo de la puerta hasta la escena (o al revés, saliendo de la marcha)
+async function viajar(m, reves){
+  const [a, b] = await Promise.all([capa(m.puerta), capa(m.escena)]);
+  const [fx, fy] = punto(m.puerta, m.foco), [bx, by] = punto(m.escena, m.llegada);
+  a.style.transformOrigin = `${fx}px ${fy}px`;
+  b.style.transformOrigin = `${bx}px ${by}px`;
+  const lineas = document.createElement('div'); lineas.className = 'gx-lines';
+  lineas.style.setProperty('--fx', fx + 'px'); lineas.style.setProperty('--fy', fy + 'px');
+  if(!reves){
+    const tag = document.createElement('div'); tag.className = 'gx-tag';
+    tag.style.left = fx + 'px'; tag.style.top = fy + 'px';
+    tag.innerHTML = `<b>${m.n}</b>${m.t}<i></i>`;
+    a.appendChild(tag);
+  }
+  b.style.opacity = reves ? 1 : 0;
+  montar(a, b, lineas);
+  if(!reves){   // la marcha se ve al fondo antes de subir la palanca
+    a.querySelector('.gx-tag').animate([{transform:'translate(-50%,-60%) scale(.4)',opacity:0},{transform:'translate(-50%,calc(-100% - 14px)) scale(1)',opacity:1}],
+      {duration:380, easing:'cubic-bezier(.3,1.5,.5,1)', fill:'backwards'});
+    await espera(620);
+  }
+  const dur = 1250, o = {duration:dur, easing:'cubic-bezier(.55,0,.25,1)', fill:'forwards', direction:reves ? 'reverse' : 'normal'};
+  const f = a.animate([
+    {transform:'scale(1)', filter:'blur(0px)', opacity:1},
+    {transform:'scale(2.4)', filter:'blur(1px)', opacity:1, offset:.45},
+    {transform:'scale(7)', filter:'blur(10px)', opacity:0}], o);
+  b.animate([
+    {transform:'scale(1.7)', filter:'blur(12px)', opacity:0},
+    {transform:'scale(1.4)', filter:'blur(7px)', opacity:0, offset:.42},
+    {transform:'scale(1)', filter:'blur(0px)', opacity:1}], o);
+  lineas.animate([{opacity:0},{opacity:.85,offset:.5},{opacity:0}], o);
+  return {dur, fin:f.finished};
+}
+
+/* ---- cambio de marcha ---- */
+function mostrar(id){
+  actual = id;
+  document.querySelectorAll('.screen').forEach(s => s.classList.toggle('on', s.id === 's-' + id));
+  document.querySelectorAll('[data-t]').forEach(b => b.classList.toggle('on', b.dataset.t === id));
+  window.scrollTo({top:0, behavior:'instant'});
+  rotular(id);
+}
+async function cambiar(dest){
+  if(!MARCHAS[dest]) return;
+  if(ocupado){ pendiente = dest; return; }
+  if(dest === actual){ knobA(posMarcha(MARCHAS[dest]), 260); window.scrollTo({top:0, behavior:'smooth'}); return; }
+  const A = MARCHAS[actual], B = MARCHAS[dest];
+  if(QUIETO.matches){ knobPon(posMarcha(B)); mostrar(dest); return; }
+  ocupado = true;
+  try{
+    montar(await capa(A.escena));
+    hud(A.n);
+    GX.classList.add('on');
+    await GX.animate([{opacity:0},{opacity:1}], {duration:180}).finished;
+
+    // 1. de la marcha actual al punto muerto
+    if(A.fila){
+      const v = await viajar(A, true);
+      knobA(posMarcha(A, true), v.dur); await v.fin; hud('N');
+    }
+    // 2. barrido por el punto muerto hasta la columna de destino
+    if(A.col !== B.col){
+      const ruta = [A.col ? A.puerta : 'hero', 'barrido'];
+      if(A.col && B.col) ruta.push('hero', 'barrido');
+      ruta.push(B.col ? B.puerta : 'hero');
+      const b = await barrer(ruta, Math.sign(B.col - A.col));
+      knobA(posMarcha(B, true), b.dur, 'cubic-bezier(.62,0,.38,1)'); await b.fin;
+    }
+    // 3. del punto muerto a la marcha
+    if(B.fila){
+      const v = await viajar(B, false);
+      hud(B.n); knobA(posMarcha(B), v.dur * .7); await v.fin;
+    } else hud('N');
+
+    mostrar(dest);
+    await GX.animate([{opacity:1},{opacity:0}], {duration:380, easing:'ease-out'}).finished;
+  } finally {
+    GX.classList.remove('on'); STAGE.replaceChildren();
+    knobFijo = false; ocupado = false;
+    knobPon(posMarcha(MARCHAS[actual]));
+    if(pendiente && pendiente !== actual){ const p = pendiente; pendiente = null; cambiar(p); } else pendiente = null;
+  }
+}
+function go(id){
+  if(!MARCHAS[id]) return;
+  if(location.hash !== '#' + id) history.pushState(null, '', '#' + id);
+  cambiar(id);
+}
+function bajar(id){ document.getElementById(id).scrollIntoView({behavior:QUIETO.matches ? 'auto' : 'smooth'}); }
+const deHash = () => { const h = location.hash.slice(1); return MARCHAS[h] ? h : 'inicio'; };
+addEventListener('popstate', () => cambiar(deHash()));
+addEventListener('keydown', e => {
+  if(e.ctrlKey || e.metaKey || e.altKey || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName) || e.target.isContentEditable) return;
+  const id = TECLAS[e.key.toLowerCase()]; if(id){ e.preventDefault(); go(id); }
+});
+
+/* ---- arrastrar el pomo por la H ---- */
+function proyectar(x, y){
+  const C = REJILLA.col, F = REJILLA.fila, lim = (v, a, b) => Math.min(b, Math.max(a, v));
+  const cand = [[lim(x, C[-1], C[1]), F[0]], [C[-1], lim(y, F[-1], F[1])], [C[1], lim(y, F[-1], F[1])]];
+  return cand.reduce((m, p) => Math.hypot(p[0]-x, p[1]-y) < Math.hypot(m[0]-x, m[1]-y) ? p : m);
+}
+let arrastre = null;
+KNOB.addEventListener('pointerdown', e => {
+  if(ocupado) return;
+  arrastre = {id:e.pointerId, movido:false}; KNOB.setPointerCapture(e.pointerId);
+});
+KNOB.addEventListener('pointermove', e => {
+  if(!arrastre || e.pointerId !== arrastre.id) return;
+  const r = GATE.getBoundingClientRect(), k = r.width / 130;
+  const p = proyectar((e.clientX - r.left)/k, (e.clientY - r.top)/k);
+  if(Math.hypot(p[0]-knobXY[0], p[1]-knobXY[1]) > 1) arrastre.movido = true;
+  knobPon(p);
+});
+function soltar(e){
+  if(!arrastre || e.pointerId !== arrastre.id) return;
+  arrastre = null;
+  let mejor = null, dist = 20;
+  for(const id in MARCHAS){
+    const p = posMarcha(MARCHAS[id]), d = Math.hypot(p[0]-knobXY[0], p[1]-knobXY[1]);
+    if(d < dist){ dist = d; mejor = id; }
+  }
+  if(mejor && mejor !== actual){ knobPon(posMarcha(MARCHAS[mejor])); knobFijo = true; go(mejor); }
+  else knobA(posMarcha(MARCHAS[actual]), 320, 'cubic-bezier(.3,1.6,.5,1)');
+}
+KNOB.addEventListener('pointerup', soltar);
+KNOB.addEventListener('pointercancel', soltar);
+KNOB.addEventListener('keydown', e => {   // accesible con flechas
+  const m = MARCHAS[actual], orden = ['precios','permisos','inicio','nosotros','propuesta'];
+  const d = {ArrowRight:1, ArrowDown:1, ArrowLeft:-1, ArrowUp:-1}[e.key];
+  if(d){ e.preventDefault(); e.stopPropagation(); const i = orden.indexOf(actual); go(orden[(i + d + orden.length) % orden.length]); }
+});
+
+// En móvil la palanca se esconde al bajar por la sección (queda la barra inferior)
+const SHIFTER = document.querySelector('.shifter');
+addEventListener('scroll', () => SHIFTER.classList.toggle('lejos', scrollY > innerHeight * .6), {passive:true});
+
+// Estado inicial (entrar directamente en una marcha con #precios, etc.)
+(() => { const id = deHash(); if(id !== 'inicio') mostrar(id); else rotular(id); knobPon(posMarcha(MARCHAS[id])); })();
 
 const P = {curso:180, bono:250, suelta:35, examen:70, tasa:94.05, medico:40};
 const eur = n => n.toLocaleString('es-ES',{minimumFractionDigits:n%1?2:0, maximumFractionDigits:2, useGrouping:true}) + ' €';
